@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
-		52B2B20822BBF03D0022C15C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20722BBF03D0022C15C /* ViewController.swift */; };
+		52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20722BBF03D0022C15C /* JournalListViewController.swift */; };
 		52B2B20B22BBF03D0022C15C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20922BBF03D0022C15C /* Main.storyboard */; };
 		52B2B20E22BBF03D0022C15C /* FishingDaze.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20C22BBF03D0022C15C /* FishingDaze.xcdatamodeld */; };
 		52B2B21022BBF03E0022C15C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20F22BBF03E0022C15C /* Assets.xcassets */; };
@@ -29,7 +29,7 @@
 /* Begin PBXFileReference section */
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B20522BBF03D0022C15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52B2B20722BBF03D0022C15C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52B2B20722BBF03D0022C15C /* JournalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListViewController.swift; sourceTree = "<group>"; };
 		52B2B20A22BBF03D0022C15C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52B2B20D22BBF03D0022C15C /* FishingDaze.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishingDaze.xcdatamodel; sourceTree = "<group>"; };
 		52B2B20F22BBF03E0022C15C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				52B2B20522BBF03D0022C15C /* AppDelegate.swift */,
-				52B2B20722BBF03D0022C15C /* ViewController.swift */,
+				52B2B20722BBF03D0022C15C /* JournalListViewController.swift */,
 				52B2B20922BBF03D0022C15C /* Main.storyboard */,
 				52B2B20F22BBF03E0022C15C /* Assets.xcassets */,
 				52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */,
@@ -201,7 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B2B20E22BBF03D0022C15C /* FishingDaze.xcdatamodeld in Sources */,
-				52B2B20822BBF03D0022C15C /* ViewController.swift in Sources */,
+				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
