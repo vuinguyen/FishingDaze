@@ -29,6 +29,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="M2d-eF-6qo" kind="show" id="AkB-DS-PmZ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -47,7 +50,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="D2W-H9-0f7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Lpa-mV-96Q"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Lpa-mV-96Q">
+                            <connections>
+                                <segue destination="052-iU-ac1" kind="presentation" id="g0G-GB-sBN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jvU-DR-Nad" id="apZ-ON-6qc"/>
@@ -56,6 +63,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1039.1304347826087" y="137.77173913043478"/>
+        </scene>
+        <!--Journal Editor View Controller-->
+        <scene sceneID="y8W-WS-ne0">
+            <objects>
+                <tableViewController id="oOP-Dt-hCE" customClass="JournalEditorViewController" customModule="FishingDaze" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GZP-rn-h5D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kL6-Hm-KbZ">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kL6-Hm-KbZ" id="mpZ-07-ain">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oOP-Dt-hCE" id="kcb-86-cnR"/>
+                            <outlet property="delegate" destination="oOP-Dt-hCE" id="1MP-Nu-nwZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Fpz-jk-0ep">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mQC-gq-djL">
+                            <connections>
+                                <action selector="cancelEditing:" destination="oOP-Dt-hCE" id="dNX-YA-yaZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hsS-k6-ITr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2876.811594202899" y="-424.72826086956525"/>
+        </scene>
+        <!--Journal Entry View Controller-->
+        <scene sceneID="jh6-FL-QdD">
+            <objects>
+                <viewController id="M2d-eF-6qo" customClass="JournalEntryViewController" customModule="FishingDaze" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o0X-69-ca8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="USe-iR-nbK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mrm-zX-ZOB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IfB-FY-F4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="327"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="avQ-DB-49F">
@@ -74,6 +132,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EkE-sJ-FOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="109" y="137"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yTC-v8-QZz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="052-iU-ac1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7db-eS-A2N">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oOP-Dt-hCE" kind="relationship" relationship="rootViewController" id="hWB-VE-Toj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAI-cp-Ufe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1969.5652173913045" y="-424.72826086956525"/>
         </scene>
     </scenes>
 </document>

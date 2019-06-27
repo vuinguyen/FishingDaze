@@ -14,6 +14,8 @@
 		52B2B21022BBF03E0022C15C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20F22BBF03E0022C15C /* Assets.xcassets */; };
 		52B2B21322BBF03E0022C15C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */; };
 		52B2B21E22BBF03E0022C15C /* FishingDazeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B21D22BBF03E0022C15C /* FishingDazeTests.swift */; };
+		52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */; };
+		52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		52B2B21922BBF03E0022C15C /* FishingDazeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishingDazeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B21D22BBF03E0022C15C /* FishingDazeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDazeTests.swift; sourceTree = "<group>"; };
 		52B2B21F22BBF03E0022C15C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewController.swift; sourceTree = "<group>"; };
+		52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +83,8 @@
 		52B2B20422BBF03D0022C15C /* FishingDaze */ = {
 			isa = PBXGroup;
 			children = (
+				52D59D6F22C57463003CCB69 /* ViewController */,
 				52B2B20522BBF03D0022C15C /* AppDelegate.swift */,
-				52B2B20722BBF03D0022C15C /* JournalListViewController.swift */,
 				52B2B20922BBF03D0022C15C /* Main.storyboard */,
 				52B2B20F22BBF03E0022C15C /* Assets.xcassets */,
 				52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */,
@@ -97,6 +101,16 @@
 				52B2B21F22BBF03E0022C15C /* Info.plist */,
 			);
 			path = FishingDazeTests;
+			sourceTree = "<group>";
+		};
+		52D59D6F22C57463003CCB69 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				52B2B20722BBF03D0022C15C /* JournalListViewController.swift */,
+				52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */,
+				52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +216,8 @@
 			files = (
 				52B2B20E22BBF03D0022C15C /* FishingDaze.xcdatamodeld in Sources */,
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
+				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
+				52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
