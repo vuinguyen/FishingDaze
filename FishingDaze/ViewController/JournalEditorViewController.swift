@@ -9,11 +9,16 @@
 import UIKit
 
 class JournalEditorViewController: UITableViewController {
-
+  @IBOutlet weak var locationTextField: UITextField!
+  
   @IBAction func cancelEditing(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
   
+  @IBAction func saveEdits(_ sender: Any) {
+    print("save changes!")
+  }
+
   override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +31,7 @@ class JournalEditorViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+  /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
@@ -35,7 +41,7 @@ class JournalEditorViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
-
+*/
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -92,3 +98,9 @@ class JournalEditorViewController: UITableViewController {
     */
 
 }
+
+extension JournalEditorViewController: UITextFieldDelegate {
+
+}
+
+
