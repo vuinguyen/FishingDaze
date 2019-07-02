@@ -9,7 +9,9 @@
 import UIKit
 
 class JournalEditorViewController: UITableViewController {
-  @IBOutlet weak var locationTextField: UITextField!
+  @IBOutlet weak var waterLocationTextField: UITextField!
+  @IBOutlet weak var moreLocationTextField: UITextField!
+  @IBOutlet weak var dateTimePicker: UIDatePicker!
   
   @IBAction func cancelEditing(_ sender: Any) {
     dismiss(animated: true, completion: nil)
