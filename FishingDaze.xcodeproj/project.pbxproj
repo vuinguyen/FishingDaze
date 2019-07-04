@@ -62,6 +62,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52A382F322CD6166008E7025 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52A382F422CD617A008E7025 /* Data */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		52A382F422CD617A008E7025 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				52B2B20C22BBF03D0022C15C /* FishingDaze.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		52A382F522CD61A3008E7025 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */,
+				52B2B20922BBF03D0022C15C /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		52B2B1F922BBF03D0022C15C = {
 			isa = PBXGroup;
 			children = (
@@ -83,13 +108,12 @@
 		52B2B20422BBF03D0022C15C /* FishingDaze */ = {
 			isa = PBXGroup;
 			children = (
-				52D59D6F22C57463003CCB69 /* ViewController */,
+				52A382F322CD6166008E7025 /* Model */,
+				52A382F522CD61A3008E7025 /* View */,
+				52D59D6F22C57463003CCB69 /* Controller */,
 				52B2B20522BBF03D0022C15C /* AppDelegate.swift */,
-				52B2B20922BBF03D0022C15C /* Main.storyboard */,
 				52B2B20F22BBF03E0022C15C /* Assets.xcassets */,
-				52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */,
 				52B2B21422BBF03E0022C15C /* Info.plist */,
-				52B2B20C22BBF03D0022C15C /* FishingDaze.xcdatamodeld */,
 			);
 			path = FishingDaze;
 			sourceTree = "<group>";
@@ -103,14 +127,14 @@
 			path = FishingDazeTests;
 			sourceTree = "<group>";
 		};
-		52D59D6F22C57463003CCB69 /* ViewController */ = {
+		52D59D6F22C57463003CCB69 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				52B2B20722BBF03D0022C15C /* JournalListViewController.swift */,
 				52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */,
 				52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
