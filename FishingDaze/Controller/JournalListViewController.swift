@@ -27,6 +27,10 @@ class JournalListViewController: UIViewController {
     if segue.identifier == "showDetail" {
       let detailVC = segue.destination as! JournalEntryViewController
       detailVC.fruit = fruitArray[selectedIndex]
+    } else if segue.identifier == "addNewEntry" {
+      let navigationController = segue.destination as! UINavigationController
+      let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
+      entryVC.showDelete = false
     }
   }
 }

@@ -15,7 +15,8 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var startTimePicker: UIDatePicker!
   @IBOutlet weak var endTimePicker: UIDatePicker!
-
+  @IBOutlet weak var deleteEntryButton: UIButton!
+  
   @IBAction func deleteEntry(_ sender: Any) {
     print("we're going to delete an entry!")
   }
@@ -29,6 +30,8 @@ class JournalEditorViewController: UITableViewController {
     dismiss(animated: true, completion: saveStuff)
   }
 
+  var showDelete = false
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -39,6 +42,7 @@ class JournalEditorViewController: UITableViewController {
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
     setDefaultTimes()
+    showHideDelete()
   }
 
   func saveStuff() {
@@ -65,6 +69,10 @@ class JournalEditorViewController: UITableViewController {
     startTimePicker.date = updatedStartTime
   }
 
+  func showHideDelete() {
+    deleteEntryButton.isHidden = showDelete == true ? false : true
+    deleteEntryButton.isEnabled = showDelete == true ? true : false
+  }
   // MARK: - Table view data source
 
   /*
