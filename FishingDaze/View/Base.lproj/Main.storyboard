@@ -269,6 +269,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Delete Entry" id="QzE-ar-Xmx">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="CZQ-CL-ghn">
+                                        <rect key="frame" x="0.0" y="772" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CZQ-CL-ghn" id="yn0-17-Vww">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJn-mr-Xb8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                                    <state key="normal" title="Delete Entry">
+                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteEntry:" destination="oOP-Dt-hCE" eventType="touchUpInside" id="UyO-eV-iZG"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CJn-mr-Xb8" firstAttribute="top" secondItem="yn0-17-Vww" secondAttribute="top" id="067-ZH-eFO"/>
+                                                <constraint firstItem="CJn-mr-Xb8" firstAttribute="leading" secondItem="yn0-17-Vww" secondAttribute="leading" id="5lG-m8-i6A"/>
+                                                <constraint firstAttribute="bottom" secondItem="CJn-mr-Xb8" secondAttribute="bottom" id="DC3-Yb-ebJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="CJn-mr-Xb8" secondAttribute="trailing" id="k2t-mj-eqw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="oOP-Dt-hCE" id="kcb-86-cnR"/>
@@ -321,7 +350,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="USe-iR-nbK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Mrm-zX-ZOB"/>
+                    <navigationItem key="navigationItem" id="Mrm-zX-ZOB">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="TX9-xQ-V65">
+                            <connections>
+                                <segue destination="052-iU-ac1" kind="presentation" id="VG2-kl-7dn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="fruitLabel" destination="OCa-sO-CV1" id="tEF-f9-Mdi"/>
                     </connections>
@@ -367,4 +402,7 @@
             <point key="canvasLocation" x="1969.5652173913045" y="-424.72826086956525"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VG2-kl-7dn"/>
+    </inferredMetricsTieBreakers>
 </document>

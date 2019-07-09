@@ -16,6 +16,11 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var startTimePicker: UIDatePicker!
   @IBOutlet weak var endTimePicker: UIDatePicker!
 
+  @IBAction func deleteEntry(_ sender: Any) {
+    print("we're going to delete an entry!")
+  }
+
+
   @IBAction func cancelEditing(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
