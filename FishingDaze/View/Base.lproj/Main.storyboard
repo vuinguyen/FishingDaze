@@ -322,6 +322,7 @@
                         <outlet property="deleteEntryButton" destination="CJn-mr-Xb8" id="leR-JK-0OO"/>
                         <outlet property="endTimePicker" destination="trC-i0-LfP" id="elE-kD-SqB"/>
                         <outlet property="moreLocationTextField" destination="Ohg-oM-Xjb" id="u3C-NW-XHX"/>
+                        <outlet property="saveBarButton" destination="1a9-o1-bXv" id="zQQ-9H-xYh"/>
                         <outlet property="startTimePicker" destination="ooj-ed-GLy" id="zAv-Dm-GUX"/>
                         <outlet property="waterLocationTextField" destination="wD2-xL-nAm" id="hEC-gv-yBF"/>
                     </connections>

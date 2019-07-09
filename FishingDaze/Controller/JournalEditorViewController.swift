@@ -17,8 +17,33 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var endTimePicker: UIDatePicker!
   @IBOutlet weak var deleteEntryButton: UIButton!
   
+  @IBOutlet weak var saveBarButton: UIBarButtonItem!
+  
   @IBAction func deleteEntry(_ sender: Any) {
     print("we're going to delete an entry!")
+    // Create the action buttons for the alert.
+    let destroyAction = UIAlertAction(title: "Delete",
+                                      style: .destructive) { (action) in
+                                        // Respond to user selection of the action
+    }
+    let cancelAction = UIAlertAction(title: "Cancel",
+                                     style: .cancel) { (action) in
+                                      // Respond to user selection of the action
+    }
+
+    let alert = UIAlertController(title: "Delete Journal Entry?",
+                                  message: "",
+                                  preferredStyle: .actionSheet)
+    alert.addAction(destroyAction)
+    alert.addAction(cancelAction)
+
+    // On iPad, action sheets must be presented from a popover.
+    alert.popoverPresentationController?.barButtonItem = saveBarButton
+
+    self.present(alert, animated: true) {
+      // The alert was presented
+    }
+
   }
 
 
