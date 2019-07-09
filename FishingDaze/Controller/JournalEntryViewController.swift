@@ -10,11 +10,19 @@ import UIKit
 
 class JournalEntryViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  @IBOutlet weak var fruitLabel: UILabel!
 
-        // Do any additional setup after loading the view.
+  var fruit: String?
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view.
+
+    if let fruit = fruit {
+      fruitLabel.text = fruit
     }
+  }
     
 
     /*

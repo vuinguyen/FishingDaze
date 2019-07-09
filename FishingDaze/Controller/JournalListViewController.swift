@@ -13,6 +13,7 @@ class JournalListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   let reuseIdentifier = "JournalEntryCell"
+  var selectedIndex = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,6 +22,13 @@ class JournalListViewController: UIViewController {
   }
 
   let fruitArray = ["apples", "grapes", "oranges", "bananas"]
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showDetail" {
+      let detailVC = segue.destination as! JournalEntryViewController
+      detailVC.fruit = fruitArray[selectedIndex]
+    }
+  }
 }
 
 extension JournalListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -35,8 +43,10 @@ extension JournalListViewController: UITableViewDelegate, UITableViewDataSource 
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //tableView.deselectRow(at: indexPath, animated: true)
-    print("selected this row!")
+    selectedIndex = indexPath.row
+    performSegue(withIdentifier: "showDetail", sender: nil)
+    tableView.deselectRow(at: indexPath, animated: true)
+    //print("selected this row!")
   }
 
 }

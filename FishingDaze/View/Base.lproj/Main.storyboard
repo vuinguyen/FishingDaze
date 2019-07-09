@@ -29,9 +29,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="M2d-eF-6qo" kind="show" id="AkB-DS-PmZ"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -58,6 +55,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jvU-DR-Nad" id="apZ-ON-6qc"/>
+                        <segue destination="M2d-eF-6qo" kind="show" identifier="showDetail" id="jdq-HH-Qmf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -131,7 +129,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ac3-hX-cBY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="583803244.37783599">
                                                         <!--2019-07-02 23:34:04 +0000-->
                                                     </date>
@@ -308,14 +306,29 @@
                     <view key="view" contentMode="scaleToFill" id="o0X-69-ca8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Kind of Fruit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCa-sO-CV1">
+                                <rect key="frame" x="89.000000000000014" y="350" width="236.33333333333337" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OCa-sO-CV1" firstAttribute="centerY" secondItem="o0X-69-ca8" secondAttribute="centerY" id="TIg-On-mBM"/>
+                            <constraint firstItem="OCa-sO-CV1" firstAttribute="centerX" secondItem="o0X-69-ca8" secondAttribute="centerX" id="ZYY-r7-Pqd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="USe-iR-nbK"/>
                     </view>
                     <navigationItem key="navigationItem" id="Mrm-zX-ZOB"/>
+                    <connections>
+                        <outlet property="fruitLabel" destination="OCa-sO-CV1" id="tEF-f9-Mdi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IfB-FY-F4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="327"/>
+            <point key="canvasLocation" x="1915.9420289855075" y="326.9021739130435"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="avQ-DB-49F">

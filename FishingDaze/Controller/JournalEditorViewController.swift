@@ -21,7 +21,7 @@ class JournalEditorViewController: UITableViewController {
   }
   
   @IBAction func saveEdits(_ sender: Any) {
-    print("save changes!")
+    dismiss(animated: true, completion: saveStuff)
   }
 
   override func viewDidLoad() {
@@ -34,6 +34,22 @@ class JournalEditorViewController: UITableViewController {
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
     setDefaultTimes()
+  }
+
+  func saveStuff() {
+    print("save changes!")
+
+    // this is where we grab values from the pickers and save them somewhere
+    let startTime = startTimePicker.date
+    let endTime   = endTimePicker.date
+
+    print("startTime is: \(startTime)")
+    print("endTime is: \(endTime)")
+  }
+
+  // this needs to go into a utility class
+  func formatDate() {
+
   }
 
   func setDefaultTimes() {
