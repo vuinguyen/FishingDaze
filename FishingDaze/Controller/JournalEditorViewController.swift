@@ -25,7 +25,11 @@ class JournalEditorViewController: UITableViewController {
     let destroyAction = UIAlertAction(title: "Delete",
                                       style: .destructive) { (action) in
                                         // Respond to user selection of the action
+    // delete from Core Data
+    // unwind back to journal entry list
+    self.performSegue(withIdentifier: "DeleteEntrySegue", sender: nil)
     }
+
     let cancelAction = UIAlertAction(title: "Cancel",
                                      style: .cancel) { (action) in
                                       // Respond to user selection of the action
@@ -52,6 +56,8 @@ class JournalEditorViewController: UITableViewController {
   }
   
   @IBAction func saveEdits(_ sender: Any) {
+    // save to Core Data
+
     dismiss(animated: true, completion: saveStuff)
   }
 

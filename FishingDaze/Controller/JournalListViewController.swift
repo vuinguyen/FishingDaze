@@ -11,6 +11,15 @@ import UIKit
 class JournalListViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
+
+  @IBAction func deleteEntry(_ unwindSegue: UIStoryboardSegue) {
+    print("came back from deleting an entry!")
+    /*
+    guard let editorViewController = unwindSegue.source as? JournalEditorViewController else {
+        return
+    }
+ */
+ }
   
   let reuseIdentifier = "JournalEntryCell"
   var selectedIndex = 0

@@ -325,9 +325,11 @@
                         <outlet property="saveBarButton" destination="1a9-o1-bXv" id="zQQ-9H-xYh"/>
                         <outlet property="startTimePicker" destination="ooj-ed-GLy" id="zAv-Dm-GUX"/>
                         <outlet property="waterLocationTextField" destination="wD2-xL-nAm" id="hEC-gv-yBF"/>
+                        <segue destination="da5-Vl-c6O" kind="unwind" identifier="DeleteEntrySegue" unwindAction="deleteEntry:" id="GeK-H2-ttz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsS-k6-ITr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="da5-Vl-c6O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2876.811594202899" y="-424.72826086956525"/>
         </scene>
