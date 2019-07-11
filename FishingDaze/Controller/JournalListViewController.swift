@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class JournalListViewController: UIViewController {
 
@@ -20,17 +21,56 @@ class JournalListViewController: UIViewController {
     }
  */
  }
-  
+
+  let fruitArray = ["apples", "grapes", "oranges", "bananas"]
+
+  var appDelegate: AppDelegate!
+  var managedContext: NSManagedObjectContext!
   let reuseIdentifier = "JournalEntryCell"
   var selectedIndex = 0
+  var journalEntries = [JournalEntry]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
+    setUpCoreData()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setUpCoreData()
+
+    fetchJournalEntries()
     tableView.reloadData()
   }
 
-  let fruitArray = ["apples", "grapes", "oranges", "bananas"]
+  func setUpCoreData() {
+    appDelegate = UIApplication.shared.delegate as? AppDelegate
+    managedContext = appDelegate.persistentContainer.viewContext
+  }
+
+  func fetchJournalEntries() {
+    // for now, grab them from Core Data and print to the screen
+    journalEntries = []
+    do {
+      let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
+      let entries = try managedContext.fetch(fetchRequest)
+      for entry in entries {
+        if let endDate = entry.value(forKeyPath: "endDate") as? Date,
+           let startDate = entry.value(forKeyPath: "startDate") as? Date,
+          let creationDate = entry.value(forKeyPath: "creationDate") as? Date {
+          let journalEntry = JournalEntry(creationDate: creationDate, endDate: endDate, startDate: startDate)
+          journalEntries.append(journalEntry)
+          print("loaded creationDate: \(creationDate)")
+          print("loaded endDate: \(endDate)")
+          print("loaded startDate: \(startDate)\n")
+        }
+      }
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
+
+  }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
@@ -50,8 +90,8 @@ extension JournalListViewController: UITableViewDelegate, UITableViewDataSource 
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)!
-    cell.textLabel?.text = fruitArray[indexPath.row]
+    let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! JournalEntryTableViewCell
+    cell.fishingDateLabel.text = fruitArray[indexPath.row]
     return cell
   }
 

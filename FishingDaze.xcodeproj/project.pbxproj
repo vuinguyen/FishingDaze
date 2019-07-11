@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		527EBFDC22D7C5A000051BA0 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDB22D7C5A000051BA0 /* JournalEntry.swift */; };
+		527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */; };
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
 		52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20722BBF03D0022C15C /* JournalListViewController.swift */; };
 		52B2B20B22BBF03D0022C15C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20922BBF03D0022C15C /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		527EBFDB22D7C5A000051BA0 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryTableViewCell.swift; sourceTree = "<group>"; };
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B20522BBF03D0022C15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B2B20722BBF03D0022C15C /* JournalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				52B2B20C22BBF03D0022C15C /* FishingDaze.xcdatamodeld */,
+				527EBFDB22D7C5A000051BA0 /* JournalEntry.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				52B2B20722BBF03D0022C15C /* JournalListViewController.swift */,
 				52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */,
 				52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */,
+				527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,10 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527EBFDC22D7C5A000051BA0 /* JournalEntry.swift in Sources */,
 				52B2B20E22BBF03D0022C15C /* FishingDaze.xcdatamodeld in Sources */,
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
 				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
 				52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */,
+				527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

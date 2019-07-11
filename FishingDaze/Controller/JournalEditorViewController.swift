@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var waterLocationTextField: UITextField!
@@ -58,10 +59,13 @@ class JournalEditorViewController: UITableViewController {
   @IBAction func saveEdits(_ sender: Any) {
     // save to Core Data
 
-    dismiss(animated: true, completion: saveStuff)
+    dismiss(animated: true, completion: saveJournalEntry)
   }
 
+  var appDelegate: AppDelegate!
+  var managedContext: NSManagedObjectContext!
   var showDelete = false
+  var creationDate: Date?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -71,24 +75,59 @@ class JournalEditorViewController: UITableViewController {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    setUpCoreData()
 
     setDefaultTimes()
     showHideDelete()
   }
 
-  func saveStuff() {
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setUpCoreData()
+  }
+
+  func setUpCoreData() {
+    appDelegate = UIApplication.shared.delegate as? AppDelegate
+    managedContext = appDelegate.persistentContainer.viewContext
+  }
+
+  func saveJournalEntry() {
     print("save changes!")
 
     // this is where we grab values from the pickers and save them somewhere
     let startTime = startTimePicker.date
     let endTime   = endTimePicker.date
 
-    print("startTime is: \(startTime)")
-    print("endTime is: \(endTime)")
+    //print("startTime is: \(startTime)")
+    //print("endTime is: \(endTime)")
+
+    // Save to Core Data if new entry
+    if showDelete == false {
+      let entity =
+        NSEntityDescription.entity(forEntityName: "Entry",
+                                   in: managedContext)!
+
+      let entry = NSManagedObject(entity: entity,
+                              insertInto: managedContext)
+
+      let creationDate = Date()
+      entry.setValue(startTime, forKeyPath: "startDate")
+      entry.setValue(endTime, forKey: "endDate")
+      entry.setValue(creationDate, forKey: "creationDate")
+      do {
+        try managedContext.save()
+        print("Added entry, creationDate is: \(creationDate)")
+        print("Added entry, startTime is: \(startTime)")
+        print("Added entry, endTime is: \(endTime)\n")
+      } catch let error as NSError {
+        print("Could not save. \(error), \(error.userInfo)")
+      }
+    }
+    // else search for entry by creationDate, edit entry in Core Data and then save!
   }
 
   // this needs to go into a utility class
-  func formatDate() {
+  func formatDateForDisplay() {
 
   }
 
