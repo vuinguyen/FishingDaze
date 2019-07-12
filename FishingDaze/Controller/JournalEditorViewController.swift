@@ -36,13 +36,14 @@ class JournalEditorViewController: UITableViewController {
         do {
           self.managedContext.delete(entry)
           try self.managedContext.save()
+          // unwind back to journal entry list
+          self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
           //self.mapView.removeAnnotation(annotation)
         } catch let error as NSError {
           print("Could not save delete. \(error), \(error.userInfo)")
         }
     })
-    // unwind back to journal entry list
-    self.performSegue(withIdentifier: "DeleteEntrySegue", sender: nil)
+
     }
 
     let cancelAction = UIAlertAction(title: "Cancel",
@@ -67,13 +68,17 @@ class JournalEditorViewController: UITableViewController {
 
 
   @IBAction func cancelEditing(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
+    //dismiss(animated: true, completion: nil)
+    self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
   
   @IBAction func saveEdits(_ sender: Any) {
     // save to Core Data
 
-    dismiss(animated: true, completion: saveJournalEntry)
+    // the completion handler should really be reloading the tableView
+    //dismiss(animated: true, completion: saveJournalEntry)
+    saveJournalEntry()
+    self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
 
   var appDelegate: AppDelegate!
@@ -112,6 +117,7 @@ class JournalEditorViewController: UITableViewController {
     // this is where we grab values from the pickers and save them somewhere
     let startTime = startTimePicker.date
     let endTime   = endTimePicker.date
+    //let dateOnly  = datePicker.calendar.dateComponents(<#T##components: Set<Calendar.Component>##Set<Calendar.Component>#>, from: <#T##Date#>)
 
     //print("startTime is: \(startTime)")
     //print("endTime is: \(endTime)")
@@ -141,6 +147,21 @@ class JournalEditorViewController: UITableViewController {
       // else search for entry by creationDate, edit entry in Core Data and then save!
       findEntryByCreationDate { (journalEntryEdited, error) in
         // grab data from all the controls and save here!!
+        guard let entry = journalEntryEdited else {
+          print("could not find entry here")
+          return
+        }
+
+        entry.setValue(startTime, forKeyPath: "startDate")
+        entry.setValue(endTime, forKey: "endDate")
+        do {
+          try self.managedContext.save()
+          print("Edited entry, startTime is: \(startTime)")
+          print("Edited entry, endTime is: \(endTime)\n")
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+
       }
     }
 

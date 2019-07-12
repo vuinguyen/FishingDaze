@@ -13,7 +13,7 @@ class JournalListViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
 
-  @IBAction func deleteEntry(_ unwindSegue: UIStoryboardSegue) {
+  @IBAction func returnToJournalList(_ unwindSegue: UIStoryboardSegue) {
     print("came back from deleting an entry!")
     /*
     guard let editorViewController = unwindSegue.source as? JournalEditorViewController else {
@@ -22,6 +22,12 @@ class JournalListViewController: UIViewController {
  */
     tableView.reloadData()
  }
+
+  /*
+  @IBAction func saveEntry(_ unwindSegue: UIStoryboardSegue) {
+    tableView.reloadData()
+  }
+ */
 
   let fruitArray = ["apples", "grapes", "oranges", "bananas"]
 
