@@ -12,7 +12,7 @@ class JournalEntryViewController: UIViewController {
 
   @IBOutlet weak var dateLabel: UILabel!
 
-  var fruit: String?
+  //var fruit: String?
   var journalEntry: JournalEntry?
 
   override func viewDidLoad() {
@@ -42,6 +42,7 @@ class JournalEntryViewController: UIViewController {
       let navigationController = segue.destination as! UINavigationController
       let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
       entryVC.showDelete = true
+      entryVC.journalEntry = journalEntry
     }
   }
 

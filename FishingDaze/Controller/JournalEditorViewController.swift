@@ -26,7 +26,21 @@ class JournalEditorViewController: UITableViewController {
     let destroyAction = UIAlertAction(title: "Delete",
                                       style: .destructive) { (action) in
                                         // Respond to user selection of the action
-    // delete from Core Data
+    // find journal entry in Core Data and delete from Core Data
+      self.findEntryByCreationDate(completion: { (journalEntryToDelete, error) in
+        guard let entry = journalEntryToDelete else {
+          print("couldn't find entry to delete!")
+          return
+        }
+
+        do {
+          self.managedContext.delete(entry)
+          try self.managedContext.save()
+          //self.mapView.removeAnnotation(annotation)
+        } catch let error as NSError {
+          print("Could not save delete. \(error), \(error.userInfo)")
+        }
+    })
     // unwind back to journal entry list
     self.performSegue(withIdentifier: "DeleteEntrySegue", sender: nil)
     }
@@ -66,7 +80,8 @@ class JournalEditorViewController: UITableViewController {
   var managedContext: NSManagedObjectContext!
   var showDelete = false
   var creationDate: Date?
-
+  var journalEntry: JournalEntry?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -122,21 +137,54 @@ class JournalEditorViewController: UITableViewController {
       } catch let error as NSError {
         print("Could not save. \(error), \(error.userInfo)")
       }
+    } else {
+      // else search for entry by creationDate, edit entry in Core Data and then save!
+      findEntryByCreationDate { (journalEntryEdited, error) in
+        // grab data from all the controls and save here!!
+      }
     }
-    // else search for entry by creationDate, edit entry in Core Data and then save!
+
   }
 
-  // this needs to go into a utility class
-  func formatDateForDisplay() {
+  func findEntryByCreationDate(completion: @escaping (Entry?, Error?) -> Void) {
+    guard let journalEntry = journalEntry else {
+      return
+    }
+
+    let creationDatePredicate = NSPredicate(format: "creationDate = %@", journalEntry.creationDate as NSDate)
+
+    do {
+      let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
+      let entries = try managedContext.fetch(fetchRequest)
+      let entriesFound = (entries as NSArray).filtered(using: creationDatePredicate) as! [NSManagedObject]
+      if entriesFound.count >= 1 {
+
+        if let entryFound = entriesFound[0] as? Entry {
+          DispatchQueue.main.async {
+            completion(entryFound, nil)
+          }
+        }
+      }
+    } catch let error as NSError {
+
+      print("Could not fetch or save from context. \(error), \(error.userInfo)")
+      completion(nil, error)
+    }
 
   }
 
   func setDefaultTimes() {
-    let origStartTime = startTimePicker.date
-    // make the updated start time be 2 hours before the current time
-    let timeInterval = TimeInterval(60*60*2)
-    let updatedStartTime = origStartTime.addingTimeInterval(-timeInterval)
-    startTimePicker.date = updatedStartTime
+    if let journalEntry = journalEntry {
+      datePicker.date = journalEntry.startDate
+      startTimePicker.date = journalEntry.startDate
+      endTimePicker.date = journalEntry.endDate
+    } else {
+      let origStartTime = startTimePicker.date
+      // make the updated start time be 2 hours before the current time
+      let timeInterval = TimeInterval(60*60*2)
+      let updatedStartTime = origStartTime.addingTimeInterval(-timeInterval)
+      startTimePicker.date = updatedStartTime
+    }
   }
 
   func showHideDelete() {

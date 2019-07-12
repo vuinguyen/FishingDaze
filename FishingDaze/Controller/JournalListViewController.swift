@@ -20,6 +20,7 @@ class JournalListViewController: UIViewController {
         return
     }
  */
+    tableView.reloadData()
  }
 
   let fruitArray = ["apples", "grapes", "oranges", "bananas"]
@@ -34,6 +35,7 @@ class JournalListViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     setUpCoreData()
+    //tableView.reloadData()
   }
 
   override func viewWillAppear(_ animated: Bool) {
