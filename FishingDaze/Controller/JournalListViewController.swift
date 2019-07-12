@@ -72,10 +72,24 @@ class JournalListViewController: UIViewController {
 
   }
 
+  // this needs to go into a utility class
+  func formatDateForDisplay(date: Date) -> String {
+    var dateString = ""
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    dateFormatter.timeStyle = .none
+    dateFormatter.locale = Locale(identifier: "en_US")
+    dateString = dateFormatter.string(from: date)
+
+    return dateString
+  }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
       let detailVC = segue.destination as! JournalEntryViewController
-      detailVC.fruit = fruitArray[selectedIndex]
+      //detailVC.fruit = fruitArray[selectedIndex]
+      detailVC.journalEntry = journalEntries[selectedIndex]
     } else if segue.identifier == "addNewEntry" {
       let navigationController = segue.destination as! UINavigationController
       let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
@@ -86,12 +100,14 @@ class JournalListViewController: UIViewController {
 
 extension JournalListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return fruitArray.count
+    //return fruitArray.count
+    return journalEntries.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! JournalEntryTableViewCell
-    cell.fishingDateLabel.text = fruitArray[indexPath.row]
+    //cell.fishingDateLabel.text = fruitArray[indexPath.row]
+    cell.fishingDateLabel.text = formatDateForDisplay(date: journalEntries[indexPath.row].startDate)
     return cell
   }
 

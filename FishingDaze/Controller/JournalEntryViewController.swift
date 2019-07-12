@@ -10,17 +10,24 @@ import UIKit
 
 class JournalEntryViewController: UIViewController {
 
-  @IBOutlet weak var fruitLabel: UILabel!
+  @IBOutlet weak var dateLabel: UILabel!
 
   var fruit: String?
+  var journalEntry: JournalEntry?
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
 
+    /*
     if let fruit = fruit {
-      fruitLabel.text = fruit
+      dateLabel.text = fruit
+    }
+ */
+
+    if let journalEntry = journalEntry {
+      dateLabel.text = journalEntry.startDate.description
     }
   }
 
