@@ -115,12 +115,18 @@ class JournalEditorViewController: UITableViewController {
     print("save changes!")
 
     // this is where we grab values from the pickers and save them somewhere
-    let startTime = startTimePicker.date
-    let endTime   = endTimePicker.date
-    //let dateOnly  = datePicker.calendar.dateComponents(<#T##components: Set<Calendar.Component>##Set<Calendar.Component>#>, from: <#T##Date#>)
+    let oldStartTime = startTimePicker.date
+    let oldEndTime   = endTimePicker.date
+    // if the user modified the day picker, make sure that's reflected in the startTime and endTime date
+    let myCalendar = Calendar(identifier: .gregorian)
 
-    //print("startTime is: \(startTime)")
-    //print("endTime is: \(endTime)")
+    let updatedStartTime = myCalendar.date(bySettingHour: myCalendar.component(.hour, from: oldStartTime),
+                                         minute: myCalendar.component(.minute, from: oldStartTime),
+                                         second: myCalendar.component(.second, from: oldStartTime), of: datePicker.date)
+
+    let updatedEndTime = myCalendar.date(bySettingHour: myCalendar.component(.hour, from: oldEndTime),
+                                         minute: myCalendar.component(.minute, from: oldEndTime),
+                                         second: myCalendar.component(.second, from: oldEndTime), of: datePicker.date)
 
     // Save to Core Data if new entry
     if showDelete == false {
@@ -132,14 +138,14 @@ class JournalEditorViewController: UITableViewController {
                               insertInto: managedContext)
 
       let creationDate = Date()
-      entry.setValue(startTime, forKeyPath: "startDate")
-      entry.setValue(endTime, forKey: "endDate")
+      entry.setValue(updatedStartTime, forKeyPath: "startDate")
+      entry.setValue(updatedEndTime, forKey: "endDate")
       entry.setValue(creationDate, forKey: "creationDate")
       do {
         try managedContext.save()
         print("Added entry, creationDate is: \(creationDate)")
-        print("Added entry, startTime is: \(startTime)")
-        print("Added entry, endTime is: \(endTime)\n")
+        print("Added entry, startTime is: \(String(describing: updatedStartTime))")
+        print("Added entry, endTime is: \(String(describing: updatedEndTime))\n")
       } catch let error as NSError {
         print("Could not save. \(error), \(error.userInfo)")
       }
@@ -152,12 +158,12 @@ class JournalEditorViewController: UITableViewController {
           return
         }
 
-        entry.setValue(startTime, forKeyPath: "startDate")
-        entry.setValue(endTime, forKey: "endDate")
+        entry.setValue(updatedStartTime, forKeyPath: "startDate")
+        entry.setValue(updatedEndTime, forKey: "endDate")
         do {
           try self.managedContext.save()
-          print("Edited entry, startTime is: \(startTime)")
-          print("Edited entry, endTime is: \(endTime)\n")
+          print("Edited entry, startTime is: \(String(describing: updatedStartTime))")
+          print("Edited entry, endTime is: \(String(describing: updatedEndTime))\n")
         } catch let error as NSError {
           print("Could not save. \(error), \(error.userInfo)")
         }
@@ -206,6 +212,10 @@ class JournalEditorViewController: UITableViewController {
       let updatedStartTime = origStartTime.addingTimeInterval(-timeInterval)
       startTimePicker.date = updatedStartTime
     }
+
+    let myCalendar = Calendar(identifier: .gregorian)
+    let ymd = myCalendar.dateComponents([.year, .month, .day], from: datePicker.date)
+    print(ymd)
   }
 
   func showHideDelete() {
