@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CFC8E233194CB001A07AA /* Date+Extension.swift */; };
 		527EBFDC22D7C5A000051BA0 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDB22D7C5A000051BA0 /* JournalEntry.swift */; };
 		527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */; };
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		524CFC8E233194CB001A07AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		527EBFDB22D7C5A000051BA0 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryTableViewCell.swift; sourceTree = "<group>"; };
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		524CFC8D23319406001A07AA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				524CFC8E233194CB001A07AA /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		52A382F322CD6166008E7025 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +123,7 @@
 		52B2B20422BBF03D0022C15C /* FishingDaze */ = {
 			isa = PBXGroup;
 			children = (
+				524CFC8D23319406001A07AA /* Extensions */,
 				52A382F322CD6166008E7025 /* Model */,
 				52A382F522CD61A3008E7025 /* View */,
 				52D59D6F22C57463003CCB69 /* Controller */,
@@ -249,6 +260,7 @@
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
 				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
 				52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */,
+				524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */,
 				527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
