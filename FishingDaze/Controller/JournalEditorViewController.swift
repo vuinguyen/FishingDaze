@@ -20,6 +20,10 @@ class JournalEditorViewController: UITableViewController {
   
   @IBOutlet weak var saveBarButton: UIBarButtonItem!
   
+  @IBAction func getCurrentLocation(_ sender: Any) {
+    print("get current location!")
+  }
+
   @IBAction func deleteEntry(_ sender: Any) {
     print("we're going to delete an entry!")
     // Create the action buttons for the alert.
