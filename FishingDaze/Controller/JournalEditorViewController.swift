@@ -52,7 +52,6 @@ class JournalEditorViewController: UITableViewController {
           try self.managedContext.save()
           // unwind back to journal entry list
           self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
-          //self.mapView.removeAnnotation(annotation)
         } catch let error as NSError {
           print("Could not save delete. \(error), \(error.userInfo)")
         }
@@ -254,9 +253,16 @@ extension JournalEditorViewController: UITextFieldDelegate {
 extension JournalEditorViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     print("locations: \(locations[0])")
+    let location = locations[0]
+    let latitude = location.coordinate.latitude
+    let longitude = location.coordinate.longitude
+
+    // Now, save this somewhwere, so it's available when we call the weather API ...
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("we got an error: \(error.localizedDescription)")
+
+    // display error in an alert box here ....
   }
 }
