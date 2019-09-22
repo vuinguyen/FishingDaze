@@ -18,14 +18,6 @@ class JournalEntryViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Do any additional setup after loading the view.
-
-    /*
-    if let fruit = fruit {
-      dateLabel.text = fruit
-    }
- */
-
     if let journalEntry = journalEntry {
       dateLabel.text = journalEntry.startDate.description
     }
