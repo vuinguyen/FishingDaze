@@ -29,14 +29,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fishing Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63w-Xo-AYz" userLabel="fishingDateLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fishing Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63w-Xo-AYz" userLabel="fishingDateLabel">
                                                     <rect key="frame" x="20" y="11" width="374" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="63w-Xo-AYz" firstAttribute="leading" secondItem="3a0-im-m3t" secondAttribute="leadingMargin" id="F16-4e-gYP"/>
+                                                <constraint firstItem="63w-Xo-AYz" firstAttribute="top" secondItem="3a0-im-m3t" secondAttribute="topMargin" id="Tgn-Pt-7HA"/>
+                                                <constraint firstItem="63w-Xo-AYz" firstAttribute="bottom" secondItem="3a0-im-m3t" secondAttribute="bottomMargin" id="Uq4-Cq-gHb"/>
+                                                <constraint firstItem="63w-Xo-AYz" firstAttribute="trailing" secondItem="3a0-im-m3t" secondAttribute="trailingMargin" id="vs7-Pr-ZBC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="fishingDateLabel" destination="63w-Xo-AYz" id="ARS-gX-Zt9"/>
@@ -242,14 +247,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Fishing Companions" id="96L-Bp-XnR">
+                            <tableViewSection headerTitle="Weather" id="Tvx-qh-RpF">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="TSz-QC-cgD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="cgH-na-MGS">
                                         <rect key="frame" x="0.0" y="456" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TSz-QC-cgD" id="blM-Qx-dvv">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cgH-na-MGS" id="pss-cs-dbv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="bqu-dV-TFE">
+                                        <rect key="frame" x="0.0" y="500" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bqu-dV-TFE" id="5aS-Qw-PGB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el5-gP-tCb">
+                                                    <rect key="frame" x="161.66666666666666" y="7" width="91" height="30"/>
+                                                    <state key="normal" title="Get Weather!"/>
+                                                    <connections>
+                                                        <action selector="getWeather:" destination="oOP-Dt-hCE" eventType="touchUpInside" id="s4l-Rm-oxk"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="el5-gP-tCb" firstAttribute="centerX" secondItem="5aS-Qw-PGB" secondAttribute="centerX" id="3yx-Qu-7Eb"/>
+                                                <constraint firstItem="el5-gP-tCb" firstAttribute="centerY" secondItem="5aS-Qw-PGB" secondAttribute="centerY" id="cuw-lq-5oG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -257,7 +283,7 @@
                             <tableViewSection headerTitle="Fish Species Caught" id="MuJ-vc-7Ko">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="NEn-YQ-Zhk">
-                                        <rect key="frame" x="0.0" y="528" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="572" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NEn-YQ-Zhk" id="LoN-x3-GHE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -269,7 +295,7 @@
                             <tableViewSection headerTitle="Upload Photos" id="ROr-wa-sWC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="hjr-WD-fWO">
-                                        <rect key="frame" x="0.0" y="600" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="644" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hjr-WD-fWO" id="WyD-05-x2p">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -278,12 +304,12 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Weather" id="Tvx-qh-RpF">
+                            <tableViewSection headerTitle="Fishing Companions" id="96L-Bp-XnR">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="cgH-na-MGS">
-                                        <rect key="frame" x="0.0" y="672" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="TSz-QC-cgD">
+                                        <rect key="frame" x="0.0" y="716" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cgH-na-MGS" id="pss-cs-dbv">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TSz-QC-cgD" id="blM-Qx-dvv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -293,7 +319,7 @@
                             <tableViewSection headerTitle="Add'l Notes" id="luh-y7-o2B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="76y-hW-h5G">
-                                        <rect key="frame" x="0.0" y="744" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="788" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="76y-hW-h5G" id="HhK-xQ-KZ2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -305,7 +331,7 @@
                             <tableViewSection id="QzE-ar-Xmx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="CZQ-CL-ghn">
-                                        <rect key="frame" x="0.0" y="788" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="832" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CZQ-CL-ghn" id="yn0-17-Vww">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -441,6 +467,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VG2-kl-7dn"/>
+        <segue reference="g0G-GB-sBN"/>
     </inferredMetricsTieBreakers>
 </document>

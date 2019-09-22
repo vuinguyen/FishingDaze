@@ -29,6 +29,11 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
+  // Note: weather will be based on the location and end time
+  @IBAction func getWeather(_ sender: Any) {
+    print("get weather based on location and end time")
+  }
+
   @IBAction func deleteEntry(_ sender: Any) {
     print("we're going to delete an entry!")
     // Create the action buttons for the alert.
@@ -234,6 +239,11 @@ class JournalEditorViewController: UITableViewController {
   func showHideDelete() {
     deleteEntryButton.isHidden = showDelete == true ? false : true
     deleteEntryButton.isEnabled = showDelete == true ? true : false
+  }
+
+  // MARK: TableViewDelegate
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: false)
   }
 }
 
