@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var waterLocationTextField: UITextField!
@@ -22,6 +23,10 @@ class JournalEditorViewController: UITableViewController {
   
   @IBAction func getCurrentLocation(_ sender: Any) {
     print("get current location!")
+
+    if let locationManager = locationManager {
+      locationManager.requestLocation()
+    }
   }
 
   @IBAction func deleteEntry(_ sender: Any) {
@@ -87,6 +92,7 @@ class JournalEditorViewController: UITableViewController {
   var showDelete = false
   var creationDate: Date?
   var journalEntry: JournalEntry?
+  var locationManager: CLLocationManager?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -100,6 +106,12 @@ class JournalEditorViewController: UITableViewController {
 
     setDefaultTimes()
     showHideDelete()
+
+    locationManager = CLLocationManager()
+    if let locationManager = locationManager {
+      locationManager.requestWhenInUseAuthorization()
+      locationManager.delegate = self
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -229,4 +241,12 @@ extension JournalEditorViewController: UITextFieldDelegate {
 
 }
 
+extension JournalEditorViewController: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    print("locations: \(locations[0])")
+  }
 
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    print("we got an error: \(error.localizedDescription)")
+  }
+}
