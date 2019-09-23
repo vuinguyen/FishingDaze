@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JournalEntry {
+struct JournalEntryModel {
   var creationDate: Date
   var endDate: Date
   var startDate: Date

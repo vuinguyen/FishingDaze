@@ -12,8 +12,7 @@ class JournalEntryViewController: UIViewController {
 
   @IBOutlet weak var dateLabel: UILabel!
 
-  //var fruit: String?
-  var journalEntry: JournalEntry?
+  var journalEntry: JournalEntryModel?
 
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -27,7 +27,7 @@ class JournalListViewController: UIViewController {
   var managedContext: NSManagedObjectContext!
   let reuseIdentifier = "JournalEntryCell"
   var selectedIndex = 0
-  var journalEntries = [JournalEntry]()
+  var journalEntries = [JournalEntryModel]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,7 +59,7 @@ class JournalListViewController: UIViewController {
         if let endDate = entry.value(forKeyPath: "endDate") as? Date,
            let startDate = entry.value(forKeyPath: "startDate") as? Date,
            let creationDate = entry.value(forKeyPath: "creationDate") as? Date {
-           let journalEntry = JournalEntry(creationDate: creationDate, endDate: endDate, startDate: startDate)
+           let journalEntry = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
            journalEntries.append(journalEntry)
            print("loaded creationDate: \(creationDate)")
            print("loaded endDate: \(endDate)")

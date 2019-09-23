@@ -95,7 +95,7 @@ class JournalEditorViewController: UITableViewController {
   var managedContext: NSManagedObjectContext!
   var showDelete = false
   var creationDate: Date?
-  var journalEntry: JournalEntry?
+  var journalEntry: JournalEntryModel?
   var locationManager: CLLocationManager?
   
   override func viewDidLoad() {
