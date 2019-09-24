@@ -87,8 +87,11 @@ class JournalEditorViewController: UITableViewController {
   @IBAction func saveEdits(_ sender: Any) {
     // save to Core Data
 
-    //JournalEntryViewModel.saveJournalEntryViewModel(startDateTime: startTimePicker.date, endDateTime: endTimePicker.date)
-    saveJournalEntry()
+    JournalEntryViewModel.saveJournalEntryViewModel(date: datePicker.date,
+                                                    startDateTime: startTimePicker.date,
+                                                    endDateTime: endTimePicker.date,
+                                                    existingViewModel: journalEntryViewModel)
+    //saveJournalEntry()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
@@ -132,6 +135,7 @@ class JournalEditorViewController: UITableViewController {
     managedContext = appDelegate.persistentContainer.viewContext
   }
 
+  /*
   func saveJournalEntry() {
     print("save changes!")
 
@@ -193,6 +197,8 @@ class JournalEditorViewController: UITableViewController {
     }
 
   }
+*/
+
 
   func findEntryByCreationDate(completion: @escaping (Entry?, Error?) -> Void) {
     guard let journalEntry = journalEntry else {
