@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 
 class JournalListViewController: UIViewController {
 
@@ -23,35 +23,45 @@ class JournalListViewController: UIViewController {
     tableView.reloadData()
  }
 
-  var appDelegate: AppDelegate!
-  var managedContext: NSManagedObjectContext!
+  //var appDelegate: AppDelegate!
+  //var managedContext: NSManagedObjectContext!
   let reuseIdentifier = "JournalEntryCell"
   var selectedIndex = 0
-  var journalEntries = [JournalEntryModel]()
+  //var journalEntries = [JournalEntryModel]()
+  var journalEntryViewModels = [JournalEntryViewModel]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
-    setUpCoreData()
+    //setUpCoreData()
     //tableView.reloadData()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setUpCoreData()
+    //setUpCoreData()
 
-    fetchJournalEntries()
+    //fetchJournalEntries()
+
+    journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
+
     tableView.reloadData()
   }
 
+  /*
   func setUpCoreData() {
     appDelegate = UIApplication.shared.delegate as? AppDelegate
     managedContext = appDelegate.persistentContainer.viewContext
   }
+ */
 
+  /*
   func fetchJournalEntries() {
-    // for now, grab them from Core Data and print to the screen
-    journalEntries = []
+
+
+
+    //journalEntries = []
+    journalEntryViewModels = []
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
       let entries = try managedContext.fetch(fetchRequest)
@@ -59,8 +69,12 @@ class JournalListViewController: UIViewController {
         if let endDate = entry.value(forKeyPath: "endDate") as? Date,
            let startDate = entry.value(forKeyPath: "startDate") as? Date,
            let creationDate = entry.value(forKeyPath: "creationDate") as? Date {
-           let journalEntry = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
-           journalEntries.append(journalEntry)
+           //let journalEntry = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
+           //journalEntries.append(journalEntry)
+
+           let journalEntryViewModel = JournalEntryViewModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
+           journalEntryViewModels.append(journalEntryViewModel)
+
            print("loaded creationDate: \(creationDate)")
            print("loaded endDate: \(endDate)")
            print("loaded startDate: \(startDate)\n")
@@ -71,11 +85,15 @@ class JournalListViewController: UIViewController {
     }
 
   }
+ */
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
       let detailVC = segue.destination as! JournalEntryViewController
-      detailVC.journalEntry = journalEntries[selectedIndex]
+//      detailVC.journalEntry = journalEntries[selectedIndex]
+
+      detailVC.journalEntryViewModel = journalEntryViewModels[selectedIndex]
+
     } else if segue.identifier == "addNewEntry" {
       let navigationController = segue.destination as! UINavigationController
       let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
@@ -86,12 +104,15 @@ class JournalListViewController: UIViewController {
 
 extension JournalListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return journalEntries.count
+    //return journalEntries.count
+    return journalEntryViewModels.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! JournalEntryTableViewCell
-    cell.fishingDateLabel.text = journalEntries[indexPath.row].startDate.string(dateStyle: .long)
+    //cell.fishingDateLabel.text = journalEntries[indexPath.row].startDate.string(dateStyle: .long)
+
+    cell.fishingDateLabel.text = journalEntryViewModels[indexPath.row].startDate()
     return cell
   }
 
