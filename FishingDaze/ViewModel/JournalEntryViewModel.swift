@@ -8,3 +8,14 @@
 
 import Foundation
 
+struct JournalEntryViewModel {
+  private let journalEntryModel: JournalEntryModel
+
+  init(creationDate: Date, endDate: Date, startDate: Date) {
+    journalEntryModel = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
+  }
+
+  func startDateString() -> String {
+    return journalEntryModel.startDate.description
+  }
+}

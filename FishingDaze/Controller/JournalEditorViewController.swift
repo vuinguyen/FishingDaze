@@ -96,6 +96,7 @@ class JournalEditorViewController: UITableViewController {
   var showDelete = false
   var creationDate: Date?
   var journalEntry: JournalEntryModel?
+  var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?
   
   override func viewDidLoad() {

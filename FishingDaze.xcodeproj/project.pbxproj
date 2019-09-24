@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		520A2DA2233833D30070CD57 /* JournalEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DA1233833D30070CD57 /* JournalEntryViewModel.swift */; };
 		520A2DA5233847330070CD57 /* JournalEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DA4233847330070CD57 /* JournalEntryViewModelTests.swift */; };
+		520A2DA7233986460070CD57 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DA6233986460070CD57 /* String+Extension.swift */; };
 		524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CFC8E233194CB001A07AA /* Date+Extension.swift */; };
 		527EBFDC22D7C5A000051BA0 /* JournalEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDB22D7C5A000051BA0 /* JournalEntryModel.swift */; };
 		527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		520A2DA1233833D30070CD57 /* JournalEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewModel.swift; sourceTree = "<group>"; };
 		520A2DA4233847330070CD57 /* JournalEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewModelTests.swift; sourceTree = "<group>"; };
+		520A2DA6233986460070CD57 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		524CFC8E233194CB001A07AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		527EBFDB22D7C5A000051BA0 /* JournalEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryModel.swift; sourceTree = "<group>"; };
 		527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryTableViewCell.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				524CFC8E233194CB001A07AA /* Date+Extension.swift */,
+				520A2DA6233986460070CD57 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				520A2DA2233833D30070CD57 /* JournalEntryViewModel.swift in Sources */,
 				524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */,
 				527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */,
+				520A2DA7233986460070CD57 /* String+Extension.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

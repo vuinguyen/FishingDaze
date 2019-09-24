@@ -13,12 +13,17 @@ class JournalEntryViewController: UIViewController {
   @IBOutlet weak var dateLabel: UILabel!
 
   var journalEntry: JournalEntryModel?
+  var journalEntryViewModel: JournalEntryViewModel?
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     if let journalEntry = journalEntry {
       dateLabel.text = journalEntry.startDate.description
+    }
+
+    if let journalEntryViewModel = journalEntryViewModel {
+      dateLabel.text = journalEntryViewModel.startDateString()
     }
   }
 
@@ -34,6 +39,7 @@ class JournalEntryViewController: UIViewController {
       let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
       entryVC.showDelete = true
       entryVC.journalEntry = journalEntry
+      entryVC.journalEntryViewModel = journalEntryViewModel
     }
   }
 
