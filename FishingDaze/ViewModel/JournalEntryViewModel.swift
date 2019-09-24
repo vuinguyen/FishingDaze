@@ -70,9 +70,32 @@ struct JournalEntryViewModel {
     return viewModels
   }
 
-  func saveJournalEntryViewModel() {
-
+  static func saveJournalEntryViewModel(startDateTime: Date, endDateTime: Date) {
+    
   }
 
+  static func setDefaultTimes(existingViewModel: JournalEntryViewModel?) -> (date: Date, startTime: Date, endTime: Date) {
+    var date = Date()
+    var startTime = Date()
+    var endTime = Date()
 
+    if let viewModel = existingViewModel {
+      let model = viewModel.journalEntryModel
+      date = model.startDate
+      startTime = model.startDate
+      endTime = model.endDate
+    } else {
+      let origStartTime = startTime
+      // make the updated start time be 2 hours before the current time
+      let timeInterval = TimeInterval(60*60*2)
+      let updatedStartTime = origStartTime.addingTimeInterval(-timeInterval)
+      startTime = updatedStartTime
+    }
+
+    //let myCalendar = Calendar(identifier: .gregorian)
+    //let ymd = myCalendar.dateComponents([.year, .month, .day], from: currentDate)
+    //print(ymd)
+
+    return (date, startTime, endTime)
+  }
 }

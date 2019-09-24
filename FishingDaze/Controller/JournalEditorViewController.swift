@@ -86,6 +86,8 @@ class JournalEditorViewController: UITableViewController {
   
   @IBAction func saveEdits(_ sender: Any) {
     // save to Core Data
+
+    //JournalEntryViewModel.saveJournalEntryViewModel(startDateTime: startTimePicker.date, endDateTime: endTimePicker.date)
     saveJournalEntry()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
@@ -109,7 +111,8 @@ class JournalEditorViewController: UITableViewController {
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
     setUpCoreData()
 
-    setDefaultTimes()
+    //setDefaultTimes()
+    (datePicker.date, startTimePicker.date, endTimePicker.date) = JournalEntryViewModel.setDefaultTimes(existingViewModel: journalEntryViewModel)
     showHideDelete()
 
     locationManager = CLLocationManager()
