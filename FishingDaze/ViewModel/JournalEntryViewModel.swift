@@ -131,7 +131,7 @@ struct JournalEntryViewModel {
       do {
           managedContext.delete(entry)
           try managedContext.save()
-          UICompletion()
+        UIcompletion()
       } catch let error as NSError {
         print("Could not save delete. \(error), \(error.userInfo)")
       }
