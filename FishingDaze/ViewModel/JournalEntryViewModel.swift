@@ -12,9 +12,7 @@ import CoreData
 
 struct JournalEntryViewModel {
   private let journalEntryModel: JournalEntryModel
-  //private var appDelegate: AppDelegate!
-  //private var managedContext: NSManagedObjectContext!
-
+  
   init(creationDate: Date, endDate: Date, startDate: Date) {
     journalEntryModel = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
   }
@@ -27,23 +25,9 @@ struct JournalEntryViewModel {
     return journalEntryModel.startDate.string(dateStyle: .long)
   }
 
-  /*
-   private static func setUpCoreData() {
-   appDelegate = UIApplication.shared.delegate as? AppDelegate
-   managedContext = appDelegate.persistentContainer.viewContext
-   }
-   */
-
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
     var viewModels: [JournalEntryViewModel] = []
-    //setUpCoreData()
-
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-      return viewModels
-    }
-    guard let managedContext = appDelegate.persistentContainer.viewContext as NSManagedObjectContext? else {
-      return viewModels
-    }
+    let managedContext = PersistenceManager.shared.managedContext!
 
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
@@ -73,12 +57,7 @@ struct JournalEntryViewModel {
   static func saveJournalEntryViewModel(date: Date, startDateTime: Date, endDateTime: Date, existingViewModel: JournalEntryViewModel?) {
     print("save changes!")
 
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-      return
-    }
-    guard let managedContext = appDelegate.persistentContainer.viewContext as NSManagedObjectContext? else {
-      return 
-    }
+    let managedContext = PersistenceManager.shared.managedContext!
 
     // this is where we grab values from the pickers and save them somewhere
     let oldStartTime = startDateTime
@@ -94,34 +73,10 @@ struct JournalEntryViewModel {
                                          minute: myCalendar.component(.minute, from: oldEndTime),
                                          second: myCalendar.component(.second, from: oldEndTime), of: date)
 
-    // Save to Core Data if new entry
-    /*
-     if isExistingEntry == false {
-     let entity =
-     NSEntityDescription.entity(forEntityName: "Entry",
-     in: managedContext)!
-
-     let entry = NSManagedObject(entity: entity,
-     insertInto: managedContext)
-
-     let creationDate = Date()
-     entry.setValue(updatedStartTime, forKeyPath: "startDate")
-     entry.setValue(updatedEndTime, forKey: "endDate")
-     entry.setValue(creationDate, forKey: "creationDate")
-     do {
-     try managedContext.save()
-     print("Added entry, creationDate is: \(creationDate)")
-     print("Added entry, startTime is: \(String(describing: updatedStartTime))")
-     print("Added entry, endTime is: \(String(describing: updatedEndTime))\n")
-     } catch let error as NSError {
-     print("Could not save. \(error), \(error.userInfo)")
-     }
-     } else {
-     */
     // save existing entry in Core Data
     if let viewModel = existingViewModel {
       // else search for entry by creationDate, edit entry in Core Data and then save!
-      findEntryByCreationDate(journalEntryViewModel: viewModel, managedContext: managedContext, completion: { (journalEntryEdited, error) in
+      findEntryByCreationDate(journalEntryViewModel: viewModel, completion: { (journalEntryEdited, error) in
         // grab data from all the controls and save here!!
         guard let entry = journalEntryEdited else {
           print("could not find entry here")
@@ -163,10 +118,13 @@ struct JournalEntryViewModel {
 
   }
 
-  private static func findEntryByCreationDate(journalEntryViewModel: JournalEntryViewModel?, managedContext: NSManagedObjectContext, completion: @escaping (Entry?, Error?) -> Void) {
+  static func findEntryByCreationDate(journalEntryViewModel: JournalEntryViewModel?, completion: @escaping (Entry?, Error?) -> Void) {
     guard let journalEntryViewModel = journalEntryViewModel else {
+      print("journalEntryViewModel not valid")
       return
     }
+
+    let managedContext = PersistenceManager.shared.managedContext!
 
     let creationDatePredicate = NSPredicate(format: "creationDate = %@", journalEntryViewModel.journalEntryModel.creationDate as NSDate)
 
