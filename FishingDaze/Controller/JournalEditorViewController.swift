@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 import CoreLocation
 
 class JournalEditorViewController: UITableViewController {
@@ -35,11 +35,17 @@ class JournalEditorViewController: UITableViewController {
   }
 
   @IBAction func deleteEntry(_ sender: Any) {
+
+   // JournalEntryViewModel.deleteJournalEntryViewModel(existingViewModel: journalEntryViewModel, completion: performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
+
+
     print("we're going to delete an entry!")
     // Create the action buttons for the alert.
     let destroyAction = UIAlertAction(title: "Delete",
                                       style: .destructive) { (action) in
                                         // Respond to user selection of the action
+
+/*
     // find journal entry in Core Data and delete from Core Data
       self.findEntryByCreationDate(completion: { (journalEntryToDelete, error) in
         guard let entry = journalEntryToDelete else {
@@ -56,7 +62,9 @@ class JournalEditorViewController: UITableViewController {
           print("Could not save delete. \(error), \(error.userInfo)")
         }
     })
-
+*/
+        JournalEntryViewModel.deleteJournalEntryViewModel(existingViewModel: self.journalEntryViewModel,
+                                                          UIcompletion: {self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)} )
     }
 
     let cancelAction = UIAlertAction(title: "Cancel",
@@ -80,6 +88,7 @@ class JournalEditorViewController: UITableViewController {
   }
 
 
+
   @IBAction func cancelEditing(_ sender: Any) {
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
@@ -96,11 +105,11 @@ class JournalEditorViewController: UITableViewController {
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
 
-  var appDelegate: AppDelegate!
-  var managedContext: NSManagedObjectContext!
+  //var appDelegate: AppDelegate!
+  //var managedContext: NSManagedObjectContext!
   var showDelete = false
   var creationDate: Date?
-  var journalEntry: JournalEntryModel?
+ // var journalEntry: JournalEntryModel?
   var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?
   
@@ -112,7 +121,7 @@ class JournalEditorViewController: UITableViewController {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    setUpCoreData()
+    //setUpCoreData()
 
     //setDefaultTimes()
     (datePicker.date, startTimePicker.date, endTimePicker.date) = JournalEntryViewModel.setDefaultTimes(existingViewModel: journalEntryViewModel)
@@ -127,13 +136,15 @@ class JournalEditorViewController: UITableViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setUpCoreData()
+    //setUpCoreData()
   }
 
+  /*
   func setUpCoreData() {
     appDelegate = UIApplication.shared.delegate as? AppDelegate
     managedContext = appDelegate.persistentContainer.viewContext
   }
+ */
 
   /*
   func saveJournalEntry() {
@@ -199,7 +210,7 @@ class JournalEditorViewController: UITableViewController {
   }
 */
 
-
+/*
   func findEntryByCreationDate(completion: @escaping (Entry?, Error?) -> Void) {
     guard let journalEntry = journalEntry else {
       return
@@ -226,7 +237,8 @@ class JournalEditorViewController: UITableViewController {
     }
 
   }
-
+*/
+  /*
   func setDefaultTimes() {
     if let journalEntry = journalEntry {
       datePicker.date = journalEntry.startDate
@@ -244,7 +256,7 @@ class JournalEditorViewController: UITableViewController {
     let ymd = myCalendar.dateComponents([.year, .month, .day], from: datePicker.date)
     print(ymd)
   }
-
+*/
   func showHideDelete() {
     deleteEntryButton.isHidden = showDelete == true ? false : true
     deleteEntryButton.isEnabled = showDelete == true ? true : false

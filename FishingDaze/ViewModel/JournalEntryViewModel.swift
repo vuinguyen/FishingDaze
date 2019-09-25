@@ -118,7 +118,29 @@ struct JournalEntryViewModel {
 
   }
 
-  static func findEntryByCreationDate(journalEntryViewModel: JournalEntryViewModel?, completion: @escaping (Entry?, Error?) -> Void) {
+  static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
+    // find journal entry in Core Data and delete from Core Data
+    let managedContext = PersistenceManager.shared.managedContext!
+
+    findEntryByCreationDate(journalEntryViewModel: existingViewModel, completion: { (journalEntryToDelete, error) in
+      guard let entry = journalEntryToDelete else {
+        print("couldn't find entry to delete!")
+        return
+      }
+
+      do {
+          managedContext.delete(entry)
+          try managedContext.save()
+          UICompletion()
+      } catch let error as NSError {
+        print("Could not save delete. \(error), \(error.userInfo)")
+      }
+    })
+  }
+
+
+
+  private static func findEntryByCreationDate(journalEntryViewModel: JournalEntryViewModel?, completion: @escaping (Entry?, Error?) -> Void) {
     guard let journalEntryViewModel = journalEntryViewModel else {
       print("journalEntryViewModel not valid")
       return

@@ -20,7 +20,7 @@ class JournalListViewController: UIViewController {
         return
     }
  */
-    tableView.reloadData()
+  //  tableView.reloadData()
  }
 
   //var appDelegate: AppDelegate!
