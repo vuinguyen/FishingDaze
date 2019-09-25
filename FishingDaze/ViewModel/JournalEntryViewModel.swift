@@ -33,9 +33,9 @@ struct JournalEntryViewModel {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
       let entries = try managedContext.fetch(fetchRequest)
       for entry in entries {
-        if let endDateTime = entry.value(forKeyPath: "endDateTime") as? Date,
-          let startDateTime = entry.value(forKeyPath: "startDateTime") as? Date,
-          let creationDateTime = entry.value(forKeyPath: "creationDateTime") as? Date {
+        if let endDateTime = entry.value(forKeyPath: KeyPath.endDateTime.rawValue ) as? Date,
+          let startDateTime = entry.value(forKeyPath: KeyPath.startDateTime.rawValue) as? Date,
+          let creationDateTime = entry.value(forKeyPath: KeyPath.creationDateTime.rawValue) as? Date {
           //let journalEntry = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
           //journalEntries.append(journalEntry)
 
@@ -83,8 +83,8 @@ struct JournalEntryViewModel {
           return
         }
 
-        entry.setValue(updatedStartTime, forKeyPath: "startDateTime")
-        entry.setValue(updatedEndTime, forKey: "endDateTime")
+        entry.setValue(updatedStartTime, forKeyPath: KeyPath.startDateTime.rawValue)
+        entry.setValue(updatedEndTime, forKeyPath: KeyPath.endDateTime.rawValue)
         do {
           try managedContext.save()
           print("Edited entry, startTime is: \(String(describing: updatedStartTime))")
@@ -103,9 +103,9 @@ struct JournalEntryViewModel {
                                   insertInto: managedContext)
 
       let creationDateTime = Date()
-      entry.setValue(updatedStartTime, forKeyPath: "startDateTime")
-      entry.setValue(updatedEndTime, forKey: "endDateTime")
-      entry.setValue(creationDateTime, forKey: "creationDateTime")
+      entry.setValue(updatedStartTime, forKeyPath: KeyPath.startDateTime.rawValue)
+      entry.setValue(updatedEndTime, forKeyPath: KeyPath.endDateTime.rawValue)
+      entry.setValue(creationDateTime, forKeyPath: KeyPath.creationDateTime.rawValue)
       do {
         try managedContext.save()
         print("Added entry, creationDate is: \(creationDateTime)")
