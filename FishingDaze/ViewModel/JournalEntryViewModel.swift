@@ -13,16 +13,16 @@ import CoreData
 struct JournalEntryViewModel {
   private let journalEntryModel: JournalEntryModel
   
-  init(creationDate: Date, endDate: Date, startDate: Date) {
-    journalEntryModel = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
+  init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
+    journalEntryModel = JournalEntryModel(creationDateTime: creationDateTime, endDateTime: endDateTime, startDateTime: startDateTime)
   }
 
   func startDateTime() -> String {
-    return journalEntryModel.startDate.description
+    return journalEntryModel.startDateTime.description
   }
 
   func startDate() -> String {
-    return journalEntryModel.startDate.string(dateStyle: .long)
+    return journalEntryModel.startDateTime.string(dateStyle: .long)
   }
 
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
@@ -33,18 +33,18 @@ struct JournalEntryViewModel {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
       let entries = try managedContext.fetch(fetchRequest)
       for entry in entries {
-        if let endDate = entry.value(forKeyPath: "endDate") as? Date,
-          let startDate = entry.value(forKeyPath: "startDate") as? Date,
-          let creationDate = entry.value(forKeyPath: "creationDate") as? Date {
+        if let endDateTime = entry.value(forKeyPath: "endDateTime") as? Date,
+          let startDateTime = entry.value(forKeyPath: "startDateTime") as? Date,
+          let creationDateTime = entry.value(forKeyPath: "creationDateTime") as? Date {
           //let journalEntry = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
           //journalEntries.append(journalEntry)
 
-          let viewModel = JournalEntryViewModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
+          let viewModel = JournalEntryViewModel(creationDateTime: creationDateTime, endDateTime: endDateTime, startDateTime: startDateTime)
           viewModels.append(viewModel)
 
-          print("loaded creationDate: \(creationDate)")
-          print("loaded endDate: \(endDate)")
-          print("loaded startDate: \(startDate)\n")
+          print("loaded creationDateTime: \(creationDateTime)")
+          print("loaded endDateTime: \(endDateTime)")
+          print("loaded startDateTime: \(startDateTime)\n")
         }
       }
     } catch let error as NSError {
@@ -83,8 +83,8 @@ struct JournalEntryViewModel {
           return
         }
 
-        entry.setValue(updatedStartTime, forKeyPath: "startDate")
-        entry.setValue(updatedEndTime, forKey: "endDate")
+        entry.setValue(updatedStartTime, forKeyPath: "startDateTime")
+        entry.setValue(updatedEndTime, forKey: "endDateTime")
         do {
           try managedContext.save()
           print("Edited entry, startTime is: \(String(describing: updatedStartTime))")
@@ -102,13 +102,13 @@ struct JournalEntryViewModel {
       let entry = NSManagedObject(entity: entity,
                                   insertInto: managedContext)
 
-      let creationDate = Date()
-      entry.setValue(updatedStartTime, forKeyPath: "startDate")
-      entry.setValue(updatedEndTime, forKey: "endDate")
-      entry.setValue(creationDate, forKey: "creationDate")
+      let creationDateTime = Date()
+      entry.setValue(updatedStartTime, forKeyPath: "startDateTime")
+      entry.setValue(updatedEndTime, forKey: "endDateTime")
+      entry.setValue(creationDateTime, forKey: "creationDateTime")
       do {
         try managedContext.save()
-        print("Added entry, creationDate is: \(creationDate)")
+        print("Added entry, creationDate is: \(creationDateTime)")
         print("Added entry, startTime is: \(String(describing: updatedStartTime))")
         print("Added entry, endTime is: \(String(describing: updatedEndTime))\n")
       } catch let error as NSError {
@@ -148,7 +148,7 @@ struct JournalEntryViewModel {
 
     let managedContext = PersistenceManager.shared.managedContext!
 
-    let creationDatePredicate = NSPredicate(format: "creationDate = %@", journalEntryViewModel.journalEntryModel.creationDate as NSDate)
+    let creationDatePredicate = NSPredicate(format: "creationDateTime = %@", journalEntryViewModel.journalEntryModel.creationDateTime as NSDate)
 
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
@@ -176,9 +176,9 @@ struct JournalEntryViewModel {
 
       if let viewModel = existingViewModel {
         let model = viewModel.journalEntryModel
-        date = model.startDate
-        startTime = model.startDate
-        endTime = model.endDate
+        date = model.startDateTime
+        startTime = model.startDateTime
+        endTime = model.endDateTime
       } else {
         let origStartTime = startTime
         // make the updated start time be 2 hours before the current time

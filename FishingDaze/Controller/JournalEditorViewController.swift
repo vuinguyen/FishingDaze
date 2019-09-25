@@ -108,7 +108,7 @@ class JournalEditorViewController: UITableViewController {
   //var appDelegate: AppDelegate!
   //var managedContext: NSManagedObjectContext!
   var showDelete = false
-  var creationDate: Date?
+  var creationDateTime: Date?
  // var journalEntry: JournalEntryModel?
   var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?

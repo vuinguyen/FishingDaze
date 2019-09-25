@@ -23,8 +23,8 @@ class JournalEntryViewModelTests: XCTestCase {
     // Put setup code here. This method is called before the invocation of each test method in the class.
 
     // create a new JournalEntryViewModel object here
-    journalEntryViewModel = JournalEntryViewModel(creationDate: creationDateTimeString.date()!,
-                                                  endDate: endDateTimeString.date()!, startDate: startDateTimeString.date()!)
+    journalEntryViewModel = JournalEntryViewModel(creationDateTime: creationDateTimeString.date()!,
+                                                  endDateTime: endDateTimeString.date()!, startDateTime: startDateTimeString.date()!)
 
   }
 

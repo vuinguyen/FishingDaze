@@ -9,13 +9,13 @@
 import Foundation
 
 struct JournalEntryModel {
-  var creationDate: Date
-  var endDate: Date
-  var startDate: Date
+  var creationDateTime: Date
+  var endDateTime: Date
+  var startDateTime: Date
 
-  init(creationDate: Date, endDate: Date, startDate: Date) {
-    self.creationDate = creationDate
-    self.endDate = endDate
-    self.startDate = startDate
+  init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
+    self.creationDateTime = creationDateTime
+    self.endDateTime = endDateTime
+    self.startDateTime = startDateTime
   }
 }
