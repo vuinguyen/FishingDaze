@@ -36,8 +36,6 @@ struct JournalEntryViewModel {
         if let endDateTime = entry.value(forKeyPath: KeyPath.endDateTime.rawValue ) as? Date,
           let startDateTime = entry.value(forKeyPath: KeyPath.startDateTime.rawValue) as? Date,
           let creationDateTime = entry.value(forKeyPath: KeyPath.creationDateTime.rawValue) as? Date {
-          //let journalEntry = JournalEntryModel(creationDate: creationDate, endDate: endDate, startDate: startDate)
-          //journalEntries.append(journalEntry)
 
           let viewModel = JournalEntryViewModel(creationDateTime: creationDateTime, endDateTime: endDateTime, startDateTime: startDateTime)
           viewModels.append(viewModel)
@@ -131,7 +129,7 @@ struct JournalEntryViewModel {
       do {
           managedContext.delete(entry)
           try managedContext.save()
-        UIcompletion()
+          UIcompletion()
       } catch let error as NSError {
         print("Could not save delete. \(error), \(error.userInfo)")
       }
