@@ -130,11 +130,44 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
     let longitude = location.coordinate.longitude
 
     // Now, save this somewhwere, so it's available when we call the weather API ...
+
+    // for now, let's get the city, and state, if applicable (reverse geocode?)
+
+    CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+      guard error == nil else {
+        print("\(error?.localizedDescription ?? "got an error from reverse geocoding")")
+        return
+      }
+
+      if let placemark = placemarks?[0]{
+        var address = ""
+        if placemark.subThoroughfare != nil {
+          address += placemark.subThoroughfare! + " "
+        }
+        if placemark.thoroughfare != nil {
+          address += placemark.thoroughfare! + "\n"
+        }
+        if placemark.subLocality != nil {
+          address += placemark.subLocality! + "\n"
+        }
+        if placemark.subAdministrativeArea != nil {
+          address += placemark.subAdministrativeArea! + "\n"
+        }
+        if placemark.postalCode != nil {
+          address += placemark.postalCode! + "\n"
+        }
+        if placemark.country != nil {
+          address += placemark.country! + "\n"
+        }
+        self.moreLocationTextField.text = address
+      }
+    }
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("we got an error: \(error.localizedDescription)")
 
     // display error in an alert box here ....
+    // maybe display a message that says turn on location services and try again
   }
 }
