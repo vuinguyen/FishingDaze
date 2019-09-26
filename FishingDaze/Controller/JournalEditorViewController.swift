@@ -79,7 +79,6 @@ class JournalEditorViewController: UITableViewController {
   }
 
   var showDelete = false
-  var creationDateTime: Date?
   var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?
   
