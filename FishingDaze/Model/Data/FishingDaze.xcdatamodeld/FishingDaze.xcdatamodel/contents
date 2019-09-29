@@ -10,6 +10,7 @@
         <relationship name="companion" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Companion" inverseName="entry" inverseEntity="Companion" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="entry" inverseEntity="Location" syncable="YES"/>
         <relationship name="notes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Notes" inverseName="entry" inverseEntity="Notes" syncable="YES"/>
+        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="entry" inverseEntity="Photo" syncable="YES"/>
         <relationship name="species" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Species" inverseName="entry" inverseEntity="Species" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
@@ -19,6 +20,9 @@
     <entity name="Notes" representedClassName="Notes" syncable="YES" codeGenerationType="class">
         <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="notes" inverseEntity="Entry" syncable="YES"/>
     </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="photo" inverseEntity="Entry" syncable="YES"/>
+    </entity>
     <entity name="Species" representedClassName="Species" syncable="YES" codeGenerationType="class">
         <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="species" inverseEntity="Entry" syncable="YES"/>
     </entity>
@@ -26,11 +30,12 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="weather" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Companion" positionX="-744.20703125" positionY="259.453125" width="128" height="58"/>
-        <element name="Entry" positionX="-722.79296875" positionY="28.16015625" width="151.41015625" height="148"/>
+        <element name="Companion" positionX="-717.19140625" positionY="272.89453125" width="128" height="58"/>
+        <element name="Entry" positionX="-722.79296875" positionY="28.16015625" width="151.41015625" height="163"/>
         <element name="Location" positionX="-484.44140625" positionY="73.07421875" width="128" height="73"/>
-        <element name="Notes" positionX="-235.32421875" positionY="255.78125" width="128" height="58"/>
-        <element name="Species" positionX="-542.6171875" positionY="264.08984375" width="128" height="58"/>
+        <element name="Notes" positionX="-214.03125" positionY="168.671875" width="128" height="58"/>
+        <element name="Species" positionX="-554.69921875" positionY="323.484375" width="128" height="58"/>
         <element name="Weather" positionX="-293.5625" positionY="88.03515625" width="128" height="58"/>
+        <element name="Photo" positionX="-375.1640625" positionY="238.91796875" width="128" height="58"/>
     </elements>
 </model>
