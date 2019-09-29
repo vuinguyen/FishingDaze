@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Companion" representedClassName="Companion" syncable="YES" codeGenerationType="class">
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="companion" inverseEntity="Entry" syncable="YES"/>
+    </entity>
     <entity name="Entry" representedClassName="Entry" syncable="YES" codeGenerationType="class">
         <attribute name="creationDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="endDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="companion" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Companion" inverseName="entry" inverseEntity="Companion" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="entry" inverseEntity="Location" syncable="YES"/>
+        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Notes" inverseName="entry" inverseEntity="Notes" syncable="YES"/>
+        <relationship name="species" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Species" inverseName="entry" inverseEntity="Species" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="location" inverseEntity="Entry" syncable="YES"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Weather" inverseName="location" inverseEntity="Weather" syncable="YES"/>
+    </entity>
+    <entity name="Notes" representedClassName="Notes" syncable="YES" codeGenerationType="class">
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="notes" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <entity name="Species" representedClassName="Species" syncable="YES" codeGenerationType="class">
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="species" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <entity name="Weather" representedClassName="Weather" syncable="YES" codeGenerationType="class">
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="weather" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Entry" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Companion" positionX="-744.20703125" positionY="259.453125" width="128" height="58"/>
+        <element name="Entry" positionX="-722.79296875" positionY="28.16015625" width="151.41015625" height="148"/>
+        <element name="Location" positionX="-484.44140625" positionY="73.07421875" width="128" height="73"/>
+        <element name="Notes" positionX="-235.32421875" positionY="255.78125" width="128" height="58"/>
+        <element name="Species" positionX="-542.6171875" positionY="264.08984375" width="128" height="58"/>
+        <element name="Weather" positionX="-293.5625" positionY="88.03515625" width="128" height="58"/>
     </elements>
 </model>
