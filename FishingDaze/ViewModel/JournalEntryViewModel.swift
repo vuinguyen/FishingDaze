@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import CoreLocation
 
 struct JournalEntryViewModel {
   private let journalEntryModel: JournalEntryModel
@@ -23,6 +24,57 @@ struct JournalEntryViewModel {
 
   func startDate() -> String {
     return journalEntryModel.startDateTime.string(dateStyle: .long)
+  }
+
+  static func address(locations: [CLLocation], existingViewModel: JournalEntryViewModel?,  UIcompletion: ((String) -> Void)?) -> Void {
+    var address = ""
+
+    guard let location = locations.first else {
+      return 
+    }
+
+    // Now, save this somewhwere,  (into existingViewModel if available), so it's available when we call the weather API ...
+
+    if let journalEntryViewModel = existingViewModel {
+      let latitude = location.coordinate.latitude
+      let longitude = location.coordinate.longitude
+    }
+
+    // for now, let's get the city, and state, if applicable (reverse geocode?)
+    CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+      guard error == nil else {
+        print("\(error?.localizedDescription ?? "got an error from reverse geocoding")")
+        return
+      }
+
+      if let placemark = placemarks?.first {
+        if placemark.subThoroughfare != nil {
+          address += placemark.subThoroughfare! + " "
+        }
+        if placemark.thoroughfare != nil {
+          address += placemark.thoroughfare! + "\n"
+        }
+        if placemark.subLocality != nil {
+          address += placemark.subLocality! + "\n"
+        }
+        if placemark.subAdministrativeArea != nil {
+          address += placemark.subAdministrativeArea! + "\n"
+        }
+        if placemark.postalCode != nil {
+          address += placemark.postalCode! + "\n"
+        }
+        if placemark.country != nil {
+          address += placemark.country! + "\n"
+        }
+
+        print("address: \(address)")
+        if let UIcompletion = UIcompletion {
+          DispatchQueue.main.async {
+            UIcompletion(address)
+          }
+        }
+      }
+    }
   }
 
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {

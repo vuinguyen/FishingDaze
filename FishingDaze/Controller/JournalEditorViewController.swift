@@ -100,6 +100,7 @@ class JournalEditorViewController: UITableViewController {
     if let locationManager = locationManager {
       locationManager.requestWhenInUseAuthorization()
       locationManager.delegate = self
+      locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
     }
   }
 
@@ -124,44 +125,12 @@ extension JournalEditorViewController: UITextFieldDelegate {
 
 extension JournalEditorViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    print("locations: \(locations[0])")
-    let location = locations[0]
-    let latitude = location.coordinate.latitude
-    let longitude = location.coordinate.longitude
 
-    // Now, save this somewhwere, so it's available when we call the weather API ...
+    JournalEntryViewModel.address(locations: locations, existingViewModel: journalEntryViewModel,
+                                   UIcompletion: { (address) in
+                                    self.moreLocationTextField.text = address
 
-    // for now, let's get the city, and state, if applicable (reverse geocode?)
-
-    CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
-      guard error == nil else {
-        print("\(error?.localizedDescription ?? "got an error from reverse geocoding")")
-        return
-      }
-
-      if let placemark = placemarks?[0]{
-        var address = ""
-        if placemark.subThoroughfare != nil {
-          address += placemark.subThoroughfare! + " "
-        }
-        if placemark.thoroughfare != nil {
-          address += placemark.thoroughfare! + "\n"
-        }
-        if placemark.subLocality != nil {
-          address += placemark.subLocality! + "\n"
-        }
-        if placemark.subAdministrativeArea != nil {
-          address += placemark.subAdministrativeArea! + "\n"
-        }
-        if placemark.postalCode != nil {
-          address += placemark.postalCode! + "\n"
-        }
-        if placemark.country != nil {
-          address += placemark.country! + "\n"
-        }
-        self.moreLocationTextField.text = address
-      }
-    }
+    })
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
