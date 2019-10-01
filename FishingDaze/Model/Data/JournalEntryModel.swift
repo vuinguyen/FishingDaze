@@ -8,13 +8,6 @@
 
 import Foundation
 
-struct Location {
-  var bodyOfWater: String?
-  var address: String
-  var latitude: Double
-  var longitude: Double
-}
-
 struct JournalEntryModel {
   var creationDateTime: Date
   var endDateTime: Date
