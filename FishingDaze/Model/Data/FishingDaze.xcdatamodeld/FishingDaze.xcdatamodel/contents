@@ -14,6 +14,10 @@
         <relationship name="species" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Species" inverseName="entry" inverseEntity="Species" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bodyOfWater" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="location" inverseEntity="Entry" syncable="YES"/>
         <relationship name="weather" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Weather" inverseName="location" inverseEntity="Weather" syncable="YES"/>
     </entity>
@@ -32,10 +36,10 @@
     <elements>
         <element name="Companion" positionX="-717.19140625" positionY="272.89453125" width="128" height="58"/>
         <element name="Entry" positionX="-722.79296875" positionY="28.16015625" width="151.41015625" height="163"/>
-        <element name="Location" positionX="-484.44140625" positionY="73.07421875" width="128" height="73"/>
+        <element name="Location" positionX="-484.44140625" positionY="73.07421875" width="128" height="135"/>
         <element name="Notes" positionX="-214.03125" positionY="168.671875" width="128" height="58"/>
+        <element name="Photo" positionX="-375.1640625" positionY="238.91796875" width="128" height="58"/>
         <element name="Species" positionX="-554.69921875" positionY="323.484375" width="128" height="58"/>
         <element name="Weather" positionX="-293.5625" positionY="88.03515625" width="128" height="58"/>
-        <element name="Photo" positionX="-375.1640625" positionY="238.91796875" width="128" height="58"/>
     </elements>
 </model>
