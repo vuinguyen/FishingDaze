@@ -12,18 +12,46 @@ import CoreData
 import CoreLocation
 
 struct JournalEntryViewModel {
-  private let journalEntryModel: JournalEntryModel
-  
+  private let entryModel: Entry
+  private let managedContext = PersistenceManager.shared.managedContext!
+
   init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
-    journalEntryModel = JournalEntryModel(creationDateTime: creationDateTime, endDateTime: endDateTime, startDateTime: startDateTime)
+    // create a new Entry and save to Core Data
+    let entity =
+      NSEntityDescription.entity(forEntityName: "Entry",
+                                 in: managedContext)!
+
+    entryModel = NSManagedObject(entity: entity,
+                                 insertInto: managedContext) as! Entry
+
+    entryModel.setValue(startDateTime, forKeyPath: KeyPath.startDateTime.rawValue)
+    entryModel.setValue(endDateTime, forKeyPath: KeyPath.endDateTime.rawValue)
+    entryModel.setValue(Date(), forKey: KeyPath.creationDateTime.rawValue)
+
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
+
+  }
+
+  init(entryModel: Entry) {
+    self.entryModel = entryModel
   }
 
   func startDateTime() -> String {
-    return journalEntryModel.startDateTime.description
+    guard let startDateTime =  entryModel.startDateTime?.description else {
+      return Date().description
+    }
+    return startDateTime
   }
 
   func startDate() -> String {
-    return journalEntryModel.startDateTime.string(dateStyle: .long)
+    guard let startDate = entryModel.startDateTime else {
+      return Date().description
+    }
+    return startDate.string(dateStyle: .long)
   }
 
   static func address(locations: [CLLocation], existingViewModel: JournalEntryViewModel?,  UIcompletion: ((String) -> Void)?) -> Void {
@@ -38,6 +66,9 @@ struct JournalEntryViewModel {
     if let journalEntryViewModel = existingViewModel {
       let latitude = location.coordinate.latitude
       let longitude = location.coordinate.longitude
+
+      // save in existing ViewModel and then we'll save to Core Data later during a save
+      
     }
 
     // for now, let's get the city, and state, if applicable (reverse geocode?)
@@ -89,7 +120,7 @@ struct JournalEntryViewModel {
           let startDateTime = entry.value(forKeyPath: KeyPath.startDateTime.rawValue) as? Date,
           let creationDateTime = entry.value(forKeyPath: KeyPath.creationDateTime.rawValue) as? Date {
 
-          let viewModel = JournalEntryViewModel(creationDateTime: creationDateTime, endDateTime: endDateTime, startDateTime: startDateTime)
+          let viewModel = JournalEntryViewModel(entryModel: entry)
           viewModels.append(viewModel)
 
           print("loaded creationDateTime: \(creationDateTime)")
@@ -198,7 +229,7 @@ struct JournalEntryViewModel {
 
     let managedContext = PersistenceManager.shared.managedContext!
 
-    let creationDatePredicate = NSPredicate(format: "creationDateTime = %@", journalEntryViewModel.journalEntryModel.creationDateTime as NSDate)
+    let creationDatePredicate = NSPredicate(format: "creationDateTime = %@", journalEntryViewModel.entryModel.creationDateTime! as NSDate)
 
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
@@ -225,10 +256,10 @@ struct JournalEntryViewModel {
       var endTime = Date()
 
       if let viewModel = existingViewModel {
-        let model = viewModel.journalEntryModel
-        date = model.startDateTime
-        startTime = model.startDateTime
-        endTime = model.endDateTime
+        let model = viewModel.entryModel
+        date = model.startDateTime ?? Date()
+        startTime = model.startDateTime ?? Date()
+        endTime = model.endDateTime ?? Date()
       } else {
         let origStartTime = startTime
         // make the updated start time be 2 hours before the current time

@@ -13,8 +13,8 @@
 		520A2DA9233B0C820070CD57 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DA8233B0C820070CD57 /* PersistenceManager.swift */; };
 		520A2DAB233C2E4C0070CD57 /* KeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DAA233C2E4C0070CD57 /* KeyPath.swift */; };
 		524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CFC8E233194CB001A07AA /* Date+Extension.swift */; };
-		527EBFDC22D7C5A000051BA0 /* JournalEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDB22D7C5A000051BA0 /* JournalEntryModel.swift */; };
 		527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */; };
+		5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CB332343C5A80002BF35 /* LocationViewModel.swift */; };
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
 		52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20722BBF03D0022C15C /* JournalListViewController.swift */; };
 		52B2B20B22BBF03D0022C15C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20922BBF03D0022C15C /* Main.storyboard */; };
@@ -43,8 +43,8 @@
 		520A2DA8233B0C820070CD57 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		520A2DAA233C2E4C0070CD57 /* KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPath.swift; sourceTree = "<group>"; };
 		524CFC8E233194CB001A07AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		527EBFDB22D7C5A000051BA0 /* JournalEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryModel.swift; sourceTree = "<group>"; };
 		527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryTableViewCell.swift; sourceTree = "<group>"; };
+		5281CB332343C5A80002BF35 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B20522BBF03D0022C15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B2B20722BBF03D0022C15C /* JournalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				520A2DA1233833D30070CD57 /* JournalEntryViewModel.swift */,
+				5281CB332343C5A80002BF35 /* LocationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -95,10 +96,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5281CB352343EA0A0002BF35 /* Managed Object Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Managed Object Extensions";
+			sourceTree = "<group>";
+		};
 		52A382F322CD6166008E7025 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5281CB352343EA0A0002BF35 /* Managed Object Extensions */,
 				52A382F422CD617A008E7025 /* Data */,
+				520A2DAA233C2E4C0070CD57 /* KeyPath.swift */,
 				520A2DA8233B0C820070CD57 /* PersistenceManager.swift */,
 			);
 			path = Model;
@@ -108,8 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				52B2B20C22BBF03D0022C15C /* FishingDaze.xcdatamodeld */,
-				527EBFDB22D7C5A000051BA0 /* JournalEntryModel.swift */,
-				520A2DAA233C2E4C0070CD57 /* KeyPath.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -278,7 +286,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				527EBFDC22D7C5A000051BA0 /* JournalEntryModel.swift in Sources */,
 				52B2B20E22BBF03D0022C15C /* FishingDaze.xcdatamodeld in Sources */,
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
 				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
@@ -289,6 +296,7 @@
 				527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */,
 				520A2DA7233986460070CD57 /* String+Extension.swift in Sources */,
 				520A2DA9233B0C820070CD57 /* PersistenceManager.swift in Sources */,
+				5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
