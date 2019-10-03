@@ -11,9 +11,10 @@ import UIKit
 import CoreData
 import CoreLocation
 
-struct JournalEntryViewModel {
+class JournalEntryViewModel {
   private let entryModel: Entry
   private let managedContext = PersistenceManager.shared.managedContext!
+  private var locationViewModel: LocationViewModel?
 
   init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
     // create a new Entry and save to Core Data

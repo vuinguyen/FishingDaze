@@ -8,9 +8,25 @@
 
 import Foundation
 
-
 protocol LocationViewModelDelegate {
+  func saveLocally()
+  func saveToCoreData()
+}
 
+class LocationViewModel: LocationViewModelDelegate {
+  var address: String = ""
+  var bodyOfWater: String = ""
+  var latitude: Double = 0.0
+  var longitude: Double = 0.0
+
+
+  func saveLocally() {
+
+  }
+
+  func saveToCoreData() {
+
+  }
 }
 
 
