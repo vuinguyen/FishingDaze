@@ -11,5 +11,9 @@ import Foundation
 enum KeyPath: String {
   case creationDateTime
   case startDateTime
-  case endDateTime 
+  case endDateTime
+  case address
+  case bodyOfWater
+  case latitude
+  case longitude
 }
