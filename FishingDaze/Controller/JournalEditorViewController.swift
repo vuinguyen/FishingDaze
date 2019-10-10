@@ -71,6 +71,9 @@ class JournalEditorViewController: UITableViewController {
   }
   
   @IBAction func saveEdits(_ sender: Any) {
+    if journalEntryViewModel == nil {
+      journalEntryViewModel = JournalEntryViewModel()
+    }
     JournalEntryViewModel.saveJournalEntryViewModel(date: datePicker.date,
                                                     startDateTime: startTimePicker.date,
                                                     endDateTime: endTimePicker.date,

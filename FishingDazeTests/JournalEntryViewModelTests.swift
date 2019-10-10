@@ -47,7 +47,7 @@ class JournalEntryViewModelTests: XCTestCase {
     })  }
 
   func testStartDateTime() {
-    XCTAssertEqual(journalEntryViewModel.startDateTime(), startDateTimeString)
+    XCTAssertEqual(journalEntryViewModel.startDateTimeDisplay(), startDateTimeString)
   }
 
   func testStartDate() {

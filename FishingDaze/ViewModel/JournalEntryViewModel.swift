@@ -12,10 +12,29 @@ import CoreData
 import CoreLocation
 
 class JournalEntryViewModel {
-  private let entryModel: Entry
+  private let entryModel: Entry?
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
 
+  var endDateTime: Date {
+    return Date()
+  }
+  var startDateTime: Date {
+    return Date()
+  }
+  var creationDateTime: Date {
+    return Date()
+  }
+
+  init() {
+    let entity =
+      NSEntityDescription.entity(forEntityName: "Entry",
+                                 in: managedContext)!
+
+      entryModel = NSManagedObject(entity: entity,
+                                 insertInto: managedContext) as? Entry
+  }
+  
   init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
     // create a new Entry and save to Core Data
     let entity =
@@ -23,12 +42,14 @@ class JournalEntryViewModel {
                                  in: managedContext)!
 
     entryModel = NSManagedObject(entity: entity,
-                                 insertInto: managedContext) as! Entry
+                                 insertInto: managedContext) as? Entry
 
+    if let entryModel = entryModel {
     entryModel.setValue(startDateTime, forKeyPath: KeyPath.startDateTime.rawValue)
     entryModel.setValue(endDateTime, forKeyPath: KeyPath.endDateTime.rawValue)
     entryModel.setValue(Date(), forKey: KeyPath.creationDateTime.rawValue)
 
+    }
     do {
       try managedContext.save()
     } catch let error as NSError {
@@ -41,15 +62,17 @@ class JournalEntryViewModel {
     self.entryModel = entryModel
   }
 
-  func startDateTime() -> String {
-    guard let startDateTime =  entryModel.startDateTime?.description else {
+  func startDateTimeDisplay() -> String {
+    guard let entryModel = entryModel,
+          let startDateTime =  entryModel.startDateTime?.description else {
       return Date().description
     }
     return startDateTime
   }
 
   func startDate() -> String {
-    guard let startDate = entryModel.startDateTime else {
+    guard let entryModel = entryModel,
+          let startDate = entryModel.startDateTime else {
       return Date().description
     }
     return startDate.string(dateStyle: .long)
@@ -181,14 +204,15 @@ class JournalEntryViewModel {
 
 
   private static func findEntryByCreationDate(journalEntryViewModel: JournalEntryViewModel?, completion: @escaping (Entry?, Error?) -> Void) {
-    guard let journalEntryViewModel = journalEntryViewModel else {
+    guard let journalEntryViewModel = journalEntryViewModel,
+          let entryModel = journalEntryViewModel.entryModel else {
       print("journalEntryViewModel not valid")
       return
     }
 
     let managedContext = PersistenceManager.shared.managedContext!
 
-    let creationDatePredicate = NSPredicate(format: "creationDateTime = %@", journalEntryViewModel.entryModel.creationDateTime! as NSDate)
+    let creationDatePredicate = NSPredicate(format: "creationDateTime = %@", entryModel.creationDateTime! as NSDate)
 
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
@@ -216,9 +240,9 @@ class JournalEntryViewModel {
 
       if let viewModel = existingViewModel {
         let model = viewModel.entryModel
-        date = model.startDateTime ?? Date()
-        startTime = model.startDateTime ?? Date()
-        endTime = model.endDateTime ?? Date()
+        date = model?.startDateTime ?? Date()
+        startTime = model?.startDateTime ?? Date()
+        endTime = model?.endDateTime ?? Date()
       } else {
         let origStartTime = startTime
         // make the updated start time be 2 hours before the current time

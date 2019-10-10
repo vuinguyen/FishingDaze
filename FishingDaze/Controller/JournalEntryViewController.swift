@@ -18,7 +18,7 @@ class JournalEntryViewController: UIViewController {
     super.viewDidLoad()
 
     if let journalEntryViewModel = journalEntryViewModel {
-      dateLabel.text = journalEntryViewModel.startDateTime()
+      dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
     }
   }
 
