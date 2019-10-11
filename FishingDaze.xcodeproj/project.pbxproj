@@ -12,6 +12,8 @@
 		520A2DA7233986460070CD57 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DA6233986460070CD57 /* String+Extension.swift */; };
 		520A2DA9233B0C820070CD57 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DA8233B0C820070CD57 /* PersistenceManager.swift */; };
 		520A2DAB233C2E4C0070CD57 /* KeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520A2DAA233C2E4C0070CD57 /* KeyPath.swift */; };
+		523FE4B0234FEF2C00E68295 /* Entry+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FE4AF234FEF2C00E68295 /* Entry+Extension.swift */; };
+		523FE4B2234FF9F800E68295 /* CoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FE4B1234FF9F800E68295 /* CoreDataProtocol.swift */; };
 		524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CFC8E233194CB001A07AA /* Date+Extension.swift */; };
 		527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */; };
 		5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CB332343C5A80002BF35 /* LocationViewModel.swift */; };
@@ -42,6 +44,8 @@
 		520A2DA6233986460070CD57 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		520A2DA8233B0C820070CD57 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		520A2DAA233C2E4C0070CD57 /* KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPath.swift; sourceTree = "<group>"; };
+		523FE4AF234FEF2C00E68295 /* Entry+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+Extension.swift"; sourceTree = "<group>"; };
+		523FE4B1234FF9F800E68295 /* CoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocol.swift; sourceTree = "<group>"; };
 		524CFC8E233194CB001A07AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryTableViewCell.swift; sourceTree = "<group>"; };
 		5281CB332343C5A80002BF35 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 		5281CB352343EA0A0002BF35 /* Managed Object Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				523FE4AF234FEF2C00E68295 /* Entry+Extension.swift */,
 			);
 			path = "Managed Object Extensions";
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 				52A382F422CD617A008E7025 /* Data */,
 				520A2DAA233C2E4C0070CD57 /* KeyPath.swift */,
 				520A2DA8233B0C820070CD57 /* PersistenceManager.swift */,
+				523FE4B1234FF9F800E68295 /* CoreDataProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,7 +292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523FE4B2234FF9F800E68295 /* CoreDataProtocol.swift in Sources */,
 				52B2B20E22BBF03D0022C15C /* FishingDaze.xcdatamodeld in Sources */,
+				523FE4B0234FEF2C00E68295 /* Entry+Extension.swift in Sources */,
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
 				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
 				52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */,

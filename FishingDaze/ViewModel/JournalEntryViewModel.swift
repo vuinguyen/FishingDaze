@@ -16,15 +16,14 @@ class JournalEntryViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
 
-  var endDateTime: Date {
-    return Date()
-  }
-  var startDateTime: Date {
-    return Date()
-  }
+  var entryDate: Date?
+  var endDateTime: Date?
+  var startDateTime: Date?
+  /*
   var creationDateTime: Date {
     return Date()
   }
+ */
 
   init() {
     let entity =
@@ -115,6 +114,38 @@ class JournalEntryViewModel {
     }
 
     return viewModels
+  }
+
+  func save() {
+    saveEntry()
+  }
+
+  private func saveEntry() {
+    // we set values to the EntryModel here
+    if let entryModel = entryModel,
+      let entryDate = entryDate,
+      let startDateTime = startDateTime,
+      let endDateTime = endDateTime {
+
+      // this is where we grab values from the pickers and save them somewhere
+      let oldStartTime = startDateTime
+      let oldEndTime   = endDateTime
+      // if the user modified the day picker, make sure that's reflected in the startTime and endTime date
+      let myCalendar = Calendar(identifier: .gregorian)
+
+      guard let updatedStartTime = myCalendar.date(bySettingHour: myCalendar.component(.hour, from: oldStartTime),
+                                                   minute: myCalendar.component(.minute, from: oldStartTime),
+                                                   second: myCalendar.component(.second, from: oldStartTime), of: entryDate) else { return }
+
+      guard let updatedEndTime = myCalendar.date(bySettingHour: myCalendar.component(.hour, from: oldEndTime),
+                                                 minute: myCalendar.component(.minute, from: oldEndTime),
+                                                 second: myCalendar.component(.second, from: oldEndTime), of: entryDate) else { return }
+
+      entryModel.endDateTime = updatedEndTime
+      entryModel.startDateTime = updatedStartTime
+      entryModel.save()
+      //entryModel.save(startDateTime: updatedStartTime, endDateTime: updatedEndTime)
+    }
   }
 
   static func saveJournalEntryViewModel(date: Date, startDateTime: Date, endDateTime: Date, existingViewModel: JournalEntryViewModel?) {
