@@ -14,13 +14,14 @@ class JournalListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
 
   @IBAction func returnToJournalList(_ unwindSegue: UIStoryboardSegue) {
-    print("came back from deleting an entry!")
+    print("return to Journal List!")
     /*
     guard let editorViewController = unwindSegue.source as? JournalEditorViewController else {
         return
     }
  */
-  //  tableView.reloadData()
+    journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
+    tableView.reloadData()
  }
 
   let reuseIdentifier = "JournalEntryCell"

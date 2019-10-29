@@ -14,8 +14,8 @@ class JournalEntryViewModelTests: XCTestCase {
 
   var journalEntryViewModel: JournalEntryViewModel!
 
-  let creationDateTimeString = "2019-09-17 22:51:20 +0000"
   let startDateTimeString = "2019-09-17 20:51:15 +0000"
+  let entryDateString = "2019-09-17 20:51:15 +0000"
   let endDateTimeString = "2019-09-18 00:51:15 +0000"
 
   let startDateString = "September 17, 2019"
@@ -35,12 +35,11 @@ class JournalEntryViewModelTests: XCTestCase {
     // Put setup code here. This method is called before the invocation of each test method in the class.
 
     // create a new JournalEntryViewModel object here
-    //journalEntryViewModel = JournalEntryViewModel(creationDateTime: creationDateTimeString.date()!,
-    //                                              endDateTime: endDateTimeString.date()!, startDateTime: startDateTimeString.date()!)
-
     journalEntryViewModel = JournalEntryViewModel()
+    journalEntryViewModel.entryDate = entryDateString.date()
     journalEntryViewModel.startDateTime = startDateTimeString.date()
     journalEntryViewModel.endDateTime = endDateTimeString.date()
+    journalEntryViewModel.save()
   }
 
   override func tearDown() {

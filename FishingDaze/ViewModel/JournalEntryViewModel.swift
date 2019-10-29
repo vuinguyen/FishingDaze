@@ -19,11 +19,6 @@ class JournalEntryViewModel {
   var entryDate: Date?
   var endDateTime: Date?
   var startDateTime: Date?
-  /*
-  var creationDateTime: Date {
-    return Date()
-  }
- */
 
   init() {
     let entity =
@@ -32,32 +27,13 @@ class JournalEntryViewModel {
 
       entryModel = NSManagedObject(entity: entity,
                                  insertInto: managedContext) as? Entry
-  }
 
-    /*
-  init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
-    // create a new Entry and save to Core Data
-    let entity =
-      NSEntityDescription.entity(forEntityName: "Entry",
-                                 in: managedContext)!
-
-    entryModel = NSManagedObject(entity: entity,
-                                 insertInto: managedContext) as? Entry
-
-    if let entryModel = entryModel {
-    entryModel.setValue(startDateTime, forKeyPath: KeyPath.startDateTime.rawValue)
-    entryModel.setValue(endDateTime, forKeyPath: KeyPath.endDateTime.rawValue)
-    entryModel.setValue(Date(), forKey: KeyPath.creationDateTime.rawValue)
-
-    }
     do {
       try managedContext.save()
     } catch let error as NSError {
-      print("Could not save. \(error), \(error.userInfo)")
+      print("Could not save to Core Data. \(error), \(error.userInfo)")
     }
-
   }
- */
 
   init(entryModel: Entry) {
     self.entryModel = entryModel
@@ -124,10 +100,13 @@ class JournalEntryViewModel {
 
   private func saveEntry() {
     // we set values to the EntryModel here
-    if let entryModel = entryModel,
+    guard let entryModel = entryModel,
       let entryDate = entryDate,
       let startDateTime = startDateTime,
-      let endDateTime = endDateTime {
+      let endDateTime = endDateTime else {
+        print("error saving Entry")
+        return
+    }
 
       // this is where we grab values from the pickers and save them somewhere
       let oldStartTime = startDateTime
@@ -145,73 +124,12 @@ class JournalEntryViewModel {
 
       entryModel.endDateTime = updatedEndTime
       entryModel.startDateTime = updatedStartTime
-      entryModel.save()
-      //entryModel.save(startDateTime: updatedStartTime, endDateTime: updatedEndTime)
-    }
-  }
 
-  static func saveJournalEntryViewModel(date: Date, startDateTime: Date, endDateTime: Date, existingViewModel: JournalEntryViewModel?) {
-    print("save changes!")
-
-    let managedContext = PersistenceManager.shared.managedContext!
-
-    // this is where we grab values from the pickers and save them somewhere
-    let oldStartTime = startDateTime
-    let oldEndTime   = endDateTime
-    // if the user modified the day picker, make sure that's reflected in the startTime and endTime date
-    let myCalendar = Calendar(identifier: .gregorian)
-
-    let updatedStartTime = myCalendar.date(bySettingHour: myCalendar.component(.hour, from: oldStartTime),
-                                           minute: myCalendar.component(.minute, from: oldStartTime),
-                                           second: myCalendar.component(.second, from: oldStartTime), of: date)
-
-    let updatedEndTime = myCalendar.date(bySettingHour: myCalendar.component(.hour, from: oldEndTime),
-                                         minute: myCalendar.component(.minute, from: oldEndTime),
-                                         second: myCalendar.component(.second, from: oldEndTime), of: date)
-
-    // save existing entry in Core Data
-    if let viewModel = existingViewModel {
-      // else search for entry by creationDate, edit entry in Core Data and then save!
-      findEntryByCreationDate(journalEntryViewModel: viewModel, completion: { (journalEntryEdited, error) in
-        // grab data from all the controls and save here!!
-        guard let entry = journalEntryEdited else {
-          print("could not find entry here")
-          return
-        }
-
-        entry.setValue(updatedStartTime, forKeyPath: KeyPath.startDateTime.rawValue)
-        entry.setValue(updatedEndTime, forKeyPath: KeyPath.endDateTime.rawValue)
-        do {
-          try managedContext.save()
-          print("Edited entry, startTime is: \(String(describing: updatedStartTime))")
-          print("Edited entry, endTime is: \(String(describing: updatedEndTime))\n")
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
-
-      })
-    } else {
-      let entity =
-        NSEntityDescription.entity(forEntityName: "Entry",
-                                   in: managedContext)!
-
-      let entry = NSManagedObject(entity: entity,
-                                  insertInto: managedContext)
-
-      let creationDateTime = Date()
-      entry.setValue(updatedStartTime, forKeyPath: KeyPath.startDateTime.rawValue)
-      entry.setValue(updatedEndTime, forKeyPath: KeyPath.endDateTime.rawValue)
-      entry.setValue(creationDateTime, forKeyPath: KeyPath.creationDateTime.rawValue)
       do {
         try managedContext.save()
-        print("Added entry, creationDate is: \(creationDateTime)")
-        print("Added entry, startTime is: \(String(describing: updatedStartTime))")
-        print("Added entry, endTime is: \(String(describing: updatedEndTime))\n")
       } catch let error as NSError {
-        print("Could not save. \(error), \(error.userInfo)")
+        print("Could not save to Core Data. \(error), \(error.userInfo)")
       }
-    }
-
   }
 
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
