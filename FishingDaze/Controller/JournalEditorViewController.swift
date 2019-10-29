@@ -80,12 +80,6 @@ class JournalEditorViewController: UITableViewController {
     journalEntryViewModel?.endDateTime = endTimePicker.date
     journalEntryViewModel?.save()
 
-    /*
-    JournalEntryViewModel.saveJournalEntryViewModel(date: datePicker.date,
-                                                    startDateTime: startTimePicker.date,
-                                                    endDateTime: endTimePicker.date,
-                                                    existingViewModel: journalEntryViewModel)
- */
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
 
