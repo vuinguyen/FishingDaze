@@ -33,7 +33,8 @@ class JournalEntryViewModel {
       entryModel = NSManagedObject(entity: entity,
                                  insertInto: managedContext) as? Entry
   }
-  
+
+    /*
   init(creationDateTime: Date, endDateTime: Date, startDateTime: Date) {
     // create a new Entry and save to Core Data
     let entity =
@@ -56,6 +57,7 @@ class JournalEntryViewModel {
     }
 
   }
+ */
 
   init(entryModel: Entry) {
     self.entryModel = entryModel

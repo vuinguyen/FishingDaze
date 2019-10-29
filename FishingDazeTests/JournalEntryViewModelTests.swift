@@ -35,9 +35,12 @@ class JournalEntryViewModelTests: XCTestCase {
     // Put setup code here. This method is called before the invocation of each test method in the class.
 
     // create a new JournalEntryViewModel object here
-    journalEntryViewModel = JournalEntryViewModel(creationDateTime: creationDateTimeString.date()!,
-                                                  endDateTime: endDateTimeString.date()!, startDateTime: startDateTimeString.date()!)
+    //journalEntryViewModel = JournalEntryViewModel(creationDateTime: creationDateTimeString.date()!,
+    //                                              endDateTime: endDateTimeString.date()!, startDateTime: startDateTimeString.date()!)
 
+    journalEntryViewModel = JournalEntryViewModel()
+    journalEntryViewModel.startDateTime = startDateTimeString.date()
+    journalEntryViewModel.endDateTime = endDateTimeString.date()
   }
 
   override func tearDown() {
