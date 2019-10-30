@@ -58,7 +58,7 @@ class JournalEntryViewModelTests: XCTestCase {
 
   func testCottonwoodParkAddress() {
     let expectation = XCTestExpectation(description: "Hawaii Address String")
-    JournalEntryViewModel.address(locations: [locationCottonwoodPark], existingViewModel: journalEntryViewModel) { (address) in
+    journalEntryViewModel.addressDisplay(locations: [locationCottonwoodPark]) { (address) in
       XCTAssertNotEqual(address, "")
 
       expectation.fulfill()
@@ -69,7 +69,7 @@ class JournalEntryViewModelTests: XCTestCase {
 
   func testHawaiiAddress() {
     let expectation = XCTestExpectation(description: "Hawaii Address String")
-    JournalEntryViewModel.address(locations: [locationHawaii], existingViewModel: journalEntryViewModel) { (address) in
+    journalEntryViewModel.addressDisplay(locations: [locationHawaii]) { (address) in
       XCTAssertEqual(address, self.hawaiiAddress)
 
       expectation.fulfill()

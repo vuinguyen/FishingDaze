@@ -24,6 +24,7 @@ class JournalEditorViewController: UITableViewController {
   @IBAction func getCurrentLocation(_ sender: Any) {
     print("get current location!")
 
+    // this works only if geolocation is on
     if let locationManager = locationManager {
       locationManager.requestLocation()
     }
@@ -78,6 +79,9 @@ class JournalEditorViewController: UITableViewController {
     journalEntryViewModel?.entryDate = datePicker.date
     journalEntryViewModel?.startDateTime = startTimePicker.date
     journalEntryViewModel?.endDateTime = endTimePicker.date
+
+    // now, if the location entries are not empty, save them!
+
     journalEntryViewModel?.save()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
@@ -131,10 +135,12 @@ extension JournalEditorViewController: UITextFieldDelegate {
 extension JournalEditorViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
-    JournalEntryViewModel.address(locations: locations, existingViewModel: journalEntryViewModel,
-                                   UIcompletion: { (address) in
-                                    self.moreLocationTextField.text = address
+    if journalEntryViewModel == nil {
+      journalEntryViewModel = JournalEntryViewModel()
+    }
 
+    journalEntryViewModel?.addressDisplay(locations: locations, UIcompletion: { (address) in
+      self.moreLocationTextField.text = address
     })
   }
 

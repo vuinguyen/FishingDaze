@@ -20,6 +20,9 @@ class JournalEntryViewModel {
   var endDateTime: Date?
   var startDateTime: Date?
 
+  var address: String = ""
+  var bodyOfWater: String = ""
+
   init() {
     let entity =
       NSEntityDescription.entity(forEntityName: "Entry",
@@ -55,16 +58,15 @@ class JournalEntryViewModel {
     return startDate.string(dateStyle: .long)
   }
 
-  static func address(locations: [CLLocation], existingViewModel: JournalEntryViewModel?,  UIcompletion: ((String) -> Void)?) -> Void {
-    //var address = ""
+  func addressDisplay(locations: [CLLocation],  UIcompletion: ((String) -> Void)?) -> Void {
 
-    guard let location = locations.first,
-          let journalEntryViewModel = existingViewModel,
-          let locationViewModel = LocationViewModel(entryViewModel: journalEntryViewModel, clLocation: location) as LocationViewModel?  else {
-            return
-      }
+    guard let location = locations.first else {
+        return
+    }
 
-    locationViewModel.displayAddressinView(UIcompletion: UIcompletion)
+    locationViewModel = LocationViewModel(entryViewModel: self, clLocation: location)
+
+    locationViewModel?.displayAddressinView(UIcompletion: UIcompletion)
   }
 
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
@@ -96,6 +98,7 @@ class JournalEntryViewModel {
 
   func save() {
     saveEntry()
+    saveLocation()
   }
 
   private func saveEntry() {
@@ -130,6 +133,10 @@ class JournalEntryViewModel {
       } catch let error as NSError {
         print("Could not save to Core Data. \(error), \(error.userInfo)")
       }
+  }
+
+  private func saveLocation() {
+
   }
 
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
