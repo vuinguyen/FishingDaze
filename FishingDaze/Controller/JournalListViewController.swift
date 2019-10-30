@@ -60,7 +60,7 @@ extension JournalListViewController: UITableViewDelegate, UITableViewDataSource 
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! JournalEntryTableViewCell
-    cell.fishingDateLabel.text = journalEntryViewModels[indexPath.row].startDate()
+    cell.fishingDateLabel.text = journalEntryViewModels[indexPath.row].startDateDisplay()
     return cell
   }
 

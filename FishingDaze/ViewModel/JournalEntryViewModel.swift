@@ -50,7 +50,7 @@ class JournalEntryViewModel {
     return startDateTime
   }
 
-  func startDate() -> String {
+  func startDateDisplay() -> String {
     guard let entryModel = entryModel,
           let startDate = entryModel.startDateTime else {
       return Date().description

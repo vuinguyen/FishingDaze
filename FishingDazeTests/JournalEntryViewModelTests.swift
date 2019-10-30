@@ -48,12 +48,12 @@ class JournalEntryViewModelTests: XCTestCase {
       // do nothing
     })  }
 
-  func testStartDateTime() {
+  func testStartDateTimeDisplay() {
     XCTAssertEqual(journalEntryViewModel.startDateTimeDisplay(), startDateTimeString)
   }
 
-  func testStartDate() {
-    XCTAssertEqual(journalEntryViewModel.startDate(), startDateString)
+  func testStartDateDisplay() {
+    XCTAssertEqual(journalEntryViewModel.startDateDisplay(), startDateString)
   }
 
   func testCottonwoodParkAddress() {
