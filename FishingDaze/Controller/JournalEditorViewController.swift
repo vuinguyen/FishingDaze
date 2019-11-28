@@ -81,6 +81,8 @@ class JournalEditorViewController: UITableViewController {
     journalEntryViewModel?.endDateTime = endTimePicker.date
 
     // now, if the location entries are not empty, save them!
+    journalEntryViewModel?.address = moreLocationTextField.text ?? ""
+    journalEntryViewModel?.bodyOfWater = waterLocationTextField.text ?? ""
 
     journalEntryViewModel?.save()
 

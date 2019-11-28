@@ -22,10 +22,14 @@ class LocationViewModel {
   var latitude: Double = 0.0
   var longitude: Double = 0.0
 
-  var entryViewModel: JournalEntryViewModel?
-  var locationModel: Location?
+  weak var entryViewModel: JournalEntryViewModel?
+  var locationModel: Location?  // Location in Core Data model
   var clLocation: CLLocation?
 
+  init() {
+  }
+
+  // This may become OBE
   init(entryViewModel: JournalEntryViewModel, clLocation: CLLocation) {
     self.entryViewModel = entryViewModel
     self.clLocation = clLocation

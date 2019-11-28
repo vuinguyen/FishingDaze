@@ -64,7 +64,12 @@ class JournalEntryViewModel {
         return
     }
 
-    locationViewModel = LocationViewModel(entryViewModel: self, clLocation: location)
+    if locationViewModel == nil {
+      locationViewModel = LocationViewModel()
+    }
+
+    locationViewModel?.entryViewModel = self
+    locationViewModel?.clLocation = location
 
     locationViewModel?.displayAddressinView(UIcompletion: UIcompletion)
   }
