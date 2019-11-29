@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import CoreData
 
 /*
 protocol LocationViewModelDelegate {
@@ -17,17 +18,31 @@ protocol LocationViewModelDelegate {
  */
 
 class LocationViewModel {
+  private let managedContext = PersistenceManager.shared.managedContext!
   var address: String = ""
   var bodyOfWater: String = ""
   var latitude: Double = 0.0
   var longitude: Double = 0.0
 
-  weak var entryViewModel: JournalEntryViewModel?
+  weak var entryViewModel: JournalEntryViewModel? // this may become OBE
+
+  var entryModel: Entry?  // we really need entryModel, NOT entryViewModel
   var locationModel: Location?  // Location in Core Data model
   var clLocation: CLLocation?
 
-  init() {
+  init(entryModel: Entry) {
+    // add to Core Data
+    let entity = NSEntityDescription.entity(forEntityName: "Photo", in: managedContext)!
+    locationModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Location
+    locationModel?.entry = entryModel
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
+
   }
+
 
   // This may become OBE
   init(entryViewModel: JournalEntryViewModel, clLocation: CLLocation) {
@@ -82,14 +97,45 @@ class LocationViewModel {
 
   }
 
+
+}
+
+extension LocationViewModel: CoreDataFunctions {
+  func save() {
+    // add to Core Data
+    guard let location = locationModel else {
+      return
+    }
+
+    location.address = address
+    location.bodyOfWater = bodyOfWater
+
+    if let clLocation = clLocation {
+      location.latitude = clLocation.coordinate.latitude
+      location.longitude = clLocation.coordinate.longitude
+    }
+
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
+
+  }
+
+  // will this be necessary?
   func saveLocally(entryViewModel: JournalEntryViewModel?) {
 
   }
 
+  // will this be necessary?
   func saveToCoreData(entryViewModel: JournalEntryViewModel?) {
 
   }
 
+  // will this be necessary?
+  func fetchFromCoreData() {
+  }
 
 }
 

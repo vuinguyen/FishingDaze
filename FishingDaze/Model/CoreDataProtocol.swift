@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CoreDataSaving {
+protocol CoreDataFunctions {
   func save()
 }

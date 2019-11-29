@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-extension Entry: CoreDataSaving {
+extension Entry {
+  /*
   func save() {
     let managedContext = PersistenceManager.shared.managedContext!
     do {
@@ -18,6 +19,7 @@ extension Entry: CoreDataSaving {
       print("Could not save. \(error), \(error.userInfo)")
     }
   }
+ */
 
   public override func awakeFromInsert() {
     super.awakeFromInsert()

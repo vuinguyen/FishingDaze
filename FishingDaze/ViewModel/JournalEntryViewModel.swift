@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class JournalEntryViewModel {
+class JournalEntryViewModel: CoreDataFunctions {
   private let entryModel: Entry?
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
@@ -20,8 +20,8 @@ class JournalEntryViewModel {
   var endDateTime: Date?
   var startDateTime: Date?
 
-  var address: String = ""
-  var bodyOfWater: String = ""
+  var address: String?
+  var bodyOfWater: String?
 
   init() {
     let entity =
@@ -64,13 +64,13 @@ class JournalEntryViewModel {
         return
     }
 
-    if locationViewModel == nil {
-      locationViewModel = LocationViewModel()
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel(entryModel: entryModel)
     }
 
-    locationViewModel?.entryViewModel = self
+    locationViewModel?.entryModel = entryModel
     locationViewModel?.clLocation = location
-
     locationViewModel?.displayAddressinView(UIcompletion: UIcompletion)
   }
 
@@ -141,7 +141,20 @@ class JournalEntryViewModel {
   }
 
   private func saveLocation() {
+    guard let address = address,
+        let bodyOfWater = bodyOfWater else {
+        return
+    }
 
+    if locationViewModel == nil,
+       let entryModel = entryModel {
+      locationViewModel = LocationViewModel(entryModel: entryModel)
+    }
+
+    //locationViewModel?.entryModel = entryModel
+    locationViewModel?.address = address
+    locationViewModel?.bodyOfWater = bodyOfWater
+    locationViewModel?.save()
   }
 
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
