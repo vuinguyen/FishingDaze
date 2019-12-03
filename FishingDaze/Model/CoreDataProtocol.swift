@@ -10,4 +10,5 @@ import Foundation
 
 protocol CoreDataFunctions {
   func save()
+  func fetch()
 }

@@ -101,6 +101,26 @@ class JournalEntryViewModel: CoreDataFunctions {
     return viewModels
   }
 
+  func fetch() {
+    if entryModel == nil {
+      print("we have an error with retrieving the Entry model!")
+      return
+    }
+    fetchLocation()
+  }
+
+  // we already grabbed the attributes for Entry earlier, so now we just need to grab
+  // the Location data for this Entry
+  private func fetchLocation() {
+
+    guard let locationViewModel = locationViewModel else {
+      print("we have no Location data with this Entry!")
+      return
+    }
+
+    locationViewModel.fetch()
+  }
+
   func save() {
     saveEntry()
     saveLocation()

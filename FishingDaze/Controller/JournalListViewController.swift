@@ -43,7 +43,11 @@ class JournalListViewController: UIViewController {
     if segue.identifier == "showDetail" {
       let detailVC = segue.destination as! JournalEntryViewController
 
-      detailVC.journalEntryViewModel = journalEntryViewModels[selectedIndex]
+      // before we segue, this is where we need to grab the rest of the core data
+      // for the Entry
+      let journalEntryViewModelWithData = journalEntryViewModels[selectedIndex]
+      journalEntryViewModelWithData.fetch()
+      detailVC.journalEntryViewModel = journalEntryViewModelWithData
 
     } else if segue.identifier == "addNewEntry" {
       let navigationController = segue.destination as! UINavigationController
