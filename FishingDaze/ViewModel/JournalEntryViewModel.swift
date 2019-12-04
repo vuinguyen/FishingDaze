@@ -74,6 +74,24 @@ class JournalEntryViewModel: CoreDataFunctions {
     locationViewModel?.displayAddressinView(UIcompletion: UIcompletion)
   }
 
+  func addressDisplay() -> String? {
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+
+    return locationViewModel?.addressDisplay()
+  }
+
+  func bodyOfWaterDisplay() -> String? {
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+
+    return locationViewModel?.bodyOfWaterDisplay()
+  }
+
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
     var viewModels: [JournalEntryViewModel] = []
     let managedContext = PersistenceManager.shared.managedContext!
@@ -112,13 +130,10 @@ class JournalEntryViewModel: CoreDataFunctions {
   // we already grabbed the attributes for Entry earlier, so now we just need to grab
   // the Location data for this Entry
   private func fetchLocation() {
-
-    guard let locationViewModel = locationViewModel else {
-      print("we have no Location data with this Entry!")
-      return
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
     }
-
-    locationViewModel.fetch()
   }
 
   func save() {

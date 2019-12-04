@@ -30,11 +30,16 @@ class LocationViewModel {
   var locationModel: Location?  // Location in Core Data model
   var clLocation: CLLocation?
 
+  init() {
+
+  }
+
   init(entryModel: Entry) {
     // add to Core Data
-    let entity = NSEntityDescription.entity(forEntityName: "Photo", in: managedContext)!
+    let entity = NSEntityDescription.entity(forEntityName: "Location", in: managedContext)!
     locationModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Location
     locationModel?.entry = entryModel
+    self.entryModel = entryModel
     do {
       try managedContext.save()
     } catch let error as NSError {
@@ -43,7 +48,40 @@ class LocationViewModel {
 
   }
 
+  static func fetchLocationViewModel(entryModel: Entry?) -> LocationViewModel? {
+    var locationViewModel: LocationViewModel?
 
+    guard let entryModel = entryModel else {
+      return locationViewModel
+    }
+
+    let managedContext = PersistenceManager.shared.managedContext!
+    let entryPredicate = NSPredicate(format: "entry == %@", entryModel)
+
+        do {
+          let fetchRequest:NSFetchRequest<Location> = Location.fetchRequest()
+          let locations = try managedContext.fetch(fetchRequest)
+          let locationsFound = (locations as NSArray).filtered(using: entryPredicate) as! [NSManagedObject]
+          if locationsFound.count >= 1 {
+
+            if let locationFound = locationsFound[0] as? Location {
+
+              locationViewModel = LocationViewModel()
+              locationViewModel?.entryModel = entryModel
+              locationViewModel?.locationModel = locationFound
+
+            //  print("body of water: \(locationModel?.bodyOfWater)")
+            //  print("address: \(locationModel?.address)")
+            }
+          }
+        } catch let error as NSError {
+
+          print("Could not fetch or save from context. \(error), \(error.userInfo)")
+        }
+    return locationViewModel
+  }
+  
+  
   // This may become OBE
   init(entryViewModel: JournalEntryViewModel, clLocation: CLLocation) {
     self.entryViewModel = entryViewModel
@@ -98,9 +136,27 @@ class LocationViewModel {
   }
 
 
+  func addressDisplay() -> String {
+    guard let location = locationModel,
+      let address = location.address else {
+      return ""
+    }
+
+    return address
+  }
+
+  func bodyOfWaterDisplay() -> String {
+    guard let location = locationModel,
+      let bodyOfWater = location.bodyOfWater else {
+      return ""
+    }
+
+    return bodyOfWater
+  }
 }
 
 extension LocationViewModel: CoreDataFunctions {
+  // This fetch function may become OBE
   func fetch() {
     let managedContext = PersistenceManager.shared.managedContext!
 
@@ -154,21 +210,6 @@ extension LocationViewModel: CoreDataFunctions {
     }
 
   }
-
-  // will this be necessary?
-  func saveLocally(entryViewModel: JournalEntryViewModel?) {
-
-  }
-
-  // will this be necessary?
-  func saveToCoreData(entryViewModel: JournalEntryViewModel?) {
-
-  }
-
-  // will this be necessary?
-  func fetchFromCoreData() {
-  }
-
 }
 
 

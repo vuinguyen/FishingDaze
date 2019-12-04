@@ -11,8 +11,8 @@ import UIKit
 import CoreLocation
 
 class JournalEditorViewController: UITableViewController {
-  @IBOutlet weak var waterLocationTextField: UITextField!
-  @IBOutlet weak var moreLocationTextField: UITextField!
+  @IBOutlet weak var bodyOfWaterTextField: UITextField!
+  @IBOutlet weak var addressTextField: UITextField!
   
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var startTimePicker: UIDatePicker!
@@ -81,8 +81,13 @@ class JournalEditorViewController: UITableViewController {
     journalEntryViewModel?.endDateTime = endTimePicker.date
 
     // now, if the location entries are not empty, save them!
-    journalEntryViewModel?.address = moreLocationTextField.text ?? ""
-    journalEntryViewModel?.bodyOfWater = waterLocationTextField.text ?? ""
+    if let address =  addressTextField.text {
+      journalEntryViewModel?.address = address
+    }
+
+    if let bodyOfWater = bodyOfWaterTextField.text {
+      journalEntryViewModel?.bodyOfWater = bodyOfWater
+    }
 
     journalEntryViewModel?.save()
 
@@ -101,9 +106,7 @@ class JournalEditorViewController: UITableViewController {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-    (datePicker.date, startTimePicker.date, endTimePicker.date) =
-      JournalEntryViewModel.setDefaultTimes(existingViewModel: journalEntryViewModel)
+    loadInitialValues()
 
     showHideDelete()
 
@@ -117,6 +120,18 @@ class JournalEditorViewController: UITableViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+  }
+
+  func loadInitialValues() {
+    (datePicker.date, startTimePicker.date, endTimePicker.date) =
+    JournalEntryViewModel.setDefaultTimes(existingViewModel: journalEntryViewModel)
+
+    // if this is a new journal entry, there's nothing else to load
+    guard let entryViewModel = journalEntryViewModel else {
+      return
+    }
+    bodyOfWaterTextField.text = entryViewModel.bodyOfWaterDisplay()
+    addressTextField.text = entryViewModel.addressDisplay()
   }
 
   func showHideDelete() {
@@ -142,7 +157,7 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
     }
 
     journalEntryViewModel?.addressDisplay(locations: locations, UIcompletion: { (address) in
-      self.moreLocationTextField.text = address
+      self.addressTextField.text = address
     })
   }
 
