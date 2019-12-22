@@ -13,12 +13,15 @@ import CoreLocation
 class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var bodyOfWaterTextField: UITextField!
   @IBOutlet weak var addressTextField: UITextField!
-  
+
+  @IBOutlet weak var weatherTemperatureField: UITextField!
+  @IBOutlet weak var weatherDescriptionField: UITextField!
+
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var startTimePicker: UIDatePicker!
   @IBOutlet weak var endTimePicker: UIDatePicker!
+
   @IBOutlet weak var deleteEntryButton: UIButton!
-  
   @IBOutlet weak var saveBarButton: UIBarButtonItem!
   
   @IBAction func getCurrentLocation(_ sender: Any) {
@@ -32,7 +35,7 @@ class JournalEditorViewController: UITableViewController {
 
   // Note: weather will be based on the location and end time
   @IBAction func getWeather(_ sender: Any) {
-    print("get weather based on location and end time")
+    print("get current weather based on location")
   }
 
   @IBAction func deleteEntry(_ sender: Any) {
