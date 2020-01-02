@@ -15,6 +15,7 @@
 		523FE4B0234FEF2C00E68295 /* Entry+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FE4AF234FEF2C00E68295 /* Entry+Extension.swift */; };
 		523FE4B2234FF9F800E68295 /* CoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523FE4B1234FF9F800E68295 /* CoreDataProtocol.swift */; };
 		524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CFC8E233194CB001A07AA /* Date+Extension.swift */; };
+		5263FECE23BEAE9300CC1CFB /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263FECD23BEAE9300CC1CFB /* APIKeys.swift */; };
 		527EBFDE22D7CCE900051BA0 /* JournalEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */; };
 		5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CB332343C5A80002BF35 /* LocationViewModel.swift */; };
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		523FE4AF234FEF2C00E68295 /* Entry+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+Extension.swift"; sourceTree = "<group>"; };
 		523FE4B1234FF9F800E68295 /* CoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocol.swift; sourceTree = "<group>"; };
 		524CFC8E233194CB001A07AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		5263FECD23BEAE9300CC1CFB /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		527EBFDD22D7CCE900051BA0 /* JournalEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryTableViewCell.swift; sourceTree = "<group>"; };
 		5281CB332343C5A80002BF35 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +118,7 @@
 				520A2DAA233C2E4C0070CD57 /* KeyPath.swift */,
 				520A2DA8233B0C820070CD57 /* PersistenceManager.swift */,
 				523FE4B1234FF9F800E68295 /* CoreDataProtocol.swift */,
+				5263FECD23BEAE9300CC1CFB /* APIKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
 				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
 				52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */,
+				5263FECE23BEAE9300CC1CFB /* APIKeys.swift in Sources */,
 				520A2DAB233C2E4C0070CD57 /* KeyPath.swift in Sources */,
 				520A2DA2233833D30070CD57 /* JournalEntryViewModel.swift in Sources */,
 				524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */,
