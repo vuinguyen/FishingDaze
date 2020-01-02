@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class JournalEntryViewModel: CoreDataFunctions {
+class JournalEntryViewModel {
   private let entryModel: Entry?
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
@@ -134,11 +134,6 @@ class JournalEntryViewModel: CoreDataFunctions {
        let entryModel = entryModel  {
       locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
     }
-  }
-
-  func save() {
-    saveEntry()
-    saveLocation()
   }
 
   private func saveEntry() {
@@ -269,4 +264,11 @@ class JournalEntryViewModel: CoreDataFunctions {
       return (date, startTime, endTime)
     }
 
+}
+
+extension JournalEntryViewModel: CoreDataFunctions {
+  func save() {
+    saveEntry()
+    saveLocation()
+  }
 }

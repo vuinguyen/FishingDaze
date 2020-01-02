@@ -24,9 +24,7 @@ class LocationViewModel {
   var latitude: Double = 0.0
   var longitude: Double = 0.0
 
-  weak var entryViewModel: JournalEntryViewModel? // this may become OBE
-
-  var entryModel: Entry?  // we really need entryModel, NOT entryViewModel
+  var entryModel: Entry?
   var locationModel: Location?  // Location in Core Data model
   var clLocation: CLLocation?
 
@@ -79,16 +77,6 @@ class LocationViewModel {
           print("Could not fetch or save from context. \(error), \(error.userInfo)")
         }
     return locationViewModel
-  }
-  
-  
-  // This may become OBE
-  init(entryViewModel: JournalEntryViewModel, clLocation: CLLocation) {
-    self.entryViewModel = entryViewModel
-    self.clLocation = clLocation
-
-    self.latitude = clLocation.coordinate.latitude
-    self.longitude = clLocation.coordinate.longitude
   }
 
   func displayAddressinView(UIcompletion: ((String) -> Void)?) {
@@ -156,39 +144,6 @@ class LocationViewModel {
 }
 
 extension LocationViewModel: CoreDataFunctions {
-  // This fetch function may become OBE
-  func fetch() {
-    let managedContext = PersistenceManager.shared.managedContext!
-
-    guard let entryModel = entryModel else {
-      return
-    }
-
-    let entryPredicate = NSPredicate(format: "entry == %@", entryModel)
-
-    do {
-      let fetchRequest:NSFetchRequest<Location> = Location.fetchRequest()
-      let locations = try managedContext.fetch(fetchRequest)
-      let locationsFound = (locations as NSArray).filtered(using: entryPredicate) as! [NSManagedObject]
-      if locationsFound.count >= 1 {
-
-        if let locationFound = locationsFound[0] as? Location {
-          locationModel = locationFound
-
-/*
-          DispatchQueue.main.async {
-       //     completion(entryFound, nil)
-          }
- */
-        }
-      }
-    } catch let error as NSError {
-
-      print("Could not fetch or save from context. \(error), \(error.userInfo)")
-      //completion(nil, error)
-    }    //
-  }
-
   func save() {
     // add to Core Data
     guard let location = locationModel else {
