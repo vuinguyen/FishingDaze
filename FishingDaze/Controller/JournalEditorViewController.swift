@@ -36,6 +36,10 @@ class JournalEditorViewController: UITableViewController {
   // Note: weather will be based on the location and end time
   @IBAction func getWeather(_ sender: Any) {
     print("get current weather based on location")
+
+    if let weatherManager = weatherManager {
+      weatherManager.requestWeather()
+    }
   }
 
   @IBAction func deleteEntry(_ sender: Any) {
@@ -100,6 +104,7 @@ class JournalEditorViewController: UITableViewController {
   var showDelete = false
   var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?
+  var weatherManager: WeatherManager?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -119,6 +124,8 @@ class JournalEditorViewController: UITableViewController {
       locationManager.delegate = self
       locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
     }
+
+    weatherManager = WeatherManager()
   }
 
   override func viewWillAppear(_ animated: Bool) {
