@@ -16,12 +16,16 @@ class JournalEntryViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
 
+  // from Entry
   var entryDate: Date?
   var endDateTime: Date?
   var startDateTime: Date?
 
+  // from Location
   var address: String?
   var bodyOfWater: String?
+  var latitude: Double = 0.0
+  var longitude: Double = 0.0
 
   init() {
     let entity =
@@ -90,6 +94,15 @@ class JournalEntryViewModel {
     }
 
     return locationViewModel?.bodyOfWaterDisplay()
+  }
+
+  func latLongValues() -> (Double, Double)? {
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+
+    return locationViewModel?.latLongValues()
   }
 
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
@@ -181,9 +194,10 @@ class JournalEntryViewModel {
       locationViewModel = LocationViewModel(entryModel: entryModel)
     }
 
-    //locationViewModel?.entryModel = entryModel
     locationViewModel?.address = address
     locationViewModel?.bodyOfWater = bodyOfWater
+    locationViewModel?.latitude = latitude
+    locationViewModel?.longitude = longitude
     locationViewModel?.save()
   }
 

@@ -84,6 +84,9 @@ class LocationViewModel {
       return
     }
 
+    self.latitude = location.coordinate.latitude
+    self.longitude = location.coordinate.longitude
+
     CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
       guard error == nil else {
         print("\(error?.localizedDescription ?? "got an error from reverse geocoding")")
@@ -141,6 +144,16 @@ class LocationViewModel {
 
     return bodyOfWater
   }
+
+  func latLongValues() -> (Double, Double) {
+    guard let location = locationModel,
+      let latitude = location.latitude as Double?,
+      let longitude = location.longitude as Double? else {
+        return (0.0, 0.0)
+    }
+
+    return (latitude, longitude)
+  }
 }
 
 extension LocationViewModel: CoreDataFunctions {
@@ -152,11 +165,15 @@ extension LocationViewModel: CoreDataFunctions {
 
     location.address = address
     location.bodyOfWater = bodyOfWater
+    location.latitude = latitude
+    location.longitude = longitude
 
+    /*
     if let clLocation = clLocation {
       location.latitude = clLocation.coordinate.latitude
       location.longitude = clLocation.coordinate.longitude
     }
+ */
 
     do {
       try managedContext.save()

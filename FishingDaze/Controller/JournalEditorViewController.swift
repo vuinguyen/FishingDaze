@@ -37,8 +37,55 @@ class JournalEditorViewController: UITableViewController {
   @IBAction func getWeather(_ sender: Any) {
     print("get current weather based on location")
 
+    getCoordinates()
+    guard let latitude = latitude,
+      let longitude = longitude else {
+        print("can't call weather API without getting location first")
+        return
+    }
+
+    print("Found latitude is: \(latitude)")
+    print("Found longitude is: \(longitude)")
     if let weatherManager = weatherManager {
       weatherManager.requestWeather()
+    }
+  }
+
+  func getCoordinates() {
+    // first, check for existing latitude and longitude
+    if let _ = latitude, let _ = longitude {
+      print("getCoordinates: got it here 1st")
+      return
+    }
+
+    // then, check for address in textfield
+    if addressTextField.hasText {
+      // geocode the address into coordinates
+      let geocoder = CLGeocoder()
+      geocoder.geocodeAddressString(addressTextField.text!) { (placemarks, error) in
+          if error == nil {
+              if let placemark = placemarks?[0] {
+                  let location = placemark.location!
+
+                  //completionHandler(location.coordinate, nil)
+               // return (location.coordinate.latitude, location.coordinate.longitude)
+                self.latitude = location.coordinate.latitude
+                self.longitude = location.coordinate.longitude
+                print("getCoordinates: got it here 2nd")
+              }
+          }
+
+         // completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+      }
+
+
+
+    } else {
+      // call geolocation
+      if let locationManager = locationManager {
+        locationManager.requestLocation()
+      }
+      print("getCoordinates: got it here 3rd")
     }
   }
 
@@ -96,6 +143,11 @@ class JournalEditorViewController: UITableViewController {
       journalEntryViewModel?.bodyOfWater = bodyOfWater
     }
 
+    if let latitude = latitude, let longitude = longitude {
+      journalEntryViewModel?.latitude = latitude
+      journalEntryViewModel?.longitude = longitude
+    }
+
     journalEntryViewModel?.save()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
@@ -104,7 +156,10 @@ class JournalEditorViewController: UITableViewController {
   var showDelete = false
   var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?
-  var weatherManager: WeatherManager?
+  var weatherManager: WeatherAPIManager?
+
+  var latitude: Double?
+  var longitude: Double?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -114,6 +169,12 @@ class JournalEditorViewController: UITableViewController {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
+
+    bodyOfWaterTextField.delegate = self
+    addressTextField.delegate = self
+    weatherTemperatureField.delegate = self
+    weatherDescriptionField.delegate = self
+
     loadInitialValues()
 
     showHideDelete()
@@ -125,7 +186,7 @@ class JournalEditorViewController: UITableViewController {
       locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
     }
 
-    weatherManager = WeatherManager()
+    weatherManager = WeatherAPIManager()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -142,6 +203,13 @@ class JournalEditorViewController: UITableViewController {
     }
     bodyOfWaterTextField.text = entryViewModel.bodyOfWaterDisplay()
     addressTextField.text = entryViewModel.addressDisplay()
+
+    guard let (latitude, longitude) = entryViewModel.latLongValues() else {
+      return
+    }
+
+    self.latitude = latitude
+    self.longitude = longitude
   }
 
   func showHideDelete() {
@@ -156,6 +224,10 @@ class JournalEditorViewController: UITableViewController {
 }
 
 extension JournalEditorViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
 
 }
 
@@ -168,11 +240,16 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
 
     journalEntryViewModel?.addressDisplay(locations: locations, UIcompletion: { (address) in
       self.addressTextField.text = address
+      guard let location = locations[0] as CLLocation? else {
+        return
+      }
+      self.latitude = location.coordinate.latitude
+      self.longitude = location.coordinate.longitude
     })
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    print("we got an error: \(error.localizedDescription)")
+    print("we got an error with location services: \(error.localizedDescription)")
 
     // display error in an alert box here ....
     // maybe display a message that says turn on location services and try again

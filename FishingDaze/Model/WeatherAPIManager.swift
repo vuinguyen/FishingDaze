@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol WeatherManagerDelegate {
+protocol WeatherAPIManagerDelegate {
 
 }
 
@@ -17,7 +17,14 @@ let units = "I"
 
 let exampleURL = "https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=API_KEY"
 
-class WeatherManager {
+class WeatherAPIManager {
+
+  //var city: String?
+  
+
+  init() {
+
+  }
 
   let currentWeatherURL = "https://api.weatherbit.io/v2.0/current?" +
     "key=\(APIKeys.WeatherBitIOKey)" +
@@ -32,7 +39,7 @@ class WeatherManager {
   func startLoad() {
     let url = URL(string: currentWeatherURL)!
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
-      if let error = error {
+      if error != nil {
         print("yo, we have an error here!")
         return
       }
@@ -73,7 +80,7 @@ class WeatherManager {
         }
         print("forecast is: \(firstData[0])")
 
-        guard let forecast = firstData[0] as? [String: AnyObject],
+        guard let forecast = firstData[0] as [String: AnyObject]?,
           let temperature = forecast["temp"] as? Double else {
           print("cannot get temperature")
           return
