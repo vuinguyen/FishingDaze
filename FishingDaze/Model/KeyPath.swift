@@ -20,4 +20,8 @@ enum KeyPath: String {
   case bodyOfWater
   case latitude
   case longitude
+
+  // for Weather
+  case description
+  case FDegrees
 }

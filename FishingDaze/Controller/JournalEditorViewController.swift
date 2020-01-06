@@ -37,6 +37,7 @@ class JournalEditorViewController: UITableViewController {
   @IBAction func getWeather(_ sender: Any) {
     print("get current weather based on location")
 
+    /*
     getCoordinates()
     guard let latitude = latitude,
       let longitude = longitude else {
@@ -46,9 +47,12 @@ class JournalEditorViewController: UITableViewController {
 
     print("Found latitude is: \(latitude)")
     print("Found longitude is: \(longitude)")
+ */
+
     if let weatherManager = weatherManager {
       weatherManager.requestWeather()
     }
+ 
   }
 
   func getCoordinates() {
@@ -61,6 +65,9 @@ class JournalEditorViewController: UITableViewController {
     // then, check for address in textfield
     if addressTextField.hasText {
       // geocode the address into coordinates
+
+      // we should wrap all of this in a
+      // journalEntryViewModel.weatherDisplay(locationString, completionHandler)
       let geocoder = CLGeocoder()
       geocoder.geocodeAddressString(addressTextField.text!) { (placemarks, error) in
           if error == nil {
@@ -187,6 +194,9 @@ class JournalEditorViewController: UITableViewController {
     }
 
     weatherManager = WeatherAPIManager()
+    if let weatherManager = weatherManager {
+      weatherManager.delegate = self
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -223,6 +233,7 @@ class JournalEditorViewController: UITableViewController {
   }
 }
 
+// MARK: UITextFieldDelegate
 extension JournalEditorViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
@@ -231,6 +242,7 @@ extension JournalEditorViewController: UITextFieldDelegate {
 
 }
 
+// MARK: CLLocationManagerDelegate
 extension JournalEditorViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
@@ -238,6 +250,7 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
       journalEntryViewModel = JournalEntryViewModel()
     }
 
+    // how do we know that we need to display the address or display the weather?
     journalEntryViewModel?.addressDisplay(locations: locations, UIcompletion: { (address) in
       self.addressTextField.text = address
       guard let location = locations[0] as CLLocation? else {
@@ -253,5 +266,17 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
 
     // display error in an alert box here ....
     // maybe display a message that says turn on location services and try again
+  }
+}
+
+// MARK: WeatherAPIManagerDelegate
+extension JournalEditorViewController: WeatherAPIManagerDelegate {
+  func weatherManager(_ manager: WeatherAPIManager, didUpdateWeather weatherData: [WeatherData]) {
+    print("Got weather data, yo!")
+
+  }
+
+  func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error) {
+    print("got an error, yo!")
   }
 }

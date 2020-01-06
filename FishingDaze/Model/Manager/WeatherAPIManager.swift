@@ -8,35 +8,55 @@
 
 import Foundation
 
-protocol WeatherAPIManagerDelegate {
+struct WeatherData {
+  let description: String
+  let FDegrees: Double
+}
 
+// will this protocol be necessary?
+protocol WeatherAPIManagerDelegate {
+  func weatherManager(_ manager: WeatherAPIManager, didUpdateWeather weatherData: [WeatherData])
+  func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error)
 }
 
 let city = "Raleigh,NC"
 let units = "I"
 
 let exampleURL = "https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=API_KEY"
+let baseURL = "https://api.weatherbit.io/v2.0/current?"
 
 class WeatherAPIManager {
 
   //var city: String?
-  
+  var latitude: Double? = 38.123
+  var longitude: Double? = -78.543
+  var delegate: WeatherAPIManagerDelegate?
 
-  init() {
-
-  }
-
-  let currentWeatherURL = "https://api.weatherbit.io/v2.0/current?" +
+  var currentWeatherURL =
+    baseURL +
     "key=\(APIKeys.WeatherBitIOKey)" +
     "&city=\(city)" +
     "&units=\(units)"
 
+  init() {
+
+  }
+  
   func requestWeather() {
     startLoad()
-
   }
 
   func startLoad() {
+    if let latitude = latitude,
+      let longitude = longitude {
+      currentWeatherURL =
+        baseURL +
+        "key=\(APIKeys.WeatherBitIOKey)" +
+        "&lat=\(latitude)" +
+        "&lon=\(longitude)" +
+        "&units=\(units)"
+    }
+
     let url = URL(string: currentWeatherURL)!
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
       if error != nil {
@@ -97,6 +117,7 @@ class WeatherAPIManager {
         DispatchQueue.main.async {
           //self.webView.loadHTMLString(string, baseURL: url)
           print("no error in parsing!")
+          self.delegate!.weatherManager(self, didUpdateWeather: [])
         }
       } catch {
         print("error yo!")
