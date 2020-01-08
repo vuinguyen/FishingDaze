@@ -58,6 +58,7 @@ class LocationViewModel {
 
         do {
           let fetchRequest:NSFetchRequest<Location> = Location.fetchRequest()
+          fetchRequest.relationshipKeyPathsForPrefetching = [KeyPath.weather.rawValue]
           let locations = try managedContext.fetch(fetchRequest)
           let locationsFound = (locations as NSArray).filtered(using: entryPredicate) as! [NSManagedObject]
           if locationsFound.count >= 1 {

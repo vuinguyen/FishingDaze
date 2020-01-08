@@ -8,3 +8,9 @@
 
 import Foundation
 
+class WeatherViewModel {
+  func displayWeatherinView(UIcompletion: ((WeatherData) -> Void)?) {
+
+    
+  }
+}

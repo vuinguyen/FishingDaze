@@ -13,13 +13,17 @@ enum KeyPath: String {
   case creationDateTime
   case startDateTime
   case endDateTime
+  // Entry relationships
+  case location
 
   // for Location
-  case entry
   case address
   case bodyOfWater
   case latitude
   case longitude
+  // Location relationships
+  case entry
+  case weather
 
   // for Weather
   case description

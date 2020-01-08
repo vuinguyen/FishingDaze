@@ -15,6 +15,7 @@ class JournalEntryViewModel {
   private let entryModel: Entry?
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
+  private var weatherViewModel: WeatherViewModel?
 
   // from Entry
   var entryDate: Date?
@@ -96,6 +97,10 @@ class JournalEntryViewModel {
     return locationViewModel?.bodyOfWaterDisplay()
   }
 
+  func weatherDisplay(weatherDataPoints: [WeatherData], UIcompletion: ((WeatherData) -> Void)?) -> Void {
+
+  }
+
   func latLongValues() -> (Double, Double)? {
     if locationViewModel == nil,
        let entryModel = entryModel  {
@@ -111,6 +116,7 @@ class JournalEntryViewModel {
 
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
+      fetchRequest.relationshipKeyPathsForPrefetching = [KeyPath.location.rawValue]
       let entries = try managedContext.fetch(fetchRequest)
       for entry in entries {
         if let endDateTime = entry.value(forKeyPath: KeyPath.endDateTime.rawValue ) as? Date,
@@ -236,6 +242,7 @@ class JournalEntryViewModel {
 
     do {
       let fetchRequest:NSFetchRequest<Entry> = Entry.fetchRequest()
+      fetchRequest.relationshipKeyPathsForPrefetching = [KeyPath.location.rawValue]
       let entries = try managedContext.fetch(fetchRequest)
       let entriesFound = (entries as NSArray).filtered(using: creationDatePredicate) as! [NSManagedObject]
       if entriesFound.count >= 1 {
