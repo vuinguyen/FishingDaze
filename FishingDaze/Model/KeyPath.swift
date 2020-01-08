@@ -26,6 +26,6 @@ enum KeyPath: String {
   case weather
 
   // for Weather
-  case description
-  case FDegrees
+  case shortNotes
+  case fDegrees
 }

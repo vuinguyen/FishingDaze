@@ -9,8 +9,8 @@
 import Foundation
 
 struct WeatherData {
-  var description: String
-  var FDegrees: Double
+  var shortNotes: String
+  var fDegrees: Double
 }
 
 // will this protocol be necessary?
@@ -117,7 +117,7 @@ class WeatherAPIManager {
         DispatchQueue.main.async {
           print("no error in parsing!")
           if let delegate = self.delegate {
-            let weatherData: WeatherData = WeatherData(description: weatherDescription, FDegrees: temperature)
+            let weatherData: WeatherData = WeatherData(shortNotes: weatherDescription, fDegrees: temperature)
             delegate.weatherManager(self, didUpdateWeather: [weatherData])
           }
         }
