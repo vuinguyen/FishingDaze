@@ -180,6 +180,7 @@ class JournalEntryViewModel {
       return
     }
     fetchLocation()
+    fetchWeather()
   }
 
   // we already grabbed the attributes for Entry earlier, so now we just need to grab
@@ -188,6 +189,14 @@ class JournalEntryViewModel {
     if locationViewModel == nil,
        let entryModel = entryModel  {
       locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+  }
+
+  private func fetchWeather() {
+    if weatherViewModel == nil,
+      let locationViewModel = locationViewModel,
+      let locationModel = locationViewModel.locationModel {
+      weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationModel)
     }
   }
 
