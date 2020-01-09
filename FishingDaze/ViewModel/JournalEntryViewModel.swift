@@ -17,6 +17,12 @@ class JournalEntryViewModel {
   private var locationViewModel: LocationViewModel?
   private var weatherViewModel: WeatherViewModel?
 
+  // We have these attributes here to allow the user to
+  // pass the data that they want to save to Core Data directly
+  // using "simple Swift objects"
+  // but they must call the display functions to display
+  // the data to the view.
+
   // from Entry
   var entryDate: Date?
   var endDateTime: Date?
@@ -252,6 +258,22 @@ class JournalEntryViewModel {
     locationViewModel?.save()
   }
 
+  private func saveWeather() {
+    guard let shortNotes = shortNotes else {
+        return
+    }
+
+    if weatherViewModel == nil,
+      let locationViewModel = locationViewModel,
+      let locationModel = locationViewModel.locationModel {
+      weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationModel)
+    }
+
+    weatherViewModel?.fDegrees = fDegrees
+    weatherViewModel?.shortNotes = shortNotes
+    weatherViewModel?.save()
+  }
+
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
     // find journal entry in Core Data and delete from Core Data
     let managedContext = PersistenceManager.shared.managedContext!
@@ -336,5 +358,6 @@ extension JournalEntryViewModel: CoreDataFunctions {
   func save() {
     saveEntry()
     saveLocation()
+    saveWeather()
   }
 }
