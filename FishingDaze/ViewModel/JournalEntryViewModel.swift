@@ -63,6 +63,7 @@ class JournalEntryViewModel {
     return startDate.string(dateStyle: .long)
   }
 
+  // to be used when location is not added to Core Data yet
   func addressDisplay(locations: [CLLocation],  UIcompletion: ((String) -> Void)?) -> Void {
 
     guard let location = locations.first else {
@@ -79,6 +80,7 @@ class JournalEntryViewModel {
     locationViewModel?.displayAddressinView(UIcompletion: UIcompletion)
   }
 
+  // to be used when location is already in Core Data
   func addressDisplay() -> String? {
     if locationViewModel == nil,
        let entryModel = entryModel  {
