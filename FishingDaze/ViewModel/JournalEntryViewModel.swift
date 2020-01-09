@@ -28,6 +28,10 @@ class JournalEntryViewModel {
   var latitude: Double = 0.0
   var longitude: Double = 0.0
 
+  // from Weather
+  var shortNotes: String?
+  var fDegrees: Double = 0.0
+
   init() {
     let entity =
       NSEntityDescription.entity(forEntityName: "Entry",
@@ -99,6 +103,36 @@ class JournalEntryViewModel {
     return locationViewModel?.bodyOfWaterDisplay()
   }
 
+  // to be used when Weather is in Core Data
+  func weatherTemperatureDisplay() -> Double? {
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+
+    if weatherViewModel == nil {
+      weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationViewModel?.locationModel)
+    }
+
+    return weatherViewModel?.temperatureDisplay()
+  }
+
+  // to be used when Weather is in Core Data
+  func weatherNotesDisplay() -> String? {
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+
+    if weatherViewModel == nil {
+      weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationViewModel?.locationModel)
+    }
+
+    return weatherViewModel?.notesDisplay()
+  }
+
+
+  // to be used when Weather is not yet in Core Data
   func weatherDisplay(weatherDataPoints: [WeatherData], UIcompletion: ((WeatherData) -> Void)?) -> Void {
 
   }

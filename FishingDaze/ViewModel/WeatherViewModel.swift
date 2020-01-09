@@ -13,6 +13,7 @@ class WeatherViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   var shortNotes: String?
   var fDegrees: Double?
+  var weatherData: WeatherData?
 
   var locationModel: Location?  // Location in Core Data model
   var weatherModel: Weather?    // Weather in Core Data model
@@ -66,7 +67,25 @@ class WeatherViewModel {
         }
     return weatherViewModel
   }
-  
+
+  func notesDisplay() -> String {
+    guard let weather = weatherModel,
+      let notes = weather.shortNotes else {
+      return ""
+    }
+
+    return notes
+  }
+
+  func temperatureDisplay() -> Double {
+    guard let weather = weatherModel,
+      let temperature = weather.fDegrees as Double? else {
+        return 0.0
+      }
+
+    return temperature
+  }
+
   func displayWeatherinView(UIcompletion: ((WeatherData) -> Void)?) {
 
     
