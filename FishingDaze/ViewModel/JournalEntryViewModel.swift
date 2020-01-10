@@ -35,12 +35,15 @@ class JournalEntryViewModel {
   var longitude: Double = 0.0
 
   // from Weather
-  var shortNotes: String?
+  var weatherNotes: String?
 
   // this is a computed property, which gets set when temperature is set
-  var fDegrees: Double = 0.0
+  private var fDegrees: Double = 0.0
   
-  var temperature: String?
+  var temperature: String {
+    get { return String(fDegrees) }
+    set { fDegrees = Double(newValue)! }
+  }
 
   init() {
     let entity =
@@ -114,7 +117,7 @@ class JournalEntryViewModel {
   }
 
   // to be used when Weather is in Core Data
-  func weatherTemperatureDisplay() -> Double? {
+  func weatherTemperatureDisplay() -> String? {
     if locationViewModel == nil,
        let entryModel = entryModel  {
       locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
@@ -276,7 +279,7 @@ class JournalEntryViewModel {
   }
 
   private func saveWeather() {
-    guard let shortNotes = shortNotes else {
+    guard let shortNotes = weatherNotes else {
         return
     }
 

@@ -161,6 +161,14 @@ class JournalEditorViewController: UITableViewController {
       journalEntryViewModel?.longitude = longitude
     }
 
+    if let weatherNotes = weatherDescriptionField.text {
+      journalEntryViewModel?.weatherNotes = weatherNotes
+    }
+
+    if let temperature = weatherTemperatureField.text {
+      journalEntryViewModel?.temperature = temperature
+    }
+
     journalEntryViewModel?.save()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
@@ -226,6 +234,9 @@ class JournalEditorViewController: UITableViewController {
 
     self.latitude = latitude
     self.longitude = longitude
+
+    weatherTemperatureField.text = entryViewModel.weatherTemperatureDisplay()
+    weatherDescriptionField.text = entryViewModel.weatherNotesDisplay()
   }
 
   func showHideDelete() {

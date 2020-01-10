@@ -77,13 +77,13 @@ class WeatherViewModel {
     return notes
   }
 
-  func temperatureDisplay() -> Double {
+  func temperatureDisplay() -> String {
     guard let weather = weatherModel,
       let temperature = weather.fDegrees as Double? else {
-        return 0.0
+        return ""
       }
 
-    return temperature
+    return temperature.description
   }
 
   func displayWeatherinView(UIcompletion: ((_ temperature: String, _ notes: String) -> Void)?) {
