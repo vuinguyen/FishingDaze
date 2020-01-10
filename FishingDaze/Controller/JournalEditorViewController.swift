@@ -49,10 +49,16 @@ class JournalEditorViewController: UITableViewController {
     print("Found longitude is: \(longitude)")
  */
 
+    guard let latitude = latitude,
+      let longitude = longitude else {
+        return
+    }
+
     if let weatherManager = weatherManager {
+      weatherManager.latitude = latitude
+      weatherManager.longitude = longitude
       weatherManager.requestWeather()
     }
- 
   }
 
   func getCoordinates() {
@@ -258,6 +264,8 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
       }
       self.latitude = location.coordinate.latitude
       self.longitude = location.coordinate.longitude
+
+      // based on a flag, call weather here
     })
   }
 
@@ -274,6 +282,14 @@ extension JournalEditorViewController: WeatherAPIManagerDelegate {
   func weatherManager(_ manager: WeatherAPIManager, didUpdateWeather weatherData: [WeatherData]) {
     print("Got weather data, yo!")
 
+    if journalEntryViewModel == nil {
+      journalEntryViewModel = JournalEntryViewModel()
+    }
+
+    journalEntryViewModel?.weatherDisplay(weatherDataPoints: weatherData, UIcompletion: { (temperature, notes) in
+      self.weatherDescriptionField.text = notes
+      self.weatherTemperatureField.text = temperature
+    })
   }
 
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error) {

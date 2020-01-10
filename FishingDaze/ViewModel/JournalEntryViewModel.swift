@@ -36,7 +36,11 @@ class JournalEntryViewModel {
 
   // from Weather
   var shortNotes: String?
+
+  // this is a computed property, which gets set when temperature is set
   var fDegrees: Double = 0.0
+  
+  var temperature: String?
 
   init() {
     let entity =
@@ -138,9 +142,22 @@ class JournalEntryViewModel {
   }
 
 
-  // to be used when Weather is not yet in Core Data
-  func weatherDisplay(weatherDataPoints: [WeatherData], UIcompletion: ((WeatherData) -> Void)?) -> Void {
+  // To be used when Weather is not yet in Core Data
+  // NOTE: We are making an assumption that the locationViewModel should exist
+  // before we can make a weatherViewModel
+  func weatherDisplay(weatherDataPoints: [WeatherData], UIcompletion: ((String, String) -> Void)?) -> Void {
+    guard let weatherData = weatherDataPoints.first else {
+      return
+    }
 
+    if weatherViewModel == nil,
+      let locationViewModel = locationViewModel,
+      let locationModel = locationViewModel.locationModel {
+      weatherViewModel = WeatherViewModel(locationModel: locationModel)
+    }
+
+    weatherViewModel?.weatherData = weatherData
+    weatherViewModel?.displayWeatherinView(UIcompletion: UIcompletion)
   }
 
   func latLongValues() -> (Double, Double)? {
@@ -266,7 +283,7 @@ class JournalEntryViewModel {
     if weatherViewModel == nil,
       let locationViewModel = locationViewModel,
       let locationModel = locationViewModel.locationModel {
-      weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationModel)
+      weatherViewModel = WeatherViewModel(locationModel: locationModel)
     }
 
     weatherViewModel?.fDegrees = fDegrees

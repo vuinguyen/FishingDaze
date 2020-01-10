@@ -57,8 +57,8 @@ class WeatherViewModel {
               weatherViewModel?.locationModel = locationModel
               weatherViewModel?.weatherModel = weatherFound
 
-              print("shortNotes: \(weatherViewModel?.shortNotes)")
-              print("fDegrees: \(weatherViewModel?.fDegrees)")
+              print("shortNotes: \(weatherViewModel?.shortNotes ?? "")")
+              print("fDegrees: \(weatherViewModel?.fDegrees ?? 0.0)")
             }
           }
         } catch let error as NSError {
@@ -86,10 +86,22 @@ class WeatherViewModel {
     return temperature
   }
 
-  func displayWeatherinView(UIcompletion: ((WeatherData) -> Void)?) {
+  func displayWeatherinView(UIcompletion: ((_ temperature: String, _ notes: String) -> Void)?) {
+    guard let weatherData = weatherData else {
+      return
+    }
 
-    
+    self.fDegrees = weatherData.fDegrees
+    self.shortNotes = weatherData.shortNotes
+
+    let tempDisplay = String(weatherData.fDegrees)
+    if let UIcompletion = UIcompletion {
+      DispatchQueue.main.async {
+        UIcompletion(tempDisplay, self.shortNotes)
+      }
+    }
   }
+
 }
 
 extension WeatherViewModel: CoreDataFunctions {
