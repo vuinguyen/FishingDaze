@@ -42,7 +42,10 @@ class JournalEntryViewModel {
   
   var temperature: String {
     get { return String(fDegrees) }
-    set { fDegrees = Double(newValue)! }
+    set { if let validDouble = Double(newValue) {
+        fDegrees = validDouble
+      }
+    }
   }
 
   init() {
