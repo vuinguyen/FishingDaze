@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JournalEntryCell" rowHeight="60" id="2a6-vj-cDa" customClass="JournalEntryTableViewCell" customModule="FishingDaze" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JournalEntryCell" rowHeight="60" id="2a6-vj-cDa" customClass="JournalListTableViewCell" customModule="FishingDaze" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2a6-vj-cDa" id="3a0-im-m3t">
@@ -441,7 +441,7 @@
                 <exit id="da5-Vl-c6O" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="QON-F4-IeS">
                     <connections>
-                        <segue destination="utH-mj-Exy" kind="presentation" id="Fbk-xM-KqV"/>
+                        <segue destination="utH-mj-Exy" kind="show" id="Fbk-xM-KqV"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -488,6 +488,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="xr4-T2-909"/>
                     </view>
+                    <navigationItem key="navigationItem" id="I7L-ha-hHG"/>
                     <connections>
                         <outlet property="photoCollectionView" destination="RUU-1U-0gW" id="Exa-1J-4k6"/>
                     </connections>

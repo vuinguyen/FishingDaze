@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JournalEntryTableViewCell: UITableViewCell {
+class JournalListTableViewCell: UITableViewCell {
 
   @IBOutlet weak var fishingDateLabel: UILabel!
   
