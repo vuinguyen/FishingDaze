@@ -19,7 +19,7 @@
 		5263FECE23BEAE9300CC1CFB /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263FECD23BEAE9300CC1CFB /* APIKeys.swift */; };
 		5263FED023BEB4E400CC1CFB /* WeatherAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263FECF23BEB4E400CC1CFB /* WeatherAPIManager.swift */; };
 		5263FED223BFC5F800CC1CFB /* WeatherManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263FED123BFC5F800CC1CFB /* WeatherManagerTests.swift */; };
-		526BEA0223CFE13F002A6539 /* JournalPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEA0123CFE13F002A6539 /* JournalPhotoViewController.swift */; };
+		526BEA0223CFE13F002A6539 /* JournalPhotoScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEA0123CFE13F002A6539 /* JournalPhotoScrollViewController.swift */; };
 		527EBFDE22D7CCE900051BA0 /* JournalListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EBFDD22D7CCE900051BA0 /* JournalListTableViewCell.swift */; };
 		5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CB332343C5A80002BF35 /* LocationViewModel.swift */; };
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
@@ -56,7 +56,7 @@
 		5263FECD23BEAE9300CC1CFB /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		5263FECF23BEB4E400CC1CFB /* WeatherAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIManager.swift; sourceTree = "<group>"; };
 		5263FED123BFC5F800CC1CFB /* WeatherManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerTests.swift; sourceTree = "<group>"; };
-		526BEA0123CFE13F002A6539 /* JournalPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPhotoViewController.swift; sourceTree = "<group>"; };
+		526BEA0123CFE13F002A6539 /* JournalPhotoScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPhotoScrollViewController.swift; sourceTree = "<group>"; };
 		527EBFDD22D7CCE900051BA0 /* JournalListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListTableViewCell.swift; sourceTree = "<group>"; };
 		5281CB332343C5A80002BF35 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,7 +209,7 @@
 				527EBFDD22D7CCE900051BA0 /* JournalListTableViewCell.swift */,
 				52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */,
 				52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */,
-				526BEA0123CFE13F002A6539 /* JournalPhotoViewController.swift */,
+				526BEA0123CFE13F002A6539 /* JournalPhotoScrollViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 				520A2DA7233986460070CD57 /* String+Extension.swift in Sources */,
 				520A2DA9233B0C820070CD57 /* PersistenceManager.swift in Sources */,
 				5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */,
-				526BEA0223CFE13F002A6539 /* JournalPhotoViewController.swift in Sources */,
+				526BEA0223CFE13F002A6539 /* JournalPhotoScrollViewController.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
