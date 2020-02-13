@@ -313,15 +313,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Photos" id="ROr-wa-sWC">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="PKv-7n-JVd">
-                                        <rect key="frame" x="0.0" y="700" width="414" height="250"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="260" id="PKv-7n-JVd">
+                                        <rect key="frame" x="0.0" y="700" width="414" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PKv-7n-JVd" id="cw9-cq-qe9">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="906-Ua-3Ah">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                                     <connections>
                                                         <segue destination="LiG-To-ln5" kind="embed" identifier="showScrollablePhotos" id="rzK-uL-4u3"/>
                                                     </connections>
@@ -340,7 +340,7 @@
                             <tableViewSection headerTitle="Add'l Notes" id="luh-y7-o2B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="76y-hW-h5G">
-                                        <rect key="frame" x="0.0" y="1006" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1016" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="76y-hW-h5G" id="HhK-xQ-KZ2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -352,7 +352,7 @@
                             <tableViewSection id="QzE-ar-Xmx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="CZQ-CL-ghn">
-                                        <rect key="frame" x="0.0" y="1106" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1116" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CZQ-CL-ghn" id="yn0-17-Vww">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -494,11 +494,11 @@
             <objects>
                 <viewController id="LiG-To-ln5" customClass="JournalPhotoScrollViewController" customModule="FishingDaze" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lon-So-7WT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wky-hm-wMI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-2B-Zkv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -507,25 +507,27 @@
                                         </items>
                                     </toolbar>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r8q-n9-HNi">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="206"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="166"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mh8-55-TP6">
-                                            <size key="itemSize" width="413" height="206"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="166" id="95C-2E-FEa"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mh8-55-TP6">
+                                            <size key="itemSize" width="413" height="166"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="LWH-yW-BY0">
-                                                <rect key="frame" x="0.66666666666666663" y="0.0" width="413" height="206"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="LWH-yW-BY0" customClass="JournalPhotoScrollViewCell" customModule="FishingDaze" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="413" height="166"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XcN-Js-kEg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="413" height="206"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="413" height="166"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="EoL-B1-4xy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="413" height="206"/>
-                                                            <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testPhoto1" translatesAutoresizingMaskIntoConstraints="NO" id="EoL-B1-4xy">
+                                                            <rect key="frame" x="0.0" y="0.0" width="413" height="166"/>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
@@ -535,7 +537,10 @@
                                                         <constraint firstAttribute="bottom" secondItem="EoL-B1-4xy" secondAttribute="bottom" id="yBx-52-lcj"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
-                                                <size key="customSize" width="413" height="206"/>
+                                                <size key="customSize" width="413" height="166"/>
+                                                <connections>
+                                                    <outlet property="imageView" destination="EoL-B1-4xy" id="JYM-lL-hi6"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
@@ -543,6 +548,19 @@
                                             <outlet property="delegate" destination="LiG-To-ln5" id="eAa-LY-cbb"/>
                                         </connections>
                                     </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsC-Za-IJw">
+                                        <rect key="frame" x="0.0" y="210" width="414" height="50"/>
+                                        <subviews>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="nky-hw-SoQ">
+                                                <rect key="frame" x="187.66666666666666" y="6.6666666666666572" width="39" height="37"/>
+                                            </pageControl>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="nky-hw-SoQ" firstAttribute="centerY" secondItem="BsC-Za-IJw" secondAttribute="centerY" id="Zzy-uX-ZnD"/>
+                                            <constraint firstItem="nky-hw-SoQ" firstAttribute="centerX" secondItem="BsC-Za-IJw" secondAttribute="centerX" id="x0H-EJ-ugS"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -554,6 +572,10 @@
                             <constraint firstItem="Wky-hm-wMI" firstAttribute="top" secondItem="Lon-So-7WT" secondAttribute="top" id="wbz-lF-KFc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="r8q-n9-HNi" id="1Ul-9H-8CP"/>
+                        <outlet property="pageControl" destination="nky-hw-SoQ" id="pQj-pf-DYI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36o-Sc-R5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -561,7 +583,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="testPhoto" width="1600" height="1064"/>
+        <image name="testPhoto1" width="1600" height="1064"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VG2-kl-7dn"/>
