@@ -493,7 +493,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TlY-hO-8ZZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mE1-6c-lft">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -542,6 +542,10 @@
                                                     <segue destination="UMb-ju-MDq" kind="show" identifier="displayGrid" id="6WL-0g-nE7"/>
                                                 </connections>
                                             </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="BLy-yU-ZEh"/>
+                                            <barButtonItem systemItem="trash" id="VkC-1Y-n7C"/>
+                                            <barButtonItem systemItem="camera" id="w37-NC-C1E"/>
+                                            <barButtonItem title="Album" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe"/>
                                         </items>
                                     </toolbar>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r8q-n9-HNi">
@@ -677,6 +681,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="64" height="48"/>
         <image name="testPhoto1" width="1600" height="1064"/>
     </resources>
     <inferredMetricsTieBreakers>
