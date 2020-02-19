@@ -39,15 +39,15 @@ class JournalPhotoGridViewController: UICollectionViewController {
     flowLayout.itemSize = CGSize(width: dimension, height: dimension)
   }
 
-  /*
    // MARK: - Navigation
-
    // In a storyboard-based application, you will often want to do a little preparation before navigation
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using [segue destinationViewController].
-   // Pass the selected object to the new view controller.
+    if segue.identifier == "ReturnToPhotoScrollSegue" {
+      // pass the index back so we can scroll to the selected image
+      let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
+      photoScrollVC.selectedAlbumIndex = selectedIndex
+    }
    }
-   */
 
   // MARK: UICollectionViewDataSource
 
@@ -77,6 +77,6 @@ class JournalPhotoGridViewController: UICollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("item selected at indexPath: \(indexPath)")
     selectedIndex = indexPath
-    //self.performSegue(withIdentifier: "ReturnToCustomControllerSegue", sender: nil)
+    self.performSegue(withIdentifier: "ReturnToPhotoScrollSegue", sender: nil)
   }
 }

@@ -16,6 +16,14 @@ class JournalPhotoScrollViewController: UIViewController {
   @IBOutlet var collectionView: UICollectionView!
   @IBOutlet var pageControl: UIPageControl!
 
+  @IBAction func returnToPhotoScroll(_ unwindSegue: UIStoryboardSegue) {
+    print("returned from Grid!")
+    if let selectedAlbumIndex = selectedAlbumIndex {
+      collectionView.scrollToItem(at: selectedAlbumIndex, at: .centeredHorizontally, animated: true)
+      pageControl.currentPage = selectedAlbumIndex.row
+    }
+  }
+
   lazy var photos: [UIImage] = { [weak self] in
   var images: [UIImage] = []
   ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
@@ -26,6 +34,8 @@ class JournalPhotoScrollViewController: UIViewController {
 
   return images
   }()
+
+  var selectedAlbumIndex: IndexPath?
 
   override func viewDidLoad() {
     super.viewDidLoad()
