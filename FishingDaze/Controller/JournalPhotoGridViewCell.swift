@@ -1,14 +1,14 @@
 //
-//  JournalPhotoScrollViewCell.swift
+//  JournalPhotoGridViewCell.swift
 //  FishingDaze
 //
-//  Created by Vui Nguyen on 2/12/20.
+//  Created by Vui Nguyen on 2/17/20.
 //  Copyright © 2020 SunfishEmpire. All rights reserved.
 //
 
 import UIKit
 
-class JournalPhotoScrollViewCell: UICollectionViewCell {
+class JournalPhotoGridViewCell: UICollectionViewCell {
   @IBOutlet var imageView: UIImageView!
 
   var image: UIImage? {

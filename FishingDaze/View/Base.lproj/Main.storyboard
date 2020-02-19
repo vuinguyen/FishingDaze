@@ -493,7 +493,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TlY-hO-8ZZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mE1-6c-lft">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -539,7 +539,7 @@
                                         <items>
                                             <barButtonItem title="Grid" id="7Xx-aY-aTS">
                                                 <connections>
-                                                    <segue destination="UMb-ju-MDq" kind="show" id="6WL-0g-nE7"/>
+                                                    <segue destination="UMb-ju-MDq" kind="show" identifier="displayGrid" id="6WL-0g-nE7"/>
                                                 </connections>
                                             </barButtonItem>
                                         </items>
@@ -629,19 +629,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cMe-DZ-hrp">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="144" height="86"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GridCell" id="QHl-oW-hd9">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GridCell" id="QHl-oW-hd9" customClass="JournalPhotoGridViewCell" customModule="FishingDaze" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3Tm-eq-dRj">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6BR-6c-zIN">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="6BR-6c-zIN" secondAttribute="trailing" id="R57-ef-TNu"/>
+                                        <constraint firstItem="6BR-6c-zIN" firstAttribute="leading" secondItem="3Tm-eq-dRj" secondAttribute="leading" id="fA2-q6-xyo"/>
+                                        <constraint firstAttribute="bottom" secondItem="6BR-6c-zIN" secondAttribute="bottom" id="jbl-2b-CI0"/>
+                                        <constraint firstItem="6BR-6c-zIN" firstAttribute="top" secondItem="3Tm-eq-dRj" secondAttribute="top" id="wKH-Rg-TRS"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
+                                <size key="customSize" width="100" height="100"/>
+                                <connections>
+                                    <outlet property="imageView" destination="6BR-6c-zIN" id="6be-XH-lb3"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -650,10 +665,13 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="F7e-Bx-5uN"/>
+                    <connections>
+                        <outlet property="flowLayout" destination="cMe-DZ-hrp" id="59k-vx-vhQ"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maD-nG-SZJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4339" y="-320"/>
+            <point key="canvasLocation" x="4506.5625" y="-238.75"/>
         </scene>
     </scenes>
     <resources>

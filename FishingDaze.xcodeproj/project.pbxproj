@@ -24,6 +24,7 @@
 		527EC23F23F5005500E1A449 /* JournalPhotoScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EC23E23F5005500E1A449 /* JournalPhotoScrollViewCell.swift */; };
 		5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281CB332343C5A80002BF35 /* LocationViewModel.swift */; };
 		52A5D36F23FB17DC004C88E0 /* JournalPhotoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A5D36E23FB17DC004C88E0 /* JournalPhotoGridViewController.swift */; };
+		52A5D37123FB3CA1004C88E0 /* JournalPhotoGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A5D37023FB3CA1004C88E0 /* JournalPhotoGridViewCell.swift */; };
 		52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20522BBF03D0022C15C /* AppDelegate.swift */; };
 		52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B20722BBF03D0022C15C /* JournalListViewController.swift */; };
 		52B2B20B22BBF03D0022C15C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20922BBF03D0022C15C /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		527EC23E23F5005500E1A449 /* JournalPhotoScrollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPhotoScrollViewCell.swift; sourceTree = "<group>"; };
 		5281CB332343C5A80002BF35 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		52A5D36E23FB17DC004C88E0 /* JournalPhotoGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPhotoGridViewController.swift; sourceTree = "<group>"; };
+		52A5D37023FB3CA1004C88E0 /* JournalPhotoGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPhotoGridViewCell.swift; sourceTree = "<group>"; };
 		52B2B20222BBF03D0022C15C /* FishingDaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishingDaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B20522BBF03D0022C15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52B2B20722BBF03D0022C15C /* JournalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				526BEA0123CFE13F002A6539 /* JournalPhotoScrollViewController.swift */,
 				527EC23E23F5005500E1A449 /* JournalPhotoScrollViewCell.swift */,
 				52A5D36E23FB17DC004C88E0 /* JournalPhotoGridViewController.swift */,
+				52A5D37023FB3CA1004C88E0 /* JournalPhotoGridViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				5263FED023BEB4E400CC1CFB /* WeatherAPIManager.swift in Sources */,
 				520A2DAB233C2E4C0070CD57 /* KeyPath.swift in Sources */,
 				520A2DA2233833D30070CD57 /* JournalEntryViewModel.swift in Sources */,
+				52A5D37123FB3CA1004C88E0 /* JournalPhotoGridViewCell.swift in Sources */,
 				524CFC8F233194CB001A07AA /* Date+Extension.swift in Sources */,
 				5233800423C3CFAD001B587E /* WeatherViewModel.swift in Sources */,
 				52A5D36F23FB17DC004C88E0 /* JournalPhotoGridViewController.swift in Sources */,
