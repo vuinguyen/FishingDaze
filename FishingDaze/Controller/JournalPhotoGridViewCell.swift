@@ -20,7 +20,6 @@ class JournalPhotoGridViewCell: UICollectionViewCell {
   private func setup() {
     guard let testName = image else { return }
     imageView.translatesAutoresizingMaskIntoConstraints = true
-    imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     imageView.contentMode = .scaleAspectFit
     imageView.image = testName
     layoutIfNeeded()
