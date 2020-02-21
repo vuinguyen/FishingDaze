@@ -16,6 +16,11 @@ class JournalPhotoScrollViewController: UIViewController {
   @IBOutlet var collectionView: UICollectionView!
   @IBOutlet var pageControl: UIPageControl!
 
+  @IBOutlet var gridButton: UIBarButtonItem!
+  @IBOutlet var trashButton: UIBarButtonItem!
+  @IBOutlet var cameraButton: UIBarButtonItem!
+  @IBOutlet var photosButton: UIBarButtonItem!
+
   @IBAction func returnToPhotoScroll(_ unwindSegue: UIStoryboardSegue) {
     print("returned from Grid!")
     if let selectedAlbumIndex = selectedAlbumIndex {
@@ -36,18 +41,20 @@ class JournalPhotoScrollViewController: UIViewController {
   }()
 
   var selectedAlbumIndex: IndexPath?
+  var albumEditable = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
     configureCollectionView()
     configurePageControl()
+    configureButtons()
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = false
+  }
 
-    // Register cell classes
-    //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
 
-    // Do any additional setup after loading the view.
   }
 
    // MARK: - Navigation
@@ -60,6 +67,14 @@ class JournalPhotoScrollViewController: UIViewController {
       gridViewController.photos = photos
     }
    }
+
+  private func configureButtons() {
+    if albumEditable == false {
+      trashButton.isEnabled = false
+      cameraButton.isEnabled = false
+      photosButton.isEnabled = false
+    }
+  }
 
   private func configurePageControl() {
     pageControl.currentPageIndicatorTintColor = .red

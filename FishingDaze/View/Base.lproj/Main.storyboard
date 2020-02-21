@@ -440,7 +440,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="321" height="260"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <connections>
-                                                    <segue destination="jAK-Os-RjJ" kind="embed" id="QYv-O9-aSE"/>
+                                                    <segue destination="jAK-Os-RjJ" kind="embed" identifier="showScrollablePhotos" id="QYv-O9-aSE"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
@@ -493,7 +493,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TlY-hO-8ZZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mE1-6c-lft">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -616,8 +616,12 @@
                         <viewLayoutGuide key="safeArea" id="ZYk-Qg-GAc"/>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="w37-NC-C1E" id="mKL-Un-Agy"/>
                         <outlet property="collectionView" destination="r8q-n9-HNi" id="1Ul-9H-8CP"/>
+                        <outlet property="gridButton" destination="7Xx-aY-aTS" id="eRq-Lk-Enh"/>
                         <outlet property="pageControl" destination="nky-hw-SoQ" id="pQj-pf-DYI"/>
+                        <outlet property="photosButton" destination="4US-F0-Dbe" id="sbT-AF-0DZ"/>
+                        <outlet property="trashButton" destination="VkC-1Y-n7C" id="XHP-j3-65d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36o-Sc-R5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

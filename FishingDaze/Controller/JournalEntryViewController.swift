@@ -31,9 +31,15 @@ class JournalEntryViewController: UIViewController {
     // Pass the selected object to the new view controller.
     if segue.identifier == "editEntry" {
       let navigationController = segue.destination as! UINavigationController
-      let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
-      entryVC.showDelete = true
-      entryVC.journalEntryViewModel = journalEntryViewModel
+      let editEntryVC = navigationController.viewControllers[0] as! JournalEditorViewController
+      editEntryVC.showDelete = true
+      editEntryVC.journalEntryViewModel = journalEntryViewModel
+    }
+
+    if segue.identifier == "showScrollablePhotos" {
+      let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
+      photoScrollVC.albumEditable = false
+      print("coming from JournalEntryViewController, setting albumEditable to: \(photoScrollVC.albumEditable)")
     }
   }
 
