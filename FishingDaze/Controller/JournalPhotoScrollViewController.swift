@@ -45,13 +45,14 @@ class JournalPhotoScrollViewController: UIViewController {
   }
 
 
-  @IBAction func pickPhotoFromPhotosApp(_ sender: Any) {
+  @IBAction func pickPhotoFromPhotoLibrary(_ sender: Any) {
     print("pick a photo from the photos app")
   }
 
   var selectedAlbumIndex: IndexPath?
   var albumEditable = false
   var photos: [UIImage] = []
+  var photoScrollDelegate: PhotoScrollDelegate?
 
   override func viewDidLoad() {
     super.viewDidLoad()

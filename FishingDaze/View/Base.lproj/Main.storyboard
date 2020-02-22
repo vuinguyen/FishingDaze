@@ -556,7 +556,7 @@
                                             </barButtonItem>
                                             <barButtonItem title="Album" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe">
                                                 <connections>
-                                                    <action selector="pickPhotoFromPhotosApp:" destination="LiG-To-ln5" id="Gud-ml-DJp"/>
+                                                    <action selector="pickPhotoFromPhotoLibrary:" destination="LiG-To-ln5" id="Gud-ml-DJp"/>
                                                 </connections>
                                             </barButtonItem>
                                         </items>

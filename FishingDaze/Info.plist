@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Add pictures of fish you caught from your photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Add pictures of fish you caught from your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app gets your current location in order to store the location of your fishing trip in your journal! This information will only stay in your journal (this app), and is not stored anywhere else.</string>
 	<key>CFBundleDevelopmentRegion</key>

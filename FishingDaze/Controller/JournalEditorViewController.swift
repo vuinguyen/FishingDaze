@@ -265,6 +265,7 @@ class JournalEditorViewController: UITableViewController {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = true
       photoScrollVC.photos = photos
+      photoScrollVC.photoScrollDelegate = self
       print("coming from JournalEditorViewController, setting albumEditable to: \(photoScrollVC.albumEditable)")
     }
   }
