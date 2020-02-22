@@ -10,13 +10,6 @@ import Foundation
 import CoreLocation
 import CoreData
 
-/*
-protocol LocationViewModelDelegate {
-  func saveLocally(entryViewModel: JournalEntryViewModel?)
-  func saveToCoreData(entryViewModel: JournalEntryViewModel?)
-}
- */
-
 class LocationViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   var address: String = ""
