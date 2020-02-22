@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PhotoScrollDelegate {
-  
+  func updatePhotos(photos: [UIImage])
 }

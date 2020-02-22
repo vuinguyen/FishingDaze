@@ -49,20 +49,9 @@ class JournalPhotoScrollViewController: UIViewController {
     print("pick a photo from the photos app")
   }
 
-
-  lazy var photos: [UIImage] = { [weak self] in
-  var images: [UIImage] = []
-  ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
-    if let image = UIImage(named: imageName) {
-      images.append(image)
-    }
-  }
-
-  return images
-  }()
-
   var selectedAlbumIndex: IndexPath?
   var albumEditable = false
+  var photos: [UIImage] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -181,6 +181,17 @@ class JournalEditorViewController: UITableViewController {
 
   var latitude: Double?
   var longitude: Double?
+
+  lazy var photos: [UIImage] = { [weak self] in
+  var images: [UIImage] = []
+  ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
+    if let image = UIImage(named: imageName) {
+      images.append(image)
+    }
+  }
+
+  return images
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -253,6 +264,7 @@ class JournalEditorViewController: UITableViewController {
     if segue.identifier == "showScrollablePhotos" {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = true
+      photoScrollVC.photos = photos
       print("coming from JournalEditorViewController, setting albumEditable to: \(photoScrollVC.albumEditable)")
     }
   }
@@ -318,5 +330,11 @@ extension JournalEditorViewController: WeatherAPIManagerDelegate {
 
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error) {
     print("got an error, yo!")
+  }
+}
+
+extension JournalEditorViewController: PhotoScrollDelegate {
+  func updatePhotos(photos: [UIImage]) {
+    self.photos = photos
   }
 }

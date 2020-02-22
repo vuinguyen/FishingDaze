@@ -13,7 +13,6 @@ struct WeatherData {
   var fDegrees: Double
 }
 
-// will this protocol be necessary?
 protocol WeatherAPIManagerDelegate {
   func weatherManager(_ manager: WeatherAPIManager, didUpdateWeather weatherData: [WeatherData])
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error)
