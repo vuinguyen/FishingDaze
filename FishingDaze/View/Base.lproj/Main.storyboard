@@ -493,7 +493,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TlY-hO-8ZZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mE1-6c-lft">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -554,7 +554,7 @@
                                                     <action selector="pickPhotoFromCamera:" destination="LiG-To-ln5" id="0Kn-rY-m1e"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Album" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe">
+                                            <barButtonItem title="Library" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe">
                                                 <connections>
                                                     <action selector="pickPhotoFromPhotoLibrary:" destination="LiG-To-ln5" id="Gud-ml-DJp"/>
                                                 </connections>
@@ -632,8 +632,8 @@
                         <outlet property="cameraButton" destination="w37-NC-C1E" id="mKL-Un-Agy"/>
                         <outlet property="collectionView" destination="r8q-n9-HNi" id="1Ul-9H-8CP"/>
                         <outlet property="gridButton" destination="7Xx-aY-aTS" id="eRq-Lk-Enh"/>
+                        <outlet property="libraryButton" destination="4US-F0-Dbe" id="sbT-AF-0DZ"/>
                         <outlet property="pageControl" destination="nky-hw-SoQ" id="pQj-pf-DYI"/>
-                        <outlet property="photosButton" destination="4US-F0-Dbe" id="sbT-AF-0DZ"/>
                         <outlet property="trashButton" destination="VkC-1Y-n7C" id="XHP-j3-65d"/>
                     </connections>
                 </viewController>

@@ -19,7 +19,7 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
   @IBOutlet var gridButton: UIBarButtonItem!
   @IBOutlet var trashButton: UIBarButtonItem!
   @IBOutlet var cameraButton: UIBarButtonItem!
-  @IBOutlet var photosButton: UIBarButtonItem!
+  @IBOutlet var libraryButton: UIBarButtonItem!
 
   @IBAction func returnToPhotoScroll(_ unwindSegue: UIStoryboardSegue) {
     print("returned from Grid!")
@@ -103,7 +103,7 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     if albumEditable == false {
       cameraButton.isEnabled = false
       trashButton.isEnabled = false
-      photosButton.isEnabled = false
+      libraryButton.isEnabled = false
     } else {
       cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
       trashButton.isEnabled = photos.count > 0 ? true : false
