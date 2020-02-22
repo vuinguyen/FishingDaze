@@ -539,13 +539,26 @@
                                         <items>
                                             <barButtonItem title="Grid" id="7Xx-aY-aTS">
                                                 <connections>
+                                                    <action selector="displayPhotoGrid:" destination="LiG-To-ln5" id="JJ7-yk-vvl"/>
                                                     <segue destination="UMb-ju-MDq" kind="show" identifier="displayGrid" id="6WL-0g-nE7"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="BLy-yU-ZEh"/>
-                                            <barButtonItem systemItem="trash" id="VkC-1Y-n7C"/>
-                                            <barButtonItem systemItem="camera" id="w37-NC-C1E"/>
-                                            <barButtonItem title="Album" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe"/>
+                                            <barButtonItem systemItem="trash" id="VkC-1Y-n7C">
+                                                <connections>
+                                                    <action selector="deletePhoto:" destination="LiG-To-ln5" id="1it-NH-jQz"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="camera" id="w37-NC-C1E">
+                                                <connections>
+                                                    <action selector="pickPhotoFromCamera:" destination="LiG-To-ln5" id="0Kn-rY-m1e"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Album" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe">
+                                                <connections>
+                                                    <action selector="pickPhotoFromPhotosApp:" destination="LiG-To-ln5" id="Gud-ml-DJp"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r8q-n9-HNi">

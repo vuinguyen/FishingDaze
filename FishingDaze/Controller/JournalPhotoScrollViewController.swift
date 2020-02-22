@@ -29,6 +29,27 @@ class JournalPhotoScrollViewController: UIViewController {
     }
   }
 
+  @IBAction func displayPhotoGrid(_ sender: Any) {
+    print("displaying photo grid!")
+    performSegue(withIdentifier: "displayGrid", sender: nil)
+  }
+
+
+  @IBAction func deletePhoto(_ sender: Any) {
+    print("about to delete a photo")
+  }
+
+
+  @IBAction func pickPhotoFromCamera(_ sender: Any) {
+    print("pick a photo from the camera")
+  }
+
+
+  @IBAction func pickPhotoFromPhotosApp(_ sender: Any) {
+    print("pick a photo from the photos app")
+  }
+
+
   lazy var photos: [UIImage] = { [weak self] in
   var images: [UIImage] = []
   ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
@@ -70,9 +91,13 @@ class JournalPhotoScrollViewController: UIViewController {
 
   private func configureButtons() {
     if albumEditable == false {
-      trashButton.isEnabled = false
       cameraButton.isEnabled = false
+      trashButton.isEnabled = false
       photosButton.isEnabled = false
+    } else {
+      cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+      trashButton.isEnabled = photos.count > 0 ? true : false
+      gridButton.isEnabled = photos.count > 0 ? true: false
     }
   }
 
