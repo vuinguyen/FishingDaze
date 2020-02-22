@@ -98,6 +98,8 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
   // MARK: Private Helper Functions
 
   private func configureButtons() {
+    gridButton.isEnabled = photos.count > 0 ? true: false
+
     if albumEditable == false {
       cameraButton.isEnabled = false
       trashButton.isEnabled = false
@@ -105,7 +107,6 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     } else {
       cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
       trashButton.isEnabled = photos.count > 0 ? true : false
-      gridButton.isEnabled = photos.count > 0 ? true: false
     }
   }
 
@@ -212,6 +213,16 @@ extension JournalPhotoScrollViewController: UICollectionViewDataSource {
 extension JournalPhotoScrollViewController: UICollectionViewDelegate {
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     configurePageControl()
+  }
+
+  func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    // after deleting a cell
+    configureButtons()
+  }
+
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    // about to add a cell
+    configureButtons()
   }
 }
 
