@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "PhotoCell"
 
-class JournalPhotoScrollViewController: UIViewController {
+class JournalPhotoScrollViewController: UIViewController, UINavigationControllerDelegate {
 
 
   @IBOutlet var collectionView: UICollectionView!
@@ -37,16 +37,32 @@ class JournalPhotoScrollViewController: UIViewController {
 
   @IBAction func deletePhoto(_ sender: Any) {
     print("about to delete a photo")
+    let destroyAction = UIAlertAction(title: "Delete",
+                                      style: .destructive) { (action) in
+                                      self.deleteImage()
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let alert = UIAlertController(title: "Delete Picture?", message: "",
+                                  preferredStyle: .actionSheet)
+    alert.addAction(destroyAction)
+    alert.addAction(cancelAction)
+
+    // On iPad, action sheets must be presented from a popover.
+    alert.popoverPresentationController?.barButtonItem = trashButton
+
+    self.present(alert, animated: true, completion: nil)
   }
 
 
   @IBAction func pickPhotoFromCamera(_ sender: Any) {
     print("pick a photo from the camera")
+    pickImage(isSourceLibrary: false)
   }
 
 
   @IBAction func pickPhotoFromPhotoLibrary(_ sender: Any) {
     print("pick a photo from the photos app")
+    pickImage(isSourceLibrary: true)
   }
 
   var selectedAlbumIndex: IndexPath?
@@ -78,6 +94,8 @@ class JournalPhotoScrollViewController: UIViewController {
       gridViewController.photos = photos
     }
    }
+
+  // MARK: Private Helper Functions
 
   private func configureButtons() {
     if albumEditable == false {
@@ -115,6 +133,65 @@ class JournalPhotoScrollViewController: UIViewController {
     collectionView.dataSource = self
     collectionView.isPagingEnabled = true
   }
+
+  private func pickImage(isSourceLibrary: Bool) {
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+    imagePickerController.sourceType = isSourceLibrary ? .photoLibrary : .camera
+    present(imagePickerController, animated: true, completion: nil)
+  }
+
+  private func addImage(image: UIImage) {
+    var currentPageIndex = IndexPath(row: 0, section: 0)
+
+    if ((pageControl?.currentPage) != nil) {
+      currentPageIndex = IndexPath(row: pageControl.currentPage, section: 0)
+    }
+
+    print("at page \(currentPageIndex)")
+    // insert picture at that spot
+    photos.insert(image, at: currentPageIndex.row)
+    // refresh collection view
+    collectionView.reloadData()
+
+    // scroll to newly added item
+    pageControl.numberOfPages = photos.count
+    collectionView.scrollToItem(at: currentPageIndex, at: .centeredHorizontally, animated: true)
+    pageControl.currentPage = currentPageIndex.row
+
+    if let delegate = photoScrollDelegate {
+      delegate.updatePhotos(photos: photos)
+    }
+  }
+
+  private func deleteImage() {
+    if ((pageControl?.currentPage) == nil) {
+      print("no image to delete")
+      return
+    }
+
+    let currentPageIndex = IndexPath(row: pageControl.currentPage, section: 0)
+
+    // remove picture at that spot
+    photos.remove(at: currentPageIndex.row)
+    // refresh colleciton view
+    collectionView.reloadData()
+
+    // update the number of dots
+    pageControl.numberOfPages = photos.count
+
+    // this gets the visible cell
+    var visibleRect = CGRect()
+    visibleRect.origin = collectionView.contentOffset
+    visibleRect.size = collectionView.bounds.size
+
+    // scroll to the picture before the deleted picture
+    collectionView.scrollRectToVisible(visibleRect, animated: true)
+
+    if let delegate = photoScrollDelegate {
+      delegate.updatePhotos(photos: photos)
+    }
+  }
 }
 
 extension JournalPhotoScrollViewController: UICollectionViewDataSource {
@@ -142,5 +219,32 @@ extension JournalPhotoScrollViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.bounds.width,
                   height: collectionView.frame.height)
+  }
+}
+
+// MARK: ImagePickerControllerDelegate
+extension JournalPhotoScrollViewController: UIImagePickerControllerDelegate {
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion: nil)
+  }
+
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+    print("we got into imagepickercontroller code")
+    //picker.dismiss(animated: false, completion: nil)
+    if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      addImage(image: image)
+    } else {
+      let alert = UIAlertController(title: "Picture Selection Error", message: "Failed To Select Picture",
+                                    preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"),
+                                    style: .default, handler: { _ in
+        print("There was an error in selecting a picture")
+      }))
+      self.present(alert, animated: true, completion: nil)
+    }
+
+    picker.dismiss(animated: true, completion: nil)
   }
 }
