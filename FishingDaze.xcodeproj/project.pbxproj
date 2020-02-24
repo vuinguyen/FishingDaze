@@ -33,6 +33,7 @@
 		52B2B21022BBF03E0022C15C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20F22BBF03E0022C15C /* Assets.xcassets */; };
 		52B2B21322BBF03E0022C15C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */; };
 		52B2B21E22BBF03E0022C15C /* FishingDazeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B21D22BBF03E0022C15C /* FishingDazeTests.swift */; };
+		52D45D1B24044CE8009F3BF1 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D45D1A24044CE8009F3BF1 /* PhotoViewModel.swift */; };
 		52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */; };
 		52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		52B2B21922BBF03E0022C15C /* FishingDazeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishingDazeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B21D22BBF03E0022C15C /* FishingDazeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDazeTests.swift; sourceTree = "<group>"; };
 		52B2B21F22BBF03E0022C15C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52D45D1A24044CE8009F3BF1 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewController.swift; sourceTree = "<group>"; };
 		52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 				520A2DA1233833D30070CD57 /* JournalEntryViewModel.swift */,
 				5281CB332343C5A80002BF35 /* LocationViewModel.swift */,
 				5233800323C3CFAD001B587E /* WeatherViewModel.swift */,
+				52D45D1A24044CE8009F3BF1 /* PhotoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				527EC23F23F5005500E1A449 /* JournalPhotoScrollViewCell.swift in Sources */,
 				523FE4B0234FEF2C00E68295 /* Entry+Extension.swift in Sources */,
 				52B2B20822BBF03D0022C15C /* JournalListViewController.swift in Sources */,
+				52D45D1B24044CE8009F3BF1 /* PhotoViewModel.swift in Sources */,
 				52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */,
 				52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */,
 				5263FECE23BEAE9300CC1CFB /* APIKeys.swift in Sources */,

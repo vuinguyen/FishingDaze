@@ -27,9 +27,22 @@ class JournalEntryViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    if let journalEntryViewModel = journalEntryViewModel {
-      dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
+    guard let journalEntryViewModel = journalEntryViewModel else {
+      return
     }
+
+    /*
+    if let startDateTime = journalEntryViewModel.startDateTimeDisplay() {
+      dateLabel.text = startDateTime
+    }
+ */
+    dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
+
+    /*
+    if let photos = journalEntryViewModel.photoImages() {
+      self.photos = photos
+    }
+ */
   }
 
 

@@ -48,6 +48,9 @@ class JournalEntryViewModel {
     }
   }
 
+  // from Photo
+  var photos: [UIImage]?
+
   init() {
     let entity =
       NSEntityDescription.entity(forEntityName: "Entry",
