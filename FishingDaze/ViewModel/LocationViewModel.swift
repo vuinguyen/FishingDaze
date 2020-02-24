@@ -12,10 +12,10 @@ import CoreData
 
 class LocationViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
-  var address: String = ""
-  var bodyOfWater: String = ""
-  var latitude: Double = 0.0
-  var longitude: Double = 0.0
+  var address: String?
+  var bodyOfWater: String?
+  var latitude: Double?
+  var longitude: Double?
 
   var entryModel: Entry?
   var locationModel: Location?  // Location in Core Data model
@@ -87,31 +87,33 @@ class LocationViewModel {
         return
       }
 
+      var address = ""
+
       if let placemark = placemarks?.first {
         if placemark.subThoroughfare != nil {
-          self.address += placemark.subThoroughfare! + " "
+          address += placemark.subThoroughfare! + " "
         }
         if placemark.thoroughfare != nil {
-          self.address += placemark.thoroughfare! + "\n"
+          address += placemark.thoroughfare! + "\n"
         }
         if placemark.subLocality != nil {
-          self.address += placemark.subLocality! + "\n"
+          address += placemark.subLocality! + "\n"
         }
         if placemark.subAdministrativeArea != nil {
-          self.address += placemark.subAdministrativeArea! + "\n"
+          address += placemark.subAdministrativeArea! + "\n"
         }
         if placemark.postalCode != nil {
-          self.address += placemark.postalCode! + "\n"
+          address += placemark.postalCode! + "\n"
         }
         if placemark.country != nil {
-          self.address += placemark.country! + "\n"
+          address += placemark.country! + "\n"
         }
 
-        print("address: \(self.address)")
+        print("address: \(address)")
 
         if let UIcompletion = UIcompletion {
           DispatchQueue.main.async {
-            UIcompletion(self.address)
+            UIcompletion(address)
           }
         }
       }
@@ -121,7 +123,7 @@ class LocationViewModel {
   }
 
 
-  func addressDisplay() -> String {
+  func addressDisplay() -> String? {
     guard let location = locationModel,
       let address = location.address else {
       return ""
@@ -130,7 +132,7 @@ class LocationViewModel {
     return address
   }
 
-  func bodyOfWaterDisplay() -> String {
+  func bodyOfWaterDisplay() -> String? {
     guard let location = locationModel,
       let bodyOfWater = location.bodyOfWater else {
       return ""
@@ -139,7 +141,7 @@ class LocationViewModel {
     return bodyOfWater
   }
 
-  func latLongValues() -> (Double, Double) {
+  func latLongValues() -> (Double, Double)? {
     guard let location = locationModel,
       let latitude = location.latitude as Double?,
       let longitude = location.longitude as Double? else {
@@ -157,17 +159,19 @@ extension LocationViewModel: CoreDataFunctions {
       return
     }
 
-    location.address = address
-    location.bodyOfWater = bodyOfWater
-    location.latitude = latitude
-    location.longitude = longitude
-
-    /*
-    if let clLocation = clLocation {
-      location.latitude = clLocation.coordinate.latitude
-      location.longitude = clLocation.coordinate.longitude
+    if let address = address {
+      location.address = address
     }
- */
+
+    if let bodyOfWater = bodyOfWater {
+      location.bodyOfWater = bodyOfWater
+    }
+
+    if let latitude = latitude,
+      let longitude = longitude {
+      location.latitude = latitude
+      location.longitude = longitude
+    }
 
     do {
       try managedContext.save()

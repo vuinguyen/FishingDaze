@@ -31,25 +31,25 @@ class JournalEntryViewModel {
   // from Location
   var address: String?
   var bodyOfWater: String?
-  var latitude: Double = 0.0
-  var longitude: Double = 0.0
+  var latitude: Double?
+  var longitude: Double?
 
   // from Weather
   var weatherNotes: String?
 
   // this is a computed property, which gets set when temperature is set
-  private var fDegrees: Double = 0.0
-  
-  var temperature: String {
-    get { return String(fDegrees) }
-    set { if let validDouble = Double(newValue) {
-        fDegrees = validDouble
-      }
+  private lazy var fDegrees: Double? = { [weak self] in
+    var temp: Double?
+    if let tempString = self?.temperature {
+      temp = Double(tempString)
     }
-  }
+    return temp
+  }()
+
+  var temperature: String?
 
   // from Photo
-  var photos: [UIImage]?
+ // var photos: [UIImage]?
 
   init() {
     let entity =
@@ -154,7 +154,7 @@ class JournalEntryViewModel {
   // To be used when Weather is not yet in Core Data
   // NOTE: We are making an assumption that the locationViewModel should exist
   // before we can make a weatherViewModel
-  func weatherDisplay(weatherDataPoints: [WeatherData], UIcompletion: ((String, String) -> Void)?) -> Void {
+  func weatherDisplay(weatherDataPoints: [WeatherData], UIcompletion: ((String?, String?) -> Void)?) -> Void {
     guard let weatherData = weatherDataPoints.first else {
       return
     }
@@ -267,9 +267,8 @@ class JournalEntryViewModel {
   }
 
   private func saveLocation() {
-    guard let address = address,
-        let bodyOfWater = bodyOfWater else {
-        return
+    guard let address = address else {
+      return
     }
 
     if locationViewModel == nil,
@@ -278,15 +277,21 @@ class JournalEntryViewModel {
     }
 
     locationViewModel?.address = address
-    locationViewModel?.bodyOfWater = bodyOfWater
-    locationViewModel?.latitude = latitude
-    locationViewModel?.longitude = longitude
+
+    if let bodyOfWater = bodyOfWater {
+      locationViewModel?.bodyOfWater = bodyOfWater
+    }
+
+    if let latitude = latitude, let longitude = longitude {
+      locationViewModel?.latitude = latitude
+      locationViewModel?.longitude = longitude
+    }
     locationViewModel?.save()
   }
 
   private func saveWeather() {
-    guard let shortNotes = weatherNotes else {
-        return
+    guard let fDegrees = fDegrees else {
+      return
     }
 
     if weatherViewModel == nil,
@@ -296,7 +301,11 @@ class JournalEntryViewModel {
     }
 
     weatherViewModel?.fDegrees = fDegrees
-    weatherViewModel?.shortNotes = shortNotes
+
+    if let shortNotes = weatherNotes {
+      weatherViewModel?.shortNotes = shortNotes
+    }
+    //weatherViewModel?.shortNotes = shortNotes
     weatherViewModel?.save()
   }
 

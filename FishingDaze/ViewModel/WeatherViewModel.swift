@@ -11,8 +11,8 @@ import CoreData
 
 class WeatherViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
-  var shortNotes: String = ""
-  var fDegrees: Double = 0.0
+  var shortNotes: String?
+  var fDegrees: Double?
   var weatherData: WeatherData?
 
   var locationModel: Location?  // Location in Core Data model
@@ -68,7 +68,7 @@ class WeatherViewModel {
     return weatherViewModel
   }
 
-  func notesDisplay() -> String {
+  func notesDisplay() -> String? {
     guard let weather = weatherModel,
       let notes = weather.shortNotes else {
       return ""
@@ -77,7 +77,7 @@ class WeatherViewModel {
     return notes
   }
 
-  func temperatureDisplay() -> String {
+  func temperatureDisplay() -> String? {
     guard let weather = weatherModel,
       let temperature = weather.fDegrees as Double? else {
         return ""
@@ -86,7 +86,7 @@ class WeatherViewModel {
     return temperature.description
   }
 
-  func displayWeatherinView(UIcompletion: ((_ temperature: String, _ notes: String) -> Void)?) {
+  func displayWeatherinView(UIcompletion: ((_ temperature: String?, _ notes: String?) -> Void)?) {
     guard let weatherData = weatherData else {
       return
     }
@@ -110,9 +110,14 @@ extension WeatherViewModel: CoreDataFunctions {
       return
     }
 
-    weather.fDegrees = fDegrees 
-    weather.shortNotes = shortNotes
+    if let fDegrees = fDegrees {
+      weather.fDegrees = fDegrees
+    }
 
+    if let shortNotes = shortNotes {
+      weather.shortNotes = shortNotes
+    }
+    
     do {
       try managedContext.save()
     } catch let error as NSError {

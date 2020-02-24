@@ -161,12 +161,12 @@ class JournalEditorViewController: UITableViewController {
       journalEntryViewModel?.longitude = longitude
     }
 
-    if let weatherNotes = weatherDescriptionField.text {
-      journalEntryViewModel?.weatherNotes = weatherNotes
-    }
-
     if let temperature = weatherTemperatureField.text {
       journalEntryViewModel?.temperature = temperature
+    }
+
+    if let weatherNotes = weatherDescriptionField.text {
+      journalEntryViewModel?.weatherNotes = weatherNotes
     }
 
     journalEntryViewModel?.save()
@@ -236,18 +236,27 @@ class JournalEditorViewController: UITableViewController {
     guard let entryViewModel = journalEntryViewModel else {
       return
     }
-    bodyOfWaterTextField.text = entryViewModel.bodyOfWaterDisplay()
-    addressTextField.text = entryViewModel.addressDisplay()
 
-    guard let (latitude, longitude) = entryViewModel.latLongValues() else {
-      return
+    if let address = entryViewModel.addressDisplay() {
+      addressTextField.text = address
     }
 
-    self.latitude = latitude
-    self.longitude = longitude
+    if let bodyOfWater = entryViewModel.bodyOfWaterDisplay() {
+      bodyOfWaterTextField.text = bodyOfWater
+    }
 
-    weatherTemperatureField.text = entryViewModel.weatherTemperatureDisplay()
-    weatherDescriptionField.text = entryViewModel.weatherNotesDisplay()
+    if let (latitude, longitude) = entryViewModel.latLongValues() {
+      self.latitude = latitude
+      self.longitude = longitude
+    }
+
+    if let temperature = entryViewModel.weatherTemperatureDisplay() {
+      weatherTemperatureField.text = temperature
+    }
+
+    if let weatherNotes = entryViewModel.weatherNotesDisplay() {
+      weatherDescriptionField.text = weatherNotes
+    }
   }
 
   func showHideDelete() {
