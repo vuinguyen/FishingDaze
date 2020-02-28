@@ -31,11 +31,8 @@ class JournalEntryViewController: UIViewController {
       return
     }
 
-    /*
-    if let startDateTime = journalEntryViewModel.startDateTimeDisplay() {
-      dateLabel.text = startDateTime
-    }
- */
+    // if there is a journal entry, it will have at the very least
+    // date and time. Everything else is optional
     dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
 
     /*

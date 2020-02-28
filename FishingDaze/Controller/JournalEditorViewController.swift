@@ -135,6 +135,7 @@ class JournalEditorViewController: UITableViewController {
   }
 
   @IBAction func cancelEditing(_ sender: Any) {
+    
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
   
@@ -257,6 +258,12 @@ class JournalEditorViewController: UITableViewController {
     if let weatherNotes = entryViewModel.weatherNotesDisplay() {
       weatherDescriptionField.text = weatherNotes
     }
+
+    /*
+       if let photos = journalEntryViewModel.photoImages() {
+         self.photos = photos
+       }
+    */
   }
 
   func showHideDelete() {
@@ -346,5 +353,8 @@ extension JournalEditorViewController: WeatherAPIManagerDelegate {
 extension JournalEditorViewController: PhotoScrollDelegate {
   func updatePhotos(photos: [UIImage]) {
     self.photos = photos
+
+    // we need to update locally
+    // and also update in Core Data
   }
 }

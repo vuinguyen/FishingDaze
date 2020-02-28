@@ -49,7 +49,8 @@ class JournalEntryViewModel {
   var temperature: String?
 
   // from Photo
- // var photos: [UIImage]?
+  var photos: [UIImage]?
+  var photoDict: [UIImage:Photo]?
 
   init() {
     let entity =
@@ -213,6 +214,7 @@ class JournalEntryViewModel {
     }
     fetchLocation()
     fetchWeather()
+    fetchPhoto()
   }
 
   // we already grabbed the attributes for Entry earlier, so now we just need to grab
@@ -229,6 +231,19 @@ class JournalEntryViewModel {
       let locationViewModel = locationViewModel,
       let locationModel = locationViewModel.locationModel {
       weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationModel)
+    }
+  }
+
+  // TODO:
+  private func fetchPhoto() {
+
+  }
+
+  // TODO:
+  func cancelChanges() {
+    if managedContext.hasChanges {
+      managedContext.rollback()
+      print("rolled back changes to the context")
     }
   }
 
@@ -308,6 +323,12 @@ class JournalEntryViewModel {
     //weatherViewModel?.shortNotes = shortNotes
     weatherViewModel?.save()
   }
+
+  // TODO
+  private func savePhoto() {
+    
+  }
+
 
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
     // find journal entry in Core Data and delete from Core Data
@@ -394,5 +415,6 @@ extension JournalEntryViewModel: CoreDataFunctions {
     saveEntry()
     saveLocation()
     saveWeather()
+    savePhoto()
   }
 }
