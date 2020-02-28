@@ -14,12 +14,14 @@ class PhotoViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   var images: [UIImage]?
 
+  /*
   struct PhotoModel {
     var image: UIImage?
     var photoModel: Photo? // Photo in Core Data model
   }
+ */
   var entryModel: Entry?
-  var photoModels: [PhotoModel]?
+ // var photoModels: [PhotoModel]?
 
   //var photoDict: [Photo: UIImage]?
 
@@ -43,7 +45,7 @@ class PhotoViewModel {
       photoModel?.image = imageAsData
 
       if let photoModel = photoModel {
-        self.photoDict = [image: photoModel]
+        self.photoDict?[image] = photoModel
       }
       self.images?.append(image)
 
@@ -58,7 +60,6 @@ class PhotoViewModel {
 
 
   // TODO
-  /*
   static func fetchPhotoViewModel(entryModel: Entry?) -> PhotoViewModel? {
     var photoViewModel: PhotoViewModel?
 
@@ -81,10 +82,10 @@ class PhotoViewModel {
           photoViewModel = PhotoViewModel()
 
           for photo in photos {
-            photoViewModel?.photoModels?.append(photo)
-
-            if let dataImage = photo.value(forKey: "image") as? Data {
-             let dataAsUIImage = UIImage(data: dataImage)
+            if let dataImage = photo.value(forKey: "image") as? Data,
+              let dataAsUIImage = UIImage(data: dataImage)
+            {
+              photoViewModel?.photoDict?[dataAsUIImage] = photo
               photoViewModel?.images?.append(dataAsUIImage)
             }
           }
@@ -94,7 +95,7 @@ class PhotoViewModel {
         }
     return photoViewModel
   }
- */
+ 
 
   // TODO
   func photoDictionary() -> [UIImage: Photo]? {
@@ -110,6 +111,12 @@ class PhotoViewModel {
 // TODO
 extension PhotoViewModel: CoreDataFunctions {
   func save() {
-
+    // if we get to this point, we've been saving pictures to the context all
+    // along, so just do another save here
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
   }
 }

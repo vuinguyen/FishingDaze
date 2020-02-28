@@ -193,6 +193,9 @@ class JournalEditorViewController: UITableViewController {
 
   return images
   }()
+
+  var photoImages: [UIImage]?
+  var photoDictionary: [UIImage: Photo]?
   
   override func viewDidLoad() {
     super.viewDidLoad()

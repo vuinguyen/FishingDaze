@@ -16,6 +16,7 @@ class JournalEntryViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   private var locationViewModel: LocationViewModel?
   private var weatherViewModel: WeatherViewModel?
+  private var photoViewModel: PhotoViewModel?
 
   // We have these attributes here to allow the user to
   // pass the data that they want to save to Core Data directly
@@ -49,8 +50,8 @@ class JournalEntryViewModel {
   var temperature: String?
 
   // from Photo
-  var photos: [UIImage]?
-  var photoDict: [UIImage:Photo]?
+  var photoImages: [UIImage]?
+  var photoDictionary: [UIImage:Photo]?
 
   init() {
     let entity =
@@ -236,7 +237,10 @@ class JournalEntryViewModel {
 
   // TODO:
   private func fetchPhoto() {
-
+    if photoViewModel == nil,
+      let entryModel = entryModel {
+      photoViewModel = PhotoViewModel.fetchPhotoViewModel(entryModel: entryModel)
+    }
   }
 
   // TODO:
@@ -320,13 +324,26 @@ class JournalEntryViewModel {
     if let shortNotes = weatherNotes {
       weatherViewModel?.shortNotes = shortNotes
     }
-    //weatherViewModel?.shortNotes = shortNotes
     weatherViewModel?.save()
   }
 
   // TODO
   private func savePhoto() {
-    
+    guard let images = photoImages else {
+      return
+    }
+
+    if photoViewModel == nil,
+      let entryModel = entryModel {
+      photoViewModel = PhotoViewModel(entryModel: entryModel, images: images)
+    }
+
+    photoViewModel?.images = images
+
+    if let photoDict = photoDictionary {
+      photoViewModel?.photoDict = photoDict
+    }
+    photoViewModel?.save()
   }
 
 
