@@ -170,6 +170,10 @@ class JournalEditorViewController: UITableViewController {
       journalEntryViewModel?.weatherNotes = weatherNotes
     }
 
+    if let photos = photos {
+      journalEntryViewModel?.photoImages = photos
+    }
+
     journalEntryViewModel?.save()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
@@ -183,6 +187,7 @@ class JournalEditorViewController: UITableViewController {
   var latitude: Double?
   var longitude: Double?
 
+  /*
   lazy var photos: [UIImage] = { [weak self] in
   var images: [UIImage] = []
   ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
@@ -191,10 +196,13 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
+
   return images
   }()
+ */
 
-  var photoImages: [UIImage]?
+  //var photoImages: [UIImage]?
+  var photos: [UIImage]?
   var photoDictionary: [UIImage: Photo]?
   
   override func viewDidLoad() {
@@ -262,11 +270,14 @@ class JournalEditorViewController: UITableViewController {
       weatherDescriptionField.text = weatherNotes
     }
 
-    /*
-       if let photos = journalEntryViewModel.photoImages() {
-         self.photos = photos
-       }
-    */
+    if let photos = entryViewModel.photoImageValues() {
+      self.photos = photos
+    }
+
+    if let photoDictionary = entryViewModel.photoDictionaryValues() {
+      self.photoDictionary = photoDictionary
+    }
+
   }
 
   func showHideDelete() {
@@ -283,7 +294,9 @@ class JournalEditorViewController: UITableViewController {
     if segue.identifier == "showScrollablePhotos" {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = true
-      photoScrollVC.photos = photos
+      if let photos = photos {
+        photoScrollVC.photos = photos
+      }
       photoScrollVC.photoScrollDelegate = self
       print("coming from JournalEditorViewController, setting albumEditable to: \(photoScrollVC.albumEditable)")
     }
