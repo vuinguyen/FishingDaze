@@ -13,6 +13,7 @@ class JournalEntryViewController: UIViewController {
   @IBOutlet weak var dateLabel: UILabel!
 
   var journalEntryViewModel: JournalEntryViewModel?
+  /*
   lazy var photos: [UIImage] = { [weak self] in
   var images: [UIImage] = []
   ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
@@ -23,6 +24,8 @@ class JournalEntryViewController: UIViewController {
 
   return images
   }()
+ */
+  var photos: [UIImage]?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,11 +38,11 @@ class JournalEntryViewController: UIViewController {
     // date and time. Everything else is optional
     dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
 
-    /*
-    if let photos = journalEntryViewModel.photoImages() {
+
+    if let photos = journalEntryViewModel.photoImageValues() {
       self.photos = photos
     }
- */
+
   }
 
 
@@ -59,7 +62,9 @@ class JournalEntryViewController: UIViewController {
     if segue.identifier == "showScrollablePhotos" {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = false
-      photoScrollVC.photos = photos
+      if let photos = photos {
+        photoScrollVC.photos = photos
+      }
       print("coming from JournalEntryViewController, setting albumEditable to: \(photoScrollVC.albumEditable)")
     }
   }

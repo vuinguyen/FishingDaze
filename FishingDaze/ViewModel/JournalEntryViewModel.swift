@@ -180,6 +180,24 @@ class JournalEntryViewModel {
     return locationViewModel?.latLongValues()
   }
 
+  // Photo helper functions, to be used when Photo is already in Core Data
+  func photoImageValues() -> [UIImage]? {
+    if photoViewModel == nil,
+     let entryModel = entryModel  {
+      photoViewModel = PhotoViewModel.fetchPhotoViewModel(entryModel: entryModel)
+    }
+    return photoViewModel?.photoImages()
+  }
+
+  func photoDictionaryValues() -> [UIImage:Photo]? {
+    if photoViewModel == nil,
+     let entryModel = entryModel  {
+      photoViewModel = PhotoViewModel.fetchPhotoViewModel(entryModel: entryModel)
+    }
+    return photoViewModel?.photoDictionary()
+  }
+
+
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
     var viewModels: [JournalEntryViewModel] = []
     let managedContext = PersistenceManager.shared.managedContext!
