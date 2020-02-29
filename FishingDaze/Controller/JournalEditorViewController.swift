@@ -135,7 +135,7 @@ class JournalEditorViewController: UITableViewController {
   }
 
   @IBAction func cancelEditing(_ sender: Any) {
-    
+    journalEntryViewModel?.cancelChanges()
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
   
@@ -171,7 +171,7 @@ class JournalEditorViewController: UITableViewController {
     }
 
     if let photos = photos {
-      journalEntryViewModel?.photoImages = photos
+      journalEntryViewModel?.images = photos
     }
 
     journalEntryViewModel?.save()
@@ -203,7 +203,7 @@ class JournalEditorViewController: UITableViewController {
 
   //var photoImages: [UIImage]?
   var photos: [UIImage]?
-  var photoDictionary: [UIImage: Photo]?
+  //var photoDictionary: [UIImage: Photo]?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -270,13 +270,15 @@ class JournalEditorViewController: UITableViewController {
       weatherDescriptionField.text = weatherNotes
     }
 
-    if let photos = entryViewModel.photoImageValues() {
+    if let photos = entryViewModel.photoValues() {
       self.photos = photos
     }
 
+    /*
     if let photoDictionary = entryViewModel.photoDictionaryValues() {
       self.photoDictionary = photoDictionary
     }
+ */
 
   }
 
@@ -367,10 +369,40 @@ extension JournalEditorViewController: WeatherAPIManagerDelegate {
 }
 
 extension JournalEditorViewController: PhotoScrollDelegate {
-  func updatePhotos(photos: [UIImage]) {
-    self.photos = photos
+  func addPhoto(photoToAdd: UIImage, updatedPhotos: [UIImage]) {
+    // update local photos
+    self.photos = updatedPhotos
 
-    // we need to update locally
-    // and also update in Core Data
+    journalEntryViewModel?.addPhotoSaveChange(photoToAdd: photoToAdd)
+
+    // now update Core Data (if we already have photos in core data)
+    /*
+    guard let photoDictionary = photoDictionary else {
+      return
+    }
+ */
+
+/*
+    for (image, photo) in photoDictionary {
+      if image == photoToAdd {
+        journalEntryViewModel?.addPhotoSaveChange(photoToAdd: photo)
+        return
+      }
+    }
+ */
+
   }
+
+  func deletePhoto(photoToDelete: UIImage, updatedPhotos: [UIImage]) {
+    // update local photos
+    self.photos = updatedPhotos
+
+    journalEntryViewModel?.deletePhotoSaveChange(photoToDelete: photoToDelete)
+    // we don't need photoDictionary here at all!
+    // we just need to pass the image as the key, into our function
+
+
+  }
+
+
 }

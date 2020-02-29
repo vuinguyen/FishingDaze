@@ -161,7 +161,7 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     pageControl.currentPage = currentPageIndex.row
 
     if let delegate = photoScrollDelegate {
-      delegate.updatePhotos(photos: photos)
+      delegate.addPhoto(photoToAdd: image, updatedPhotos: photos)
     }
   }
 
@@ -174,7 +174,8 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     let currentPageIndex = IndexPath(row: pageControl.currentPage, section: 0)
 
     // remove picture at that spot
-    photos.remove(at: currentPageIndex.row)
+    let photoToRemove = photos.remove(at: currentPageIndex.row)
+
     // refresh colleciton view
     collectionView.reloadData()
 
@@ -190,7 +191,7 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     collectionView.scrollRectToVisible(visibleRect, animated: true)
 
     if let delegate = photoScrollDelegate {
-      delegate.updatePhotos(photos: photos)
+      delegate.deletePhoto(photoToDelete: photoToRemove, updatedPhotos: photos)
     }
   }
 }

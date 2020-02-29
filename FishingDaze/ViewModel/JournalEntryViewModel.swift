@@ -50,8 +50,8 @@ class JournalEntryViewModel {
   var temperature: String?
 
   // from Photo
-  var photoImages: [UIImage]?
-  var photoDictionary: [UIImage:Photo]?
+  var images: [UIImage]?
+  //var photoDictionary: [UIImage:Photo]?
 
   init() {
     let entity =
@@ -181,7 +181,7 @@ class JournalEntryViewModel {
   }
 
   // Photo helper functions, to be used when Photo is already in Core Data
-  func photoImageValues() -> [UIImage]? {
+  func photoValues() -> [UIImage]? {
     if photoViewModel == nil,
      let entryModel = entryModel  {
       photoViewModel = PhotoViewModel.fetchPhotoViewModel(entryModel: entryModel)
@@ -189,6 +189,7 @@ class JournalEntryViewModel {
     return photoViewModel?.photoImages()
   }
 
+  /*
   func photoDictionaryValues() -> [UIImage:Photo]? {
     if photoViewModel == nil,
      let entryModel = entryModel  {
@@ -196,6 +197,7 @@ class JournalEntryViewModel {
     }
     return photoViewModel?.photoDictionary()
   }
+ */
 
 
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
@@ -347,7 +349,7 @@ class JournalEntryViewModel {
 
   // TODO
   private func savePhoto() {
-    guard let images = photoImages else {
+    guard let images = images else {
       return
     }
 
@@ -358,9 +360,11 @@ class JournalEntryViewModel {
 
     photoViewModel?.images = images
 
+    /*
     if let photoDict = photoDictionary {
       photoViewModel?.photoDict = photoDict
     }
+ */
     photoViewModel?.save()
   }
 
@@ -451,5 +455,17 @@ extension JournalEntryViewModel: CoreDataFunctions {
     saveLocation()
     saveWeather()
     savePhoto()
+  }
+}
+
+extension JournalEntryViewModel: PhotoViewModelProtocol {
+  func addPhotoSaveChange(photoToAdd: UIImage) {
+    // TODO
+    // Here we call PhotoViewModel function to do it's magic!
+  }
+
+  func deletePhotoSaveChange(photoToDelete: UIImage) {
+    // TODO
+    // Here we call PhotoViewModel function to do it's magic!
   }
 }

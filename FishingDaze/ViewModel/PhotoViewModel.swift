@@ -10,6 +10,11 @@ import Foundation
 import CoreData
 import UIKit
 
+protocol PhotoViewModelProtocol {
+  func addPhotoSaveChange(photoToAdd: UIImage)
+  func deletePhotoSaveChange(photoToDelete: UIImage)
+}
+
 class PhotoViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   var images: [UIImage]?
@@ -98,9 +103,11 @@ class PhotoViewModel {
  
 
   // TODO
+  /*
   func photoDictionary() -> [UIImage: Photo]? {
     return self.photoDict
   }
+ */
 
   // TODO
   func photoImages() -> [UIImage]? {

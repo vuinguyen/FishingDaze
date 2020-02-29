@@ -39,7 +39,7 @@ class JournalEntryViewController: UIViewController {
     dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
 
 
-    if let photos = journalEntryViewModel.photoImageValues() {
+    if let photos = journalEntryViewModel.photoValues() {
       self.photos = photos
     }
 
