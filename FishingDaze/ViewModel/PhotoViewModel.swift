@@ -11,8 +11,8 @@ import CoreData
 import UIKit
 
 protocol PhotoViewModelProtocol {
-  func addPhotoSaveChange(photoToAdd: UIImage)
-  func deletePhotoSaveChange(photoToDelete: UIImage)
+  func addPhotoToModel(photoToAdd: UIImage)
+  func deletePhotoFromModel(photoToDelete: UIImage)
 }
 
 class PhotoViewModel {
@@ -38,9 +38,12 @@ class PhotoViewModel {
 
   // TODO
   // we need to pass in both the Entry and the images here
-  init(entryModel: Entry, images: [UIImage]) {
+  init(entryModel: Entry, images: [UIImage], autoSave: Bool = true) {
     // add to Core Data
+    self.entryModel = entryModel
     for image in images {
+      addPhoto(image: image)
+      /*
       let entity = NSEntityDescription.entity(forEntityName: "Photo", in: managedContext)!
       let photoModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Photo
       photoModel?.entry = entryModel
@@ -59,10 +62,42 @@ class PhotoViewModel {
       } catch let error as NSError {
         print("Could not save. \(error), \(error.userInfo)")
       }
-
+*/
+    }
+    if autoSave {
+      save()
     }
   }
 
+  private func addPhoto(image: UIImage) {
+    let entity = NSEntityDescription.entity(forEntityName: "Photo", in: managedContext)!
+    let photoModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Photo
+    photoModel?.entry = entryModel
+
+    let imageAsData = image.pngData()
+    photoModel?.image = imageAsData
+
+    if let photoModel = photoModel {
+      if self.photoDict == nil {
+        self.photoDict = [UIImage:Photo]()
+      }
+      self.photoDict?[image] = photoModel
+    }
+
+    if self.images == nil {
+      self.images = []
+    }
+    self.images?.append(image)
+  }
+
+  private func deletePhoto(image: UIImage) {
+    guard let photoToDelete = photoDict?[image] else {
+      return
+    }
+
+    managedContext.delete(photoToDelete)
+    photoDict?.removeValue(forKey: image)
+  }
 
   // TODO
   static func fetchPhotoViewModel(entryModel: Entry?) -> PhotoViewModel? {
@@ -85,6 +120,15 @@ class PhotoViewModel {
           }
 
           photoViewModel = PhotoViewModel()
+          photoViewModel?.entryModel = entryModel
+
+          if photoViewModel?.photoDict == nil {
+            photoViewModel?.photoDict = [UIImage:Photo]()
+          }
+
+          if photoViewModel?.images == nil {
+            photoViewModel?.images = []
+          }
 
           for photo in photos {
             if let dataImage = photo.value(forKey: "image") as? Data,
@@ -126,4 +170,18 @@ extension PhotoViewModel: CoreDataFunctions {
       print("Could not save. \(error), \(error.userInfo)")
     }
   }
+}
+
+extension PhotoViewModel: PhotoViewModelProtocol {
+  func addPhotoToModel(photoToAdd: UIImage) {
+    // TODO
+    addPhoto(image: photoToAdd)
+  }
+
+  func deletePhotoFromModel(photoToDelete: UIImage) {
+    // TODO
+    deletePhoto(image: photoToDelete)
+  }
+
+
 }

@@ -45,7 +45,22 @@ class JournalEntryViewController: UIViewController {
 
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
 
+    guard let journalEntryViewModel = journalEntryViewModel else {
+      return
+    }
+
+    // if there is a journal entry, it will have at the very least
+    // date and time. Everything else is optional
+    dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
+
+
+    if let photos = journalEntryViewModel.photoValues() {
+      self.photos = photos
+    }
+  }
   // MARK: - Navigation
 
   // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -62,7 +77,7 @@ class JournalEntryViewController: UIViewController {
     if segue.identifier == "showScrollablePhotos" {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = false
-      if let photos = photos {
+      if let photos = journalEntryViewModel?.photoValues() {
         photoScrollVC.photos = photos
       }
       print("coming from JournalEntryViewController, setting albumEditable to: \(photoScrollVC.albumEditable)")

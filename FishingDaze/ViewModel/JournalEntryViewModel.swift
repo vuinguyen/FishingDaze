@@ -459,13 +459,31 @@ extension JournalEntryViewModel: CoreDataFunctions {
 }
 
 extension JournalEntryViewModel: PhotoViewModelProtocol {
-  func addPhotoSaveChange(photoToAdd: UIImage) {
+  func addPhotoToModel(photoToAdd: UIImage) {
     // TODO
     // Here we call PhotoViewModel function to do it's magic!
+
+    // it's possible for photoViewModel to be nil if this is our first photo to add!
+    if photoViewModel == nil,
+      let entryModel = entryModel {
+      photoViewModel = PhotoViewModel(entryModel: entryModel, images: [photoToAdd], autoSave: false)
+    } else {
+      photoViewModel?.addPhotoToModel(photoToAdd: photoToAdd)
+    }
+
+
   }
 
-  func deletePhotoSaveChange(photoToDelete: UIImage) {
+  func deletePhotoFromModel(photoToDelete: UIImage) {
     // TODO
     // Here we call PhotoViewModel function to do it's magic!
+
+    // if photoViewModel is nil and we have an existing picture to delete,
+    // then we are in trouble!
+    guard let photoViewModel = photoViewModel else {
+      return
+    }
+
+    photoViewModel.deletePhotoFromModel(photoToDelete: photoToDelete)
   }
 }

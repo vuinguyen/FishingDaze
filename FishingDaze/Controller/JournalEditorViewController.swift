@@ -296,7 +296,8 @@ class JournalEditorViewController: UITableViewController {
     if segue.identifier == "showScrollablePhotos" {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = true
-      if let photos = photos {
+      //if let photos = photos {
+      if let photos = journalEntryViewModel?.photoValues() {
         photoScrollVC.photos = photos
       }
       photoScrollVC.photoScrollDelegate = self
@@ -373,7 +374,7 @@ extension JournalEditorViewController: PhotoScrollDelegate {
     // update local photos
     self.photos = updatedPhotos
 
-    journalEntryViewModel?.addPhotoSaveChange(photoToAdd: photoToAdd)
+    journalEntryViewModel?.addPhotoToModel(photoToAdd: photoToAdd)
 
     // now update Core Data (if we already have photos in core data)
     /*
@@ -397,7 +398,7 @@ extension JournalEditorViewController: PhotoScrollDelegate {
     // update local photos
     self.photos = updatedPhotos
 
-    journalEntryViewModel?.deletePhotoSaveChange(photoToDelete: photoToDelete)
+    journalEntryViewModel?.deletePhotoFromModel(photoToDelete: photoToDelete)
     // we don't need photoDictionary here at all!
     // we just need to pass the image as the key, into our function
 
