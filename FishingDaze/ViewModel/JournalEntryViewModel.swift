@@ -255,7 +255,6 @@ class JournalEntryViewModel {
     }
   }
 
-  // TODO:
   private func fetchPhoto() {
     if photoViewModel == nil,
       let entryModel = entryModel {
@@ -263,7 +262,6 @@ class JournalEntryViewModel {
     }
   }
 
-  // TODO:
   func cancelChanges() {
     if managedContext.hasChanges {
       managedContext.rollback()
@@ -347,7 +345,6 @@ class JournalEntryViewModel {
     weatherViewModel?.save()
   }
 
-  // TODO
   private func savePhoto() {
     guard let images = images else {
       return
@@ -359,12 +356,6 @@ class JournalEntryViewModel {
     }
 
     photoViewModel?.images = images
-
-    /*
-    if let photoDict = photoDictionary {
-      photoViewModel?.photoDict = photoDict
-    }
- */
     photoViewModel?.save()
   }
 
@@ -460,9 +451,6 @@ extension JournalEntryViewModel: CoreDataFunctions {
 
 extension JournalEntryViewModel: PhotoViewModelProtocol {
   func addPhotoToModel(photoToAdd: UIImage) {
-    // TODO
-    // Here we call PhotoViewModel function to do it's magic!
-
     // it's possible for photoViewModel to be nil if this is our first photo to add!
     if photoViewModel == nil,
       let entryModel = entryModel {
@@ -475,9 +463,6 @@ extension JournalEntryViewModel: PhotoViewModelProtocol {
   }
 
   func deletePhotoFromModel(photoToDelete: UIImage) {
-    // TODO
-    // Here we call PhotoViewModel function to do it's magic!
-
     // if photoViewModel is nil and we have an existing picture to delete,
     // then we are in trouble!
     guard let photoViewModel = photoViewModel else {

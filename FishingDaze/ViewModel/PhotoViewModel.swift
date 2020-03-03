@@ -18,51 +18,19 @@ protocol PhotoViewModelProtocol {
 class PhotoViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   var images: [UIImage]?
-
-  /*
-  struct PhotoModel {
-    var image: UIImage?
-    var photoModel: Photo? // Photo in Core Data model
-  }
- */
   var entryModel: Entry?
- // var photoModels: [PhotoModel]?
-
-  //var photoDict: [Photo: UIImage]?
-
   var photoDict: [UIImage:Photo]?
 
   init() {
 
   }
 
-  // TODO
   // we need to pass in both the Entry and the images here
   init(entryModel: Entry, images: [UIImage], autoSave: Bool = true) {
     // add to Core Data
     self.entryModel = entryModel
     for image in images {
       addPhoto(image: image)
-      /*
-      let entity = NSEntityDescription.entity(forEntityName: "Photo", in: managedContext)!
-      let photoModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Photo
-      photoModel?.entry = entryModel
-      self.entryModel = entryModel
-
-      let imageAsData = image.pngData()
-      photoModel?.image = imageAsData
-
-      if let photoModel = photoModel {
-        self.photoDict?[image] = photoModel
-      }
-      self.images?.append(image)
-
-      do {
-        try managedContext.save()
-      } catch let error as NSError {
-        print("Could not save. \(error), \(error.userInfo)")
-      }
-*/
     }
     if autoSave {
       save()
@@ -99,7 +67,6 @@ class PhotoViewModel {
     photoDict?.removeValue(forKey: image)
   }
 
-  // TODO
   static func fetchPhotoViewModel(entryModel: Entry?) -> PhotoViewModel? {
     var photoViewModel: PhotoViewModel?
 
@@ -144,26 +111,16 @@ class PhotoViewModel {
         }
     return photoViewModel
   }
- 
 
-  // TODO
-  /*
-  func photoDictionary() -> [UIImage: Photo]? {
-    return self.photoDict
-  }
- */
-
-  // TODO
   func photoImages() -> [UIImage]? {
     return self.images
   }
 }
 
-// TODO
 extension PhotoViewModel: CoreDataFunctions {
   func save() {
-    // if we get to this point, we've been saving pictures to the context all
-    // along, so just do another save here
+    // if we get to this point, we've been adding changes to the context all
+    // along, so we only need to do a save here
     do {
       try managedContext.save()
     } catch let error as NSError {
@@ -174,12 +131,10 @@ extension PhotoViewModel: CoreDataFunctions {
 
 extension PhotoViewModel: PhotoViewModelProtocol {
   func addPhotoToModel(photoToAdd: UIImage) {
-    // TODO
     addPhoto(image: photoToAdd)
   }
 
   func deletePhotoFromModel(photoToDelete: UIImage) {
-    // TODO
     deletePhoto(image: photoToDelete)
   }
 

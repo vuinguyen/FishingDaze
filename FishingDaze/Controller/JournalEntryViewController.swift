@@ -13,18 +13,6 @@ class JournalEntryViewController: UIViewController {
   @IBOutlet weak var dateLabel: UILabel!
 
   var journalEntryViewModel: JournalEntryViewModel?
-  /*
-  lazy var photos: [UIImage] = { [weak self] in
-  var images: [UIImage] = []
-  ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
-    if let image = UIImage(named: imageName) {
-      images.append(image)
-    }
-  }
-
-  return images
-  }()
- */
   var photos: [UIImage]?
 
   override func viewDidLoad() {

@@ -37,18 +37,6 @@ class JournalEditorViewController: UITableViewController {
   @IBAction func getWeather(_ sender: Any) {
     print("get current weather based on location")
 
-    /*
-    getCoordinates()
-    guard let latitude = latitude,
-      let longitude = longitude else {
-        print("can't call weather API without getting location first")
-        return
-    }
-
-    print("Found latitude is: \(latitude)")
-    print("Found longitude is: \(longitude)")
- */
-
     guard let latitude = latitude,
       let longitude = longitude else {
         return
@@ -273,13 +261,6 @@ class JournalEditorViewController: UITableViewController {
     if let photos = entryViewModel.photoValues() {
       self.photos = photos
     }
-
-    /*
-    if let photoDictionary = entryViewModel.photoDictionaryValues() {
-      self.photoDictionary = photoDictionary
-    }
- */
-
   }
 
   func showHideDelete() {
@@ -374,36 +355,15 @@ extension JournalEditorViewController: PhotoScrollDelegate {
     // update local photos
     self.photos = updatedPhotos
 
+    // update photos in ViewModel
     journalEntryViewModel?.addPhotoToModel(photoToAdd: photoToAdd)
-
-    // now update Core Data (if we already have photos in core data)
-    /*
-    guard let photoDictionary = photoDictionary else {
-      return
-    }
- */
-
-/*
-    for (image, photo) in photoDictionary {
-      if image == photoToAdd {
-        journalEntryViewModel?.addPhotoSaveChange(photoToAdd: photo)
-        return
-      }
-    }
- */
-
   }
 
   func deletePhoto(photoToDelete: UIImage, updatedPhotos: [UIImage]) {
     // update local photos
     self.photos = updatedPhotos
 
+    // update photos in ViewModel
     journalEntryViewModel?.deletePhotoFromModel(photoToDelete: photoToDelete)
-    // we don't need photoDictionary here at all!
-    // we just need to pass the image as the key, into our function
-
-
   }
-
-
 }

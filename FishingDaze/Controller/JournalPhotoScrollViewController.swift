@@ -79,15 +79,6 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     // self.clearsSelectionOnViewWillAppear = false
   }
 
-  /*
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    configureCollectionView()
-    configurePageControl()
-    configureButtons()
-  }
- */
-
    // MARK: - Navigation
 
    // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -137,7 +128,6 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.isPagingEnabled = true
-    //collectionView.reloadData()
   }
 
   private func pickImage(isSourceLibrary: Bool) {
