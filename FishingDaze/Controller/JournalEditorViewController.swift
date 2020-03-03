@@ -17,12 +17,19 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var weatherTemperatureField: UITextField!
   @IBOutlet weak var weatherDescriptionField: UITextField!
 
+  @IBOutlet var weatherTemperatureUnitLabel: UILabel!
+  @IBOutlet var weatherTemperatureUnitControl: UISegmentedControl!
+
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var startTimePicker: UIDatePicker!
   @IBOutlet weak var endTimePicker: UIDatePicker!
 
   @IBOutlet weak var deleteEntryButton: UIButton!
   @IBOutlet weak var saveBarButton: UIBarButtonItem!
+
+  @IBAction func selectTemperatureUnitDisplay(_ sender: Any) {
+    print("Temperature Unit Display Selected!")
+  }
   
   @IBAction func getCurrentLocation(_ sender: Any) {
     print("get current location!")
