@@ -98,7 +98,7 @@ class PhotoViewModel {
           }
 
           for photo in photos {
-            if let dataImage = photo.value(forKey: "image") as? Data,
+            if let dataImage = photo.value(forKey: KeyPath.image.rawValue) as? Data,
               let dataAsUIImage = UIImage(data: dataImage)
             {
               photoViewModel?.photoDict?[dataAsUIImage] = photo

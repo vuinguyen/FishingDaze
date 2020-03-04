@@ -200,23 +200,7 @@ class JournalEditorViewController: UITableViewController {
   var latitude: Double?
   var longitude: Double?
 
-  /*
-  lazy var photos: [UIImage] = { [weak self] in
-  var images: [UIImage] = []
-  ["testPhoto1", "testPhoto2", "testPhoto3"].forEach { imageName in
-    if let image = UIImage(named: imageName) {
-      images.append(image)
-    }
-  }
-
-
-  return images
-  }()
- */
-
-  //var photoImages: [UIImage]?
   var photos: [UIImage]?
-  //var photoDictionary: [UIImage: Photo]?
 
   enum TempUnitControlSegment: Int {
     case fahreinhet = 0

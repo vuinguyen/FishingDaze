@@ -189,17 +189,6 @@ class JournalEntryViewModel {
     return photoViewModel?.photoImages()
   }
 
-  /*
-  func photoDictionaryValues() -> [UIImage:Photo]? {
-    if photoViewModel == nil,
-     let entryModel = entryModel  {
-      photoViewModel = PhotoViewModel.fetchPhotoViewModel(entryModel: entryModel)
-    }
-    return photoViewModel?.photoDictionary()
-  }
- */
-
-
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
     var viewModels: [JournalEntryViewModel] = []
     let managedContext = PersistenceManager.shared.managedContext!
