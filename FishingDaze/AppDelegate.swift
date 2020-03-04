@@ -25,9 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
 
+  func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    // Usually this is not overridden. Using the "did finish launching" method is more typical
+    print("App Delegate: will finish launching")
+
+    checkIfFirstLaunch()
+    return true
+  }
+
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    checkIfFirstLaunch()
     return true
   }
 

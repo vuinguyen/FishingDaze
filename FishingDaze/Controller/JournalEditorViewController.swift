@@ -64,12 +64,15 @@ class JournalEditorViewController: UITableViewController {
   private func checkTemperatureUnitDisplay() {
     if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.fahreinhet.rawValue {
       print("Fahreinheit Unit Display Selected!")
-      weatherTemperatureUnitControl.setEnabled(true, forSegmentAt: TempUnitControlSegment.fahreinhet.rawValue)
+      weatherTemperatureUnitControl.selectedSegmentIndex = TempUnitControlSegment.fahreinhet.rawValue
       weatherTemperatureUnitLabel.text = "Degrees F"
-    } else {
+    } else if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue{
       print("Celsius Unit Display Selected!")
-      weatherTemperatureUnitControl.setEnabled(true, forSegmentAt: TempUnitControlSegment.celsius.rawValue)
+      weatherTemperatureUnitControl.selectedSegmentIndex = TempUnitControlSegment.celsius.rawValue
       weatherTemperatureUnitLabel.text = "Degrees C"
+    }
+    if let temperature = journalEntryViewModel?.weatherTemperatureDisplay() {
+      weatherTemperatureField.text = temperature
     }
   }
 
@@ -221,7 +224,6 @@ class JournalEditorViewController: UITableViewController {
     weatherTemperatureField.delegate = self
     weatherDescriptionField.delegate = self
 
-    checkTemperatureUnitDisplay()
     loadInitialValues()
 
     showHideDelete()
@@ -239,9 +241,11 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
+  /*
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
   }
+ */
 
   func loadInitialValues() {
     (datePicker.date, startTimePicker.date, endTimePicker.date) =
@@ -265,10 +269,8 @@ class JournalEditorViewController: UITableViewController {
       self.longitude = longitude
     }
 
-    if let temperature = entryViewModel.weatherTemperatureDisplay() {
-      weatherTemperatureField.text = temperature
-    }
-
+    checkTemperatureUnitDisplay()
+    
     if let weatherNotes = entryViewModel.weatherNotesDisplay() {
       weatherDescriptionField.text = weatherNotes
     }

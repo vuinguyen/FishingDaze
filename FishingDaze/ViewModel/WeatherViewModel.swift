@@ -83,7 +83,9 @@ class WeatherViewModel {
         return ""
       }
 
-    return temperature.description
+    // TODO
+    return getTemperatureForUnit(tempInFDegrees: temperature)
+    //return temperature.description
   }
 
   func displayWeatherinView(UIcompletion: ((_ temperature: String?, _ notes: String?) -> Void)?) {
@@ -94,12 +96,27 @@ class WeatherViewModel {
     self.fDegrees = weatherData.fDegrees
     self.shortNotes = weatherData.shortNotes
 
-    let tempDisplay = String(weatherData.fDegrees)
+    //let temperatureDisplay = String(weatherData.fDegrees)
+    // TODO
+    let temperatureDisplay = getTemperatureForUnit(tempInFDegrees: weatherData.fDegrees)
     if let UIcompletion = UIcompletion {
       DispatchQueue.main.async {
-        UIcompletion(tempDisplay, self.shortNotes)
+        UIcompletion(temperatureDisplay, self.shortNotes)
       }
     }
+  }
+
+  // TODO
+  private func getTemperatureForUnit(tempInFDegrees: Double) -> String? {
+    var temperatureString = String(tempInFDegrees)
+    if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue {
+      let fahreinheitTemp = Measurement(value: tempInFDegrees, unit: UnitTemperature.fahrenheit)
+      let celsiusTemp = fahreinheitTemp.converted(to: UnitTemperature.celsius)
+      let formatter = NumberFormatter()
+      formatter.maximumFractionDigits = 1
+      temperatureString = formatter.string(from: NSNumber(value: celsiusTemp.value)) ?? ""
+    }
+    return temperatureString
   }
 
 }
