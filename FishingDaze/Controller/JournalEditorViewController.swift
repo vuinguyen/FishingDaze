@@ -63,7 +63,7 @@ class JournalEditorViewController: UITableViewController {
 
   private func checkTemperatureUnitDisplay() {
     if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.fahreinhet.rawValue {
-      print("Fahreinheit Unit Display Selected!")
+      print("Fahrenheit Unit Display Selected!")
       weatherTemperatureUnitControl.selectedSegmentIndex = TempUnitControlSegment.fahreinhet.rawValue
       weatherTemperatureUnitLabel.text = "Degrees F"
     } else if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue{

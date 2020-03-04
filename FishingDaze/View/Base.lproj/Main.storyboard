@@ -245,9 +245,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XmI-JL-14z">
-                                                    <rect key="frame" x="71.5" y="6.5" width="177" height="32"/>
+                                                    <rect key="frame" x="75.5" y="6.5" width="169" height="32"/>
                                                     <segments>
-                                                        <segment title="Fahreinheit"/>
+                                                        <segment title="Fahrenheit"/>
                                                         <segment title="Celsius"/>
                                                     </segments>
                                                     <connections>

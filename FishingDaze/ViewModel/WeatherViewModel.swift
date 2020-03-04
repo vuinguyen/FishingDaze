@@ -110,8 +110,8 @@ class WeatherViewModel {
   private func getTemperatureForUnit(tempInFDegrees: Double) -> String? {
     var temperatureString = String(tempInFDegrees)
     if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue {
-      let fahreinheitTemp = Measurement(value: tempInFDegrees, unit: UnitTemperature.fahrenheit)
-      let celsiusTemp = fahreinheitTemp.converted(to: UnitTemperature.celsius)
+      let fahrenheitTemp = Measurement(value: tempInFDegrees, unit: UnitTemperature.fahrenheit)
+      let celsiusTemp = fahrenheitTemp.converted(to: UnitTemperature.celsius)
       let formatter = NumberFormatter()
       formatter.maximumFractionDigits = 1
       temperatureString = formatter.string(from: NSNumber(value: celsiusTemp.value)) ?? ""
