@@ -13,6 +13,11 @@ struct WeatherData {
   var fDegrees: Double
 }
 
+enum TemperatureUnit: String {
+  case fahreinhet
+  case celsius 
+}
+
 protocol WeatherAPIManagerDelegate {
   func weatherManager(_ manager: WeatherAPIManager, didUpdateWeather weatherData: [WeatherData])
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error)

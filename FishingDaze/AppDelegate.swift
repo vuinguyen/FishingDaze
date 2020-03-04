@@ -14,9 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  func checkIfFirstLaunch() {
+    if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
+      print("App has launched before")
+    } else {
+      print("This is the first launch ever!")
+      UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
+      UserDefaults.standard.set(TemperatureUnit.fahreinhet.rawValue, forKey: "TemperatureUnitKey")
+      UserDefaults.standard.synchronize()
+    }
+  }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    checkIfFirstLaunch()
     return true
   }
 

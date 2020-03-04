@@ -28,7 +28,12 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var saveBarButton: UIBarButtonItem!
 
   @IBAction func selectTemperatureUnitDisplay(_ sender: Any) {
-    print("Temperature Unit Display Selected!")
+    if weatherTemperatureUnitControl.selectedSegmentIndex == TempUnitControlSegment.fahreinhet.rawValue {
+      UserDefaults.standard.set(TemperatureUnit.fahreinhet.rawValue, forKey: "TemperatureUnitKey")
+    } else {
+      UserDefaults.standard.set(TemperatureUnit.celsius.rawValue, forKey: "TemperatureUnitKey")
+    }
+    checkTemperatureUnitDisplay()
   }
   
   @IBAction func getCurrentLocation(_ sender: Any) {
@@ -56,6 +61,19 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
+  private func checkTemperatureUnitDisplay() {
+    if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.fahreinhet.rawValue {
+      print("Fahreinheit Unit Display Selected!")
+      weatherTemperatureUnitControl.setEnabled(true, forSegmentAt: TempUnitControlSegment.fahreinhet.rawValue)
+      weatherTemperatureUnitLabel.text = "Degrees F"
+    } else {
+      print("Celsius Unit Display Selected!")
+      weatherTemperatureUnitControl.setEnabled(true, forSegmentAt: TempUnitControlSegment.celsius.rawValue)
+      weatherTemperatureUnitLabel.text = "Degrees C"
+    }
+  }
+
+  
   func getCoordinates() {
     // first, check for existing latitude and longitude
     if let _ = latitude, let _ = longitude {
@@ -199,7 +217,12 @@ class JournalEditorViewController: UITableViewController {
   //var photoImages: [UIImage]?
   var photos: [UIImage]?
   //var photoDictionary: [UIImage: Photo]?
-  
+
+  enum TempUnitControlSegment: Int {
+    case fahreinhet = 0
+    case celsius = 1
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -214,6 +237,7 @@ class JournalEditorViewController: UITableViewController {
     weatherTemperatureField.delegate = self
     weatherDescriptionField.delegate = self
 
+    checkTemperatureUnitDisplay()
     loadInitialValues()
 
     showHideDelete()
