@@ -106,7 +106,7 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
   }
 
   private func configurePageControl() {
-    pageControl.currentPageIndicatorTintColor = .red
+    pageControl.currentPageIndicatorTintColor = .systemBlue
     pageControl.pageIndicatorTintColor = .lightGray
     pageControl.numberOfPages = photos.count
 

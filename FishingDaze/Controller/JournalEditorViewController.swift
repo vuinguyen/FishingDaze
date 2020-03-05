@@ -20,6 +20,8 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet var weatherTemperatureUnitLabel: UILabel!
   @IBOutlet var weatherTemperatureUnitControl: UISegmentedControl!
 
+  @IBOutlet var notesTextView: UITextView!
+  
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var startTimePicker: UIDatePicker!
   @IBOutlet weak var endTimePicker: UIDatePicker!
