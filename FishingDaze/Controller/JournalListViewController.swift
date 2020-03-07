@@ -15,11 +15,6 @@ class JournalListViewController: UIViewController {
 
   @IBAction func returnToJournalList(_ unwindSegue: UIStoryboardSegue) {
     print("return to Journal List!")
-    /*
-    guard let editorViewController = unwindSegue.source as? JournalEditorViewController else {
-        return
-    }
- */
     journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
     tableView.reloadData()
  }

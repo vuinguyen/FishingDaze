@@ -78,48 +78,6 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
-  
-  func getCoordinates() {
-    // first, check for existing latitude and longitude
-    if let _ = latitude, let _ = longitude {
-      print("getCoordinates: got it here 1st")
-      return
-    }
-
-    // then, check for address in textfield
-    if addressTextField.hasText {
-      // geocode the address into coordinates
-
-      // we should wrap all of this in a
-      // journalEntryViewModel.weatherDisplay(locationString, completionHandler)
-      let geocoder = CLGeocoder()
-      geocoder.geocodeAddressString(addressTextField.text!) { (placemarks, error) in
-          if error == nil {
-              if let placemark = placemarks?[0] {
-                  let location = placemark.location!
-
-                  //completionHandler(location.coordinate, nil)
-               // return (location.coordinate.latitude, location.coordinate.longitude)
-                self.latitude = location.coordinate.latitude
-                self.longitude = location.coordinate.longitude
-                print("getCoordinates: got it here 2nd")
-              }
-          }
-
-         // completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
-      }
-
-
-
-    } else {
-      // call geolocation
-      if let locationManager = locationManager {
-        locationManager.requestLocation()
-      }
-      print("getCoordinates: got it here 3rd")
-    }
-  }
-
   @IBAction func deleteEntry(_ sender: Any) {
     print("we're going to delete an entry!")
     // Create the action buttons for the alert.
@@ -215,11 +173,6 @@ class JournalEditorViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem
     setupDelegates()
     loadInitialValues()
     showHideDeleteButton()
