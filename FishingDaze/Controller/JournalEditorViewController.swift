@@ -155,6 +155,7 @@ class JournalEditorViewController: UITableViewController {
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
   }
 
+  let noteAreaDefaultText = "Add Additional Notes Here"
   var showDelete = false
   var journalEntryViewModel: JournalEntryViewModel?
   var locationManager: CLLocationManager?
