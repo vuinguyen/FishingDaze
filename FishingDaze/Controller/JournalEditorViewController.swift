@@ -220,15 +220,10 @@ class JournalEditorViewController: UITableViewController {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-    bodyOfWaterTextField.delegate = self
-    addressTextField.delegate = self
-    weatherTemperatureField.delegate = self
-    weatherDescriptionField.delegate = self
-
+    setupDelegates()
     loadInitialValues()
-
-    showHideDelete()
+    showHideDeleteButton()
+    hideKeyboardWhenDoneEditing()
 
     locationManager = CLLocationManager()
     if let locationManager = locationManager {
@@ -243,11 +238,19 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
-  /*
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  func setupDelegates() {
+    bodyOfWaterTextField.delegate = self
+    addressTextField.delegate = self
+    weatherTemperatureField.delegate = self
+    weatherDescriptionField.delegate = self
+    notesTextView.delegate = self
   }
- */
+
+  func hideKeyboardWhenDoneEditing() {
+    let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+    tap.cancelsTouchesInView = false
+    view.addGestureRecognizer(tap)
+  }
 
   func loadInitialValues() {
     (datePicker.date, startTimePicker.date, endTimePicker.date) =
@@ -282,7 +285,7 @@ class JournalEditorViewController: UITableViewController {
     }
   }
 
-  func showHideDelete() {
+  func showHideDeleteButton() {
     deleteEntryButton.isHidden = showDelete == true ? false : true
     deleteEntryButton.isEnabled = showDelete == true ? true : false
   }
@@ -318,6 +321,11 @@ extension JournalEditorViewController: UITextFieldDelegate {
     return true
   }
 
+}
+
+// MARK: UITextViewDelegate
+// TODO: will we need this?
+extension JournalEditorViewController: UITextViewDelegate {
 }
 
 // MARK: CLLocationManagerDelegate
