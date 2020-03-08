@@ -14,7 +14,7 @@ class NotesViewModel {
   var text: String?
 
   var entryModel: Entry?
-  var noteModel: Notes?  // Note in Core Data model
+  var notesModel: Notes?  // Note in Core Data model
 
   init() {
 
@@ -23,8 +23,8 @@ class NotesViewModel {
   init(entryModel: Entry) {
     // add to Core Data
     let entity = NSEntityDescription.entity(forEntityName: "Notes", in: managedContext)!
-    noteModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Notes
-    noteModel?.entry = entryModel
+    notesModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Notes
+    notesModel?.entry = entryModel
     self.entryModel = entryModel
     do {
       try managedContext.save()
@@ -36,26 +36,38 @@ class NotesViewModel {
 
   // TODO: fetch
   static func fetchNotesViewModel(entryModel: Entry?) -> NotesViewModel? {
-    var noteViewModel: NotesViewModel?
+    var notesViewModel: NotesViewModel?
 
     guard let entryModel = entryModel else {
-      return noteViewModel
+      return notesViewModel
     }
+
+    let managedContext = PersistenceManager.shared.managedContext!
+    let entryPredicate = NSPredicate(format: "entry == %@", entryModel)
 
     do {
       let fetchRequest:NSFetchRequest<Notes> = Notes.fetchRequest()
-    
+      let multipleNotes = try managedContext.fetch(fetchRequest)
+      let multipleNotesFound = (multipleNotes as NSArray).filtered(using: entryPredicate) as! [NSManagedObject]
+
+      if multipleNotesFound.count >= 1 {
+        if let notesFound = multipleNotesFound[0] as? Notes {
+          notesViewModel = NotesViewModel()
+          notesViewModel?.entryModel = entryModel
+          notesViewModel?.notesModel = notesFound
+        }
+      }
 
     } catch let error as NSError {
       print("Could not fetch or save from context. \(error), \(error.userInfo)")
     }
-    return noteViewModel
+    return notesViewModel
   }
 
   func notesDisplay() -> String? {
-    guard let note = noteModel,
-      let text = note.text else {
-      return ""
+    guard let notes = notesModel,
+      let text = notes.text else {
+        return ""
     }
 
     return text
@@ -65,7 +77,18 @@ class NotesViewModel {
 //TODO
 extension NotesViewModel: CoreDataFunctions {
   func save() {
+    guard let notes = notesModel else {
+      return
+    }
 
+    if let text = text {
+      notes.text = text
+    }
 
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
   }
 }

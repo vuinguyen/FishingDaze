@@ -17,7 +17,7 @@ class JournalEntryViewModel {
   private var locationViewModel: LocationViewModel?
   private var weatherViewModel: WeatherViewModel?
   private var photoViewModel: PhotoViewModel?
-  private var noteViewModel: NotesViewModel?
+  private var notesViewModel: NotesViewModel?
 
   // We have these attributes here to allow the user to
   // pass the data that they want to save to Core Data directly
@@ -196,8 +196,12 @@ class JournalEntryViewModel {
   // to be used when Notes is in Core Data
   // TODO
   func entryNotesDisplay() -> String? {
-    return ""
+    if notesViewModel == nil,
+       let entryModel = entryModel  {
+      notesViewModel = NotesViewModel.fetchNotesViewModel(entryModel: entryModel)
+    }
 
+    return notesViewModel?.notesDisplay()
   }
   
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
@@ -265,7 +269,10 @@ class JournalEntryViewModel {
 
   // TODO
   private func fetchNotes() {
-
+    if notesViewModel == nil,
+      let entryModel = entryModel {
+      notesViewModel = NotesViewModel.fetchNotesViewModel(entryModel: entryModel)
+    }
   }
 
   func cancelChanges() {
@@ -367,7 +374,17 @@ class JournalEntryViewModel {
 
   // TODO
   private func saveNotes() {
+    guard let text = text else {
+      return
+    }
 
+    if notesViewModel == nil,
+       let entryModel = entryModel {
+      notesViewModel = NotesViewModel(entryModel: entryModel)
+    }
+
+    notesViewModel?.text = text
+    notesViewModel?.save()
   }
 
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
