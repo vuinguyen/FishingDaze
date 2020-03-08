@@ -17,7 +17,7 @@ class JournalEntryViewModel {
   private var locationViewModel: LocationViewModel?
   private var weatherViewModel: WeatherViewModel?
   private var photoViewModel: PhotoViewModel?
-  private var noteViewModel: NoteViewModel?
+  private var noteViewModel: NotesViewModel?
 
   // We have these attributes here to allow the user to
   // pass the data that they want to save to Core Data directly
@@ -236,7 +236,7 @@ class JournalEntryViewModel {
     fetchLocation()
     fetchWeather()
     fetchPhoto()
-    fetchNote()
+    fetchNotes()
   }
 
   // we already grabbed the attributes for Entry earlier, so now we just need to grab
@@ -264,7 +264,7 @@ class JournalEntryViewModel {
   }
 
   // TODO
-  private func fetchNote() {
+  private func fetchNotes() {
 
   }
 
@@ -366,7 +366,7 @@ class JournalEntryViewModel {
   }
 
   // TODO
-  private func saveNote() {
+  private func saveNotes() {
 
   }
 
@@ -456,7 +456,7 @@ extension JournalEntryViewModel: CoreDataFunctions {
     saveLocation()
     saveWeather()
     savePhoto()
-    saveNote()
+    saveNotes()
   }
 }
 

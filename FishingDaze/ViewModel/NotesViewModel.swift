@@ -9,12 +9,12 @@
 import Foundation
 import CoreData
 
-class NoteViewModel {
+class NotesViewModel {
   private let managedContext = PersistenceManager.shared.managedContext!
   var text: String?
 
   var entryModel: Entry?
-  var noteModel: Note?  // Notes in Core Data model
+  var noteModel: Notes?  // Note in Core Data model
 
   init() {
 
@@ -22,8 +22,8 @@ class NoteViewModel {
 
   init(entryModel: Entry) {
     // add to Core Data
-    let entity = NSEntityDescription.entity(forEntityName: "Note", in: managedContext)!
-    noteModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Note
+    let entity = NSEntityDescription.entity(forEntityName: "Notes", in: managedContext)!
+    noteModel = NSManagedObject(entity: entity, insertInto: managedContext) as? Notes
     noteModel?.entry = entryModel
     self.entryModel = entryModel
     do {
@@ -35,21 +35,21 @@ class NoteViewModel {
 
 
   // TODO: fetch
-  static func fetchNotesViewModel(entryModel: Entry?) -> NoteViewModel? {
-    var notesViewModel: NoteViewModel?
+  static func fetchNotesViewModel(entryModel: Entry?) -> NotesViewModel? {
+    var noteViewModel: NotesViewModel?
 
     guard let entryModel = entryModel else {
-      return notesViewModel
+      return noteViewModel
     }
 
     do {
-      let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
+      let fetchRequest:NSFetchRequest<Notes> = Notes.fetchRequest()
     
 
     } catch let error as NSError {
       print("Could not fetch or save from context. \(error), \(error.userInfo)")
     }
-    return notesViewModel
+    return noteViewModel
   }
 
   func notesDisplay() -> String? {
@@ -63,7 +63,7 @@ class NoteViewModel {
 }
 
 //TODO
-extension NoteViewModel: CoreDataFunctions {
+extension NotesViewModel: CoreDataFunctions {
   func save() {
 
 
