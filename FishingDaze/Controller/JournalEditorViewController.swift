@@ -182,7 +182,8 @@ class JournalEditorViewController: UITableViewController {
     setupDelegates()
     loadInitialValues()
     showHideDeleteButton()
-    hideKeyboardWhenDoneEditing()
+    hideKeyboardClickOutsideTextBox()
+    hideKeyboardWithDoneButton()
 
     locationManager = CLLocationManager()
     if let locationManager = locationManager {
@@ -205,10 +206,31 @@ class JournalEditorViewController: UITableViewController {
     notesTextView.delegate = self
   }
 
-  func hideKeyboardWhenDoneEditing() {
-    let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+  func hideKeyboardClickOutsideTextBox() {
+    let tap = UITapGestureRecognizer(target: self.view, action: #selector(doneButtonAction))
     tap.cancelsTouchesInView = false
     view.addGestureRecognizer(tap)
+  }
+
+  func hideKeyboardWithDoneButton() {
+    let toolbar = UIToolbar(frame: CGRect(origin: .zero, size: .init(width: view.frame.size.width, height: 30)))
+
+    let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+
+    toolbar.setItems([flexSpace, doneButton], animated: false)
+
+    bodyOfWaterTextField.inputAccessoryView = toolbar
+    addressTextField.inputAccessoryView = toolbar
+
+    weatherTemperatureField.inputAccessoryView = toolbar
+    weatherDescriptionField.inputAccessoryView = toolbar
+
+    notesTextView.inputAccessoryView = toolbar
+  }
+
+  @objc func doneButtonAction() {
+    self.view.endEditing(true)
   }
 
   func loadInitialValues() {
