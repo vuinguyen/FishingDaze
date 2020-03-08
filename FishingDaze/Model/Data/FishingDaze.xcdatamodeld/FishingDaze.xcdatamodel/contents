@@ -5,7 +5,7 @@
         <attribute name="endDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="startDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="entry" inverseEntity="Location"/>
-        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Notes" inverseName="entry" inverseEntity="Notes"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Note" inverseName="entry" inverseEntity="Note"/>
         <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="entry" inverseEntity="Photo"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
@@ -16,9 +16,9 @@
         <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="location" inverseEntity="Entry"/>
         <relationship name="weather" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Weather" inverseName="location" inverseEntity="Weather"/>
     </entity>
-    <entity name="Notes" representedClassName="Notes" syncable="YES" codeGenerationType="class">
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
         <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="notes" inverseEntity="Entry"/>
+        <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="note" inverseEntity="Entry"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -32,7 +32,7 @@
     <elements>
         <element name="Entry" positionX="-722.79296875" positionY="28.16015625" width="151.41015625" height="133"/>
         <element name="Location" positionX="-484.44140625" positionY="73.07421875" width="128" height="135"/>
-        <element name="Notes" positionX="-214.03125" positionY="168.671875" width="128" height="73"/>
+        <element name="Note" positionX="-214.03125" positionY="168.671875" width="128" height="73"/>
         <element name="Photo" positionX="-375.1640625" positionY="238.91796875" width="128" height="73"/>
         <element name="Weather" positionX="-293.5625" positionY="88.03515625" width="128" height="88"/>
     </elements>

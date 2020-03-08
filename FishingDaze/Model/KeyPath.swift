@@ -16,7 +16,7 @@ enum KeyPath: String {
   // Entry relationships
   case location
   case photo
-  case notes
+  case note
 
   // for Location
   case address
@@ -34,6 +34,6 @@ enum KeyPath: String {
   // for Photo
   case image
 
-  // for Notes
+  // for Note
   case text
 }

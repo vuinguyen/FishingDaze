@@ -33,6 +33,7 @@
 		52B2B21022BBF03E0022C15C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B20F22BBF03E0022C15C /* Assets.xcassets */; };
 		52B2B21322BBF03E0022C15C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B2B21122BBF03E0022C15C /* LaunchScreen.storyboard */; };
 		52B2B21E22BBF03E0022C15C /* FishingDazeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2B21D22BBF03E0022C15C /* FishingDazeTests.swift */; };
+		52B8A42A24145BB4001F16C8 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A42924145BB4001F16C8 /* NoteViewModel.swift */; };
 		52D45D1B24044CE8009F3BF1 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D45D1A24044CE8009F3BF1 /* PhotoViewModel.swift */; };
 		52D59D7122C578EF003CCB69 /* JournalEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */; };
 		52D59D7322C584BC003CCB69 /* JournalEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */; };
@@ -79,6 +80,7 @@
 		52B2B21922BBF03E0022C15C /* FishingDazeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishingDazeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B2B21D22BBF03E0022C15C /* FishingDazeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingDazeTests.swift; sourceTree = "<group>"; };
 		52B2B21F22BBF03E0022C15C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52B8A42924145BB4001F16C8 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		52D45D1A24044CE8009F3BF1 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		52D59D7022C578EF003CCB69 /* JournalEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewController.swift; sourceTree = "<group>"; };
 		52D59D7222C584BC003CCB69 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				5281CB332343C5A80002BF35 /* LocationViewModel.swift */,
 				5233800323C3CFAD001B587E /* WeatherViewModel.swift */,
 				52D45D1A24044CE8009F3BF1 /* PhotoViewModel.swift */,
+				52B8A42924145BB4001F16C8 /* NoteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				527EBFDE22D7CCE900051BA0 /* JournalListTableViewCell.swift in Sources */,
 				520A2DA7233986460070CD57 /* String+Extension.swift in Sources */,
 				520A2DA9233B0C820070CD57 /* PersistenceManager.swift in Sources */,
+				52B8A42A24145BB4001F16C8 /* NoteViewModel.swift in Sources */,
 				5281CB342343C5A80002BF35 /* LocationViewModel.swift in Sources */,
 				526BEA0223CFE13F002A6539 /* JournalPhotoScrollViewController.swift in Sources */,
 				52B2B20622BBF03D0022C15C /* AppDelegate.swift in Sources */,

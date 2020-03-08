@@ -150,6 +150,11 @@ class JournalEditorViewController: UITableViewController {
       journalEntryViewModel?.images = photos
     }
 
+    // if notes isn't blank & notes isn't default text
+    if notesTextView.text != "" && notesTextView.text != noteAreaDefaultText {
+      journalEntryViewModel?.text = notesTextView.text
+    }
+
     journalEntryViewModel?.save()
 
     self.performSegue(withIdentifier: "ReturnToJournalListSegue", sender: nil)
@@ -237,6 +242,10 @@ class JournalEditorViewController: UITableViewController {
     if let photos = entryViewModel.photoValues() {
       self.photos = photos
     }
+
+    if let entryNotes = entryViewModel.entryNotesDisplay() {
+      notesTextView.text = entryNotes
+    }
   }
 
   func showHideDeleteButton() {
@@ -278,8 +287,12 @@ extension JournalEditorViewController: UITextFieldDelegate {
 }
 
 // MARK: UITextViewDelegate
-// TODO: will we need this?
 extension JournalEditorViewController: UITextViewDelegate {
+  func textViewDidBeginEditing(_ textView: UITextView) {
+    if notesTextView.text == noteAreaDefaultText {
+      notesTextView.text = ""
+    }
+  }
 }
 
 // MARK: CLLocationManagerDelegate

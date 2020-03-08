@@ -17,6 +17,7 @@ class JournalEntryViewModel {
   private var locationViewModel: LocationViewModel?
   private var weatherViewModel: WeatherViewModel?
   private var photoViewModel: PhotoViewModel?
+  private var noteViewModel: NoteViewModel?
 
   // We have these attributes here to allow the user to
   // pass the data that they want to save to Core Data directly
@@ -52,6 +53,9 @@ class JournalEntryViewModel {
   // from Photo
   var images: [UIImage]?
   //var photoDictionary: [UIImage:Photo]?
+
+  // from Notes
+  var text: String?
 
   init() {
     let entity =
@@ -189,6 +193,13 @@ class JournalEntryViewModel {
     return photoViewModel?.photoImages()
   }
 
+  // to be used when Notes is in Core Data
+  // TODO
+  func entryNotesDisplay() -> String? {
+    return ""
+
+  }
+  
   static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
     var viewModels: [JournalEntryViewModel] = []
     let managedContext = PersistenceManager.shared.managedContext!
@@ -225,6 +236,7 @@ class JournalEntryViewModel {
     fetchLocation()
     fetchWeather()
     fetchPhoto()
+    fetchNote()
   }
 
   // we already grabbed the attributes for Entry earlier, so now we just need to grab
@@ -249,6 +261,11 @@ class JournalEntryViewModel {
       let entryModel = entryModel {
       photoViewModel = PhotoViewModel.fetchPhotoViewModel(entryModel: entryModel)
     }
+  }
+
+  // TODO
+  private func fetchNote() {
+
   }
 
   func cancelChanges() {
@@ -348,6 +365,10 @@ class JournalEntryViewModel {
     photoViewModel?.save()
   }
 
+  // TODO
+  private func saveNote() {
+
+  }
 
   static func deleteJournalEntryViewModel(existingViewModel: JournalEntryViewModel?, UIcompletion:  @escaping () -> Void) {
     // find journal entry in Core Data and delete from Core Data
@@ -435,6 +456,7 @@ extension JournalEntryViewModel: CoreDataFunctions {
     saveLocation()
     saveWeather()
     savePhoto()
+    saveNote()
   }
 }
 
