@@ -15,9 +15,16 @@ class JournalListViewController: UIViewController {
 
   @IBAction func returnToJournalList(_ unwindSegue: UIStoryboardSegue) {
     print("return to Journal List!")
+    //journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels(UIcompletion: self.tableView.reloadData)
+    /*
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
+ */
+    //tableView.reloadData()
     journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
     tableView.reloadData()
- }
+  }
 
   let reuseIdentifier = "JournalEntryCell"
   var selectedIndex = 0
@@ -30,10 +37,14 @@ class JournalListViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
+    //journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels(UIcompletion: self.tableView.reloadData)
+    /*
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }
+ */
+    journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
+    tableView.reloadData()
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,13 +56,14 @@ class JournalListViewController: UIViewController {
       let journalEntryViewModelWithData = journalEntryViewModels[selectedIndex]
       journalEntryViewModelWithData.fetch()
       detailVC.journalEntryViewModel = journalEntryViewModelWithData
-
     } else if segue.identifier == "addNewEntry" {
       let navigationController = segue.destination as! UINavigationController
       let entryVC = navigationController.viewControllers[0] as! JournalEditorViewController
       entryVC.showDelete = false
     }
   }
+
+
 }
 
 extension JournalListViewController: UITableViewDelegate, UITableViewDataSource {
