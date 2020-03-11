@@ -182,7 +182,7 @@ class JournalEditorViewController: UITableViewController {
     setupDelegates()
     loadInitialValues()
     showHideDeleteButton()
-    hideKeyboardClickOutsideTextBox()
+    //hideKeyboardClickOutsideTextBox()
     hideKeyboardWithDoneButton()
 
     locationManager = CLLocationManager()
