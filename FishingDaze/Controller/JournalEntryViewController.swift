@@ -17,37 +17,28 @@ class JournalEntryViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    guard let journalEntryViewModel = journalEntryViewModel else {
-      return
-    }
-
-    // if there is a journal entry, it will have at the very least
-    // date and time. Everything else is optional
-    dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
-
-
-    if let photos = journalEntryViewModel.photoValues() {
-      self.photos = photos
-    }
-
+    displayValues()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    displayValues()
+  }
 
-    guard let journalEntryViewModel = journalEntryViewModel else {
-      return
+    private func displayValues() {
+      guard let journalEntryViewModel = journalEntryViewModel else {
+        return
+      }
+
+      // if there is a journal entry, it will have at the very least
+      // date and time. Everything else is optional
+      dateLabel.text = journalEntryViewModel.startDateDisplay()
+
+
+      if let photos = journalEntryViewModel.photoValues() {
+        self.photos = photos
     }
 
-    // if there is a journal entry, it will have at the very least
-    // date and time. Everything else is optional
-    dateLabel.text = journalEntryViewModel.startDateTimeDisplay()
-
-
-    if let photos = journalEntryViewModel.photoValues() {
-      self.photos = photos
-    }
   }
   // MARK: - Navigation
 
