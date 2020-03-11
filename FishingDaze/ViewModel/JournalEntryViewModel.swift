@@ -92,6 +92,19 @@ class JournalEntryViewModel {
     return startDate.string(dateStyle: .long)
   }
 
+  func timeIntervalDisplay() -> String {
+    var timeIntervalString = ""
+    guard let entryModel = entryModel,
+          let startTime = entryModel.startDateTime,
+          let endTime = entryModel.endDateTime else {
+      return timeIntervalString
+    }
+    timeIntervalString = startTime.string(dateStyle: .none, timeStyle: .short) +
+                         " - " +
+                         endTime.string(dateStyle: .none, timeStyle: .short)
+    return timeIntervalString
+  }
+
   // to be used when location is not added to Core Data yet
   func addressDisplay(locations: [CLLocation],  UIcompletion: ((String) -> Void)?) -> Void {
 

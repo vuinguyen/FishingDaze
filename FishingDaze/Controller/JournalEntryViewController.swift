@@ -11,7 +11,8 @@ import UIKit
 class JournalEntryViewController: UIViewController {
 
   @IBOutlet weak var dateLabel: UILabel!
-
+  @IBOutlet var timeIntervalLabel: UILabel!
+  
   var journalEntryViewModel: JournalEntryViewModel?
   var photos: [UIImage]?
 
@@ -33,7 +34,7 @@ class JournalEntryViewController: UIViewController {
       // if there is a journal entry, it will have at the very least
       // date and time. Everything else is optional
       dateLabel.text = journalEntryViewModel.startDateDisplay()
-
+      timeIntervalLabel.text = journalEntryViewModel.timeIntervalDisplay()
 
       if let photos = journalEntryViewModel.photoValues() {
         self.photos = photos

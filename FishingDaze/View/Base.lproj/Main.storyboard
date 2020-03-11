@@ -480,7 +480,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="poF-pl-BY2">
-                                <rect key="frame" x="-0.5" y="92" width="321" height="296"/>
+                                <rect key="frame" x="-0.5" y="92" width="321" height="316.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCa-sO-CV1">
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="36"/>
@@ -488,8 +488,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Interval" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azq-gV-hcc">
+                                        <rect key="frame" x="0.0" y="36" width="321" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3E-tw-24W">
-                                        <rect key="frame" x="0.0" y="36" width="321" height="260"/>
+                                        <rect key="frame" x="0.0" y="56.5" width="321" height="260"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" id="MCq-di-A55">
                                                 <rect key="frame" x="0.0" y="0.0" width="321" height="260"/>
@@ -513,7 +519,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="poF-pl-BY2" firstAttribute="width" secondItem="o0X-69-ca8" secondAttribute="width" constant="1" id="3DY-Wo-0Dh"/>
-                            <constraint firstItem="poF-pl-BY2" firstAttribute="centerY" secondItem="o0X-69-ca8" secondAttribute="centerY" id="CGU-kb-mbY"/>
                             <constraint firstItem="poF-pl-BY2" firstAttribute="centerX" secondItem="o0X-69-ca8" secondAttribute="centerX" id="UXS-li-hcJ"/>
                             <constraint firstItem="poF-pl-BY2" firstAttribute="top" secondItem="USe-iR-nbK" secondAttribute="top" constant="48" id="Wyq-B4-VxL"/>
                         </constraints>
@@ -528,6 +533,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="OCa-sO-CV1" id="tEF-f9-Mdi"/>
+                        <outlet property="timeIntervalLabel" destination="azq-gV-hcc" id="sOM-To-I2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IfB-FY-F4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
