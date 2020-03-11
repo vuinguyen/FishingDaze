@@ -31,7 +31,9 @@ class JournalListViewController: UIViewController {
     super.viewWillAppear(animated)
 
     journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
-    tableView.reloadData()
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
