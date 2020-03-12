@@ -10,8 +10,12 @@ import UIKit
 
 class JournalEntryViewController: UIViewController {
 
+  @IBOutlet var bodyOfWaterLabel: UILabel!
+  @IBOutlet var addressLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet var timeIntervalLabel: UILabel!
+  @IBOutlet var weatherLabel: UILabel!
+  @IBOutlet var additionalNotesLabel: UILabel!
   
   var journalEntryViewModel: JournalEntryViewModel?
   var photos: [UIImage]?
@@ -31,8 +35,34 @@ class JournalEntryViewController: UIViewController {
     dateLabel.text = journalEntryViewModel.startDateDisplay()
     timeIntervalLabel.text = journalEntryViewModel.timeIntervalDisplay()
 
+    if let bodyOfWater = journalEntryViewModel.bodyOfWaterDisplay() {
+      bodyOfWaterLabel.text = bodyOfWater
+    }
+
+    if let address = journalEntryViewModel.addressDisplay() {
+      addressLabel.text = address
+    }
+
     if let photos = journalEntryViewModel.photoValues() {
       self.photos = photos
+    }
+
+    if let weatherWithUnit = journalEntryViewModel.weatherTemperatureWithUnitDisplay() {
+      var weatherLabelText = "Weather: "
+      weatherLabelText = weatherLabelText + weatherWithUnit
+
+      if let weatherNotes = journalEntryViewModel.weatherNotesDisplay() {
+        if weatherLabelText.contains("Weather: ") {
+          weatherLabelText = weatherLabelText + ", " + weatherNotes
+        } else {
+          weatherLabelText = weatherLabelText + weatherNotes
+        }
+      }
+      weatherLabel.text = weatherLabelText
+    }
+
+    if let notes = journalEntryViewModel.entryNotesDisplay() {
+      additionalNotesLabel.text = notes
     }
 
   }

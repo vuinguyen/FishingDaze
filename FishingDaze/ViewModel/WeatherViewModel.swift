@@ -88,6 +88,25 @@ class WeatherViewModel {
     //return temperature.description
   }
 
+  func temperatureWithUnitDisplay() -> String? {
+    guard let weather = weatherModel,
+    let temperature = weather.fDegrees as Double? else {
+      return ""
+    }
+
+    var temperatureString = String(temperature)
+    if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue {
+      let fahrenheitTemp = Measurement(value: temperature, unit: UnitTemperature.fahrenheit)
+      let celsiusTemp = fahrenheitTemp.converted(to: UnitTemperature.celsius)
+      let formatter = NumberFormatter()
+      formatter.maximumFractionDigits = 1
+      temperatureString = (formatter.string(from: NSNumber(value: celsiusTemp.value)) ?? "") + " C Degrees"
+    } else {
+      temperatureString = temperatureString + " F Degrees"
+    }
+    return temperatureString
+  }
+
   func displayWeatherinView(UIcompletion: ((_ temperature: String?, _ notes: String?) -> Void)?) {
     guard let weatherData = weatherData else {
       return
