@@ -217,7 +217,7 @@ class JournalEntryViewModel {
     return notesViewModel?.notesDisplay()
   }
   
-  static func fetchJournalEntryViewModels(UIcompletion: (() -> Void)? = nil) -> [JournalEntryViewModel] {
+  static func fetchJournalEntryViewModels() -> [JournalEntryViewModel] {
     var viewModels: [JournalEntryViewModel] = []
     let managedContext = PersistenceManager.shared.managedContext!
 
@@ -243,15 +243,10 @@ class JournalEntryViewModel {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
 
-    if let UIcompletion = UIcompletion {
-      DispatchQueue.main.async {
-        UIcompletion()
-      }
-    }
     return viewModels
   }
 
-  func fetch(UIcompletion: (() -> Void)? = nil) {
+  func fetch() {
     if entryModel == nil {
       print("we have an error with retrieving the Entry model!")
       return
@@ -260,11 +255,6 @@ class JournalEntryViewModel {
     fetchWeather()
     fetchPhoto()
     fetchNotes()
-    if let UIcompletion = UIcompletion {
-      DispatchQueue.main.async {
-        UIcompletion()
-      }
-    }
   }
 
   // we already grabbed the attributes for Entry earlier, so now we just need to grab

@@ -15,13 +15,6 @@ class JournalListViewController: UIViewController {
 
   @IBAction func returnToJournalList(_ unwindSegue: UIStoryboardSegue) {
     print("return to Journal List!")
-    //journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels(UIcompletion: self.tableView.reloadData)
-    /*
-    DispatchQueue.main.async {
-      self.tableView.reloadData()
-    }
- */
-    //tableView.reloadData()
     journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
     tableView.reloadData()
   }
@@ -36,13 +29,6 @@ class JournalListViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
-    //journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels(UIcompletion: self.tableView.reloadData)
-    /*
-    DispatchQueue.main.async {
-      self.tableView.reloadData()
-    }
- */
     journalEntryViewModels = JournalEntryViewModel.fetchJournalEntryViewModels()
     tableView.reloadData()
   }
