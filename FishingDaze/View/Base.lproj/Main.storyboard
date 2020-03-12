@@ -480,10 +480,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGo-vi-2CF">
-                                <rect key="frame" x="-20.5" y="72" width="361" height="356.5"/>
+                                <rect key="frame" x="-0.5" y="72" width="321" height="356.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="poF-pl-BY2">
-                                        <rect key="frame" x="20" y="-13" width="321" height="383"/>
+                                        <rect key="frame" x="0.0" y="-13" width="321" height="383"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Body of Water)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ez-2O-SxK">
                                                 <rect key="frame" x="0.0" y="0.0" width="321" height="27.5"/>
@@ -545,8 +545,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="poF-pl-BY2" firstAttribute="centerX" secondItem="HGo-vi-2CF" secondAttribute="centerX" id="43z-Hu-k1e"/>
-                                    <constraint firstAttribute="trailing" secondItem="poF-pl-BY2" secondAttribute="trailing" constant="20" id="Rjy-1p-Qns"/>
-                                    <constraint firstItem="poF-pl-BY2" firstAttribute="width" secondItem="HGo-vi-2CF" secondAttribute="width" constant="-40" id="UHE-KZ-eGw"/>
+                                    <constraint firstAttribute="trailing" secondItem="poF-pl-BY2" secondAttribute="trailing" id="Rjy-1p-Qns"/>
+                                    <constraint firstItem="poF-pl-BY2" firstAttribute="width" secondItem="HGo-vi-2CF" secondAttribute="width" id="UHE-KZ-eGw"/>
                                     <constraint firstItem="poF-pl-BY2" firstAttribute="centerY" secondItem="HGo-vi-2CF" secondAttribute="centerY" id="r2d-Dv-23U"/>
                                     <constraint firstAttribute="bottom" secondItem="poF-pl-BY2" secondAttribute="bottom" constant="20" id="s6p-yn-nHb"/>
                                 </constraints>
