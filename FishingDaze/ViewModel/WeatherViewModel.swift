@@ -132,8 +132,6 @@ class WeatherViewModel {
     self.fDegrees = weatherData.fDegrees
     self.shortNotes = weatherData.shortNotes
 
-    //let temperatureDisplay = String(weatherData.fDegrees)
-    // TODO
     let temperatureDisplay = getTemperatureForUnit(tempInFDegrees: weatherData.fDegrees)
     if let UIcompletion = UIcompletion {
       DispatchQueue.main.async {

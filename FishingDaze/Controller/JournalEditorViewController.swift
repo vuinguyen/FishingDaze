@@ -51,6 +51,8 @@ class JournalEditorViewController: UITableViewController {
 
     guard let latitude = latitude,
       let longitude = longitude else {
+        // TODO: add alert here that user needs to click on the
+        // get location button first
         return
     }
 
@@ -322,7 +324,6 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
       journalEntryViewModel = JournalEntryViewModel()
     }
 
-    // how do we know that we need to display the address or display the weather?
     journalEntryViewModel?.addressDisplay(locations: locations, UIcompletion: { (address) in
       self.addressTextField.text = address
       guard let location = locations[0] as CLLocation? else {
@@ -330,14 +331,13 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
       }
       self.latitude = location.coordinate.latitude
       self.longitude = location.coordinate.longitude
-
-      // based on a flag, call weather here
     })
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("we got an error with location services: \(error.localizedDescription)")
 
+    // TODO
     // display error in an alert box here ....
     // maybe display a message that says turn on location services and try again
   }

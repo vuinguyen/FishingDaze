@@ -33,8 +33,6 @@ class NotesViewModel {
     }
   }
 
-
-  // TODO: fetch
   static func fetchNotesViewModel(entryModel: Entry?) -> NotesViewModel? {
     var notesViewModel: NotesViewModel?
 
@@ -74,7 +72,6 @@ class NotesViewModel {
   }
 }
 
-//TODO
 extension NotesViewModel: CoreDataFunctions {
   func save() {
     guard let notes = notesModel else {

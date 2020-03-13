@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 protocol PhotoScrollDelegate {
-  //func updatePhotos(photos: [UIImage])
   func addPhoto(photoToAdd: UIImage, updatedPhotos: [UIImage])
   func deletePhoto(photoToDelete: UIImage, updatedPhotos: [UIImage])
 }

@@ -61,9 +61,6 @@ class LocationViewModel {
               locationViewModel = LocationViewModel()
               locationViewModel?.entryModel = entryModel
               locationViewModel?.locationModel = locationFound
-
-            //  print("body of water: \(locationModel?.bodyOfWater)")
-            //  print("address: \(locationModel?.address)")
             }
           }
         } catch let error as NSError {

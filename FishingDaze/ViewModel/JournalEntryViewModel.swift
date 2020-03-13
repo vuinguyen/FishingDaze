@@ -244,7 +244,6 @@ class JournalEntryViewModel {
   }
 
   // to be used when Notes is in Core Data
-  // TODO
   func entryNotesDisplay() -> String? {
     if notesViewModel == nil,
        let entryModel = entryModel  {
@@ -318,7 +317,6 @@ class JournalEntryViewModel {
     }
   }
 
-  // TODO
   private func fetchNotes() {
     if notesViewModel == nil,
       let entryModel = entryModel {
@@ -423,7 +421,6 @@ class JournalEntryViewModel {
     photoViewModel?.save()
   }
 
-  // TODO
   private func saveNotes() {
     guard let text = text else {
       return
@@ -508,10 +505,6 @@ class JournalEntryViewModel {
         let updatedStartTime = origStartTime.addingTimeInterval(-timeInterval)
         startTime = updatedStartTime
       }
-
-      //let myCalendar = Calendar(identifier: .gregorian)
-      //let ymd = myCalendar.dateComponents([.year, .month, .day], from: date)
-      //print(ymd)
 
       return (date, startTime, endTime)
     }
