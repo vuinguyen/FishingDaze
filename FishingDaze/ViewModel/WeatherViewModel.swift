@@ -107,6 +107,25 @@ class WeatherViewModel {
     return temperatureString
   }
 
+  func temperatureWithUnitNotesDisplay() -> String? {
+    var weatherLabelText = "Weather: "
+
+    if let temperatureWithUnit = temperatureWithUnitDisplay() {
+      weatherLabelText = weatherLabelText + temperatureWithUnit
+    }
+
+    if let weatherNotes = notesDisplay() {
+      if weatherLabelText.contains("Degrees") {
+        weatherLabelText = weatherLabelText + ", " + weatherNotes
+      } else {
+        weatherLabelText = weatherLabelText + weatherNotes
+      }
+    }
+
+    return weatherLabelText
+  }
+
+
   func displayWeatherinView(UIcompletion: ((_ temperature: String?, _ notes: String?) -> Void)?) {
     guard let weatherData = weatherData else {
       return

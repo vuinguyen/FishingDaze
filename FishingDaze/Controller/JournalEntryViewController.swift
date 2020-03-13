@@ -47,18 +47,8 @@ class JournalEntryViewController: UIViewController {
       self.photos = photos
     }
 
-    if let weatherWithUnit = journalEntryViewModel.weatherTemperatureWithUnitDisplay() {
-      var weatherLabelText = "Weather: "
-      weatherLabelText = weatherLabelText + weatherWithUnit
-
-      if let weatherNotes = journalEntryViewModel.weatherNotesDisplay() {
-        if weatherLabelText.contains("Weather: ") {
-          weatherLabelText = weatherLabelText + ", " + weatherNotes
-        } else {
-          weatherLabelText = weatherLabelText + weatherNotes
-        }
-      }
-      weatherLabel.text = weatherLabelText
+    if let weatherText = journalEntryViewModel.weatherTemperatureWithUnitNotesDisplay() {
+      weatherLabel.text = weatherText
     }
 
     if let notes = journalEntryViewModel.entryNotesDisplay() {

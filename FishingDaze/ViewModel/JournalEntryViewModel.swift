@@ -168,6 +168,19 @@ class JournalEntryViewModel {
     return weatherViewModel?.temperatureWithUnitDisplay()
   }
 
+  func weatherTemperatureWithUnitNotesDisplay() -> String? {
+    if locationViewModel == nil,
+       let entryModel = entryModel  {
+      locationViewModel = LocationViewModel.fetchLocationViewModel(entryModel: entryModel)
+    }
+
+    if weatherViewModel == nil {
+      weatherViewModel = WeatherViewModel.fetchWeatherViewModel(locationModel: locationViewModel?.locationModel)
+    }
+
+    return weatherViewModel?.temperatureWithUnitNotesDisplay()
+  }
+
   // to be used when Weather is in Core Data
   func weatherNotesDisplay() -> String? {
     if locationViewModel == nil,
