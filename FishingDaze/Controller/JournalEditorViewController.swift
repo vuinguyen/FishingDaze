@@ -30,11 +30,9 @@ class JournalEditorViewController: UITableViewController {
   @IBOutlet weak var saveBarButton: UIBarButtonItem!
 
   @IBAction func selectTemperatureUnitDisplay(_ sender: Any) {
-    if weatherTemperatureUnitControl.selectedSegmentIndex == TempUnitControlSegment.fahreinhet.rawValue {
-      UserDefaults.standard.set(TemperatureUnit.fahreinhet.rawValue, forKey: "TemperatureUnitKey")
-    } else {
-      UserDefaults.standard.set(TemperatureUnit.celsius.rawValue, forKey: "TemperatureUnitKey")
-    }
+    let temperatureUnit = weatherTemperatureUnitControl.selectedSegmentIndex == TempUnitControlSegment.fahreinhet.rawValue ?
+                          TemperatureUnit.fahreinhet : TemperatureUnit.celsius
+    JournalEntryViewModel.setWeatherTemperatureUnit(setToUnit: temperatureUnit)
     checkTemperatureUnitDisplay()
   }
   
@@ -64,18 +62,17 @@ class JournalEditorViewController: UITableViewController {
   }
 
   private func checkTemperatureUnitDisplay() {
-    if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.fahreinhet.rawValue {
-      print("Fahrenheit Unit Display Selected!")
-      weatherTemperatureUnitControl.selectedSegmentIndex = TempUnitControlSegment.fahreinhet.rawValue
-      weatherTemperatureUnitLabel.text = "Degrees F"
-    } else if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue{
-      print("Celsius Unit Display Selected!")
-      weatherTemperatureUnitControl.selectedSegmentIndex = TempUnitControlSegment.celsius.rawValue
-      weatherTemperatureUnitLabel.text = "Degrees C"
-    }
+    // set segment control
+    weatherTemperatureUnitControl.selectedSegmentIndex = JournalEntryViewModel.getWeatherTemperatureUnit() == TemperatureUnit.fahreinhet ?
+                                                        TempUnitControlSegment.fahreinhet.rawValue : TempUnitControlSegment.celsius.rawValue
+
+    // display numerical temperature value
     if let temperature = journalEntryViewModel?.weatherTemperatureDisplay() {
       weatherTemperatureField.text = temperature
     }
+
+    // display temperature unit
+    weatherTemperatureUnitLabel.text = JournalEntryViewModel.weatherTemperatureUnitDisplay()
   }
 
   @IBAction func deleteEntry(_ sender: Any) {

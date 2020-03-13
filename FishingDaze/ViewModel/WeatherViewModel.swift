@@ -83,9 +83,7 @@ class WeatherViewModel {
         return ""
       }
 
-    // TODO
     return getTemperatureForUnit(tempInFDegrees: temperature)
-    //return temperature.description
   }
 
   func temperatureWithUnitDisplay() -> String? {
@@ -144,7 +142,26 @@ class WeatherViewModel {
     }
   }
 
-  // TODO
+  static func getTemperatureUnit() -> TemperatureUnit {
+    let tempUnit = UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.fahreinhet.rawValue ?
+      TemperatureUnit.fahreinhet : TemperatureUnit.celsius
+    return tempUnit
+  }
+
+  static func setTemperatureUnit(setToUnit: TemperatureUnit) {
+    if setToUnit == TemperatureUnit.fahreinhet {
+      UserDefaults.standard.set(TemperatureUnit.fahreinhet.rawValue, forKey: "TemperatureUnitKey")
+    } else {
+      UserDefaults.standard.set(TemperatureUnit.celsius.rawValue, forKey: "TemperatureUnitKey")
+    }
+  }
+
+  static func temperatureUnitDisplay() -> String {
+    let tempUnitString = UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.fahreinhet.rawValue ?
+    "F Degrees" : "C Degrees"
+    return tempUnitString
+  }
+
   private func getTemperatureForUnit(tempInFDegrees: Double) -> String? {
     var temperatureString = String(tempInFDegrees)
     if UserDefaults.standard.string(forKey: "TemperatureUnitKey") == TemperatureUnit.celsius.rawValue {

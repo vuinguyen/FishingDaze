@@ -195,6 +195,17 @@ class JournalEntryViewModel {
     return weatherViewModel?.notesDisplay()
   }
 
+  static func getWeatherTemperatureUnit() -> TemperatureUnit {
+    WeatherViewModel.getTemperatureUnit()
+  }
+
+  static func setWeatherTemperatureUnit(setToUnit: TemperatureUnit) {
+    WeatherViewModel.setTemperatureUnit(setToUnit: setToUnit)
+  }
+
+  static func weatherTemperatureUnitDisplay() -> String {
+    WeatherViewModel.temperatureUnitDisplay()
+  }
 
   // To be used when Weather is not yet in Core Data
   // NOTE: We are making an assumption that the locationViewModel should exist
