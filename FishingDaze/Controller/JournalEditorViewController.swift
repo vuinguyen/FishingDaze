@@ -182,7 +182,6 @@ class JournalEditorViewController: UITableViewController {
     setupDelegates()
     loadInitialValues()
     showHideDeleteButton()
-    //hideKeyboardClickOutsideTextBox()
     hideKeyboardWithDoneButton()
 
     locationManager = CLLocationManager()
@@ -204,12 +203,6 @@ class JournalEditorViewController: UITableViewController {
     weatherTemperatureField.delegate = self
     weatherDescriptionField.delegate = self
     notesTextView.delegate = self
-  }
-
-  func hideKeyboardClickOutsideTextBox() {
-    let tap = UITapGestureRecognizer(target: self.view, action: #selector(doneButtonAction))
-    tap.cancelsTouchesInView = false
-    view.addGestureRecognizer(tap)
   }
 
   func hideKeyboardWithDoneButton() {

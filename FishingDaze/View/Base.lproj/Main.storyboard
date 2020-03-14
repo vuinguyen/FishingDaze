@@ -367,11 +367,11 @@
                                         <rect key="frame" x="0.0" y="1060" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="76y-hW-h5G" id="HhK-xQ-KZ2">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add Additional Notes Here" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="y4N-cr-gxJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -394,7 +394,7 @@
                                         <rect key="frame" x="0.0" y="1216" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uDu-Bu-YLe" id="wQJ-iV-iLK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -407,11 +407,11 @@
                                         <rect key="frame" x="0.0" y="1316" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CZQ-CL-ghn" id="yn0-17-Vww">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJn-mr-Xb8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Delete Entry">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -467,7 +467,6 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsS-k6-ITr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="da5-Vl-c6O" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="QON-F4-IeS"/>
             </objects>
             <point key="canvasLocation" x="2876.25" y="-425"/>
         </scene>
@@ -785,7 +784,7 @@
     </scenes>
     <resources>
         <image name="noImage" width="600" height="596"/>
-        <image name="photo.fill.on.rectangle.fill" catalog="system" width="32" height="32"/>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="64" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VG2-kl-7dn"/>
