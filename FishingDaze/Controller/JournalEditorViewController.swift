@@ -38,6 +38,7 @@ class JournalEditorViewController: UITableViewController {
   
   @IBAction func getCurrentLocation(_ sender: Any) {
     print("get current location!")
+    activityIndicator.startAnimating()
 
     // this works only if geolocation is on
     if let locationManager = locationManager {
@@ -48,6 +49,7 @@ class JournalEditorViewController: UITableViewController {
   // Note: weather will be based on the location and end time
   @IBAction func getWeather(_ sender: Any) {
     print("get current weather based on location")
+    activityIndicator.startAnimating()
 
     guard let latitude = latitude,
       let longitude = longitude else {
@@ -170,6 +172,7 @@ class JournalEditorViewController: UITableViewController {
   var longitude: Double?
 
   var photos: [UIImage]?
+  var activityIndicator = UIActivityIndicatorView()
 
   enum TempUnitControlSegment: Int {
     case fahreinhet = 0
@@ -179,6 +182,7 @@ class JournalEditorViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    setupActivityIndicator()
     setupDelegates()
     loadInitialValues()
     showHideDeleteButton()
@@ -195,6 +199,14 @@ class JournalEditorViewController: UITableViewController {
     if let weatherManager = weatherManager {
       weatherManager.delegate = self
     }
+  }
+
+  func setupActivityIndicator() {
+    activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    activityIndicator.style = UIActivityIndicatorView.Style.gray
+    activityIndicator.center = self.view.center
+    activityIndicator.hidesWhenStopped = true
+    self.view.addSubview(activityIndicator)
   }
 
   func setupDelegates() {
@@ -326,11 +338,14 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
       self.latitude = location.coordinate.latitude
       self.longitude = location.coordinate.longitude
     })
+
+    activityIndicator.stopAnimating()
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    print("we got an error with location services: \(error.localizedDescription)")
+    activityIndicator.stopAnimating()
 
+    print("we got an error with location services: \(error.localizedDescription)")
     let alert = UIAlertController(title: "Location Services Error", message: error.localizedDescription, preferredStyle: .alert)
     self.present(alert, animated: true, completion: nil)
   }
@@ -349,9 +364,12 @@ extension JournalEditorViewController: WeatherAPIManagerDelegate {
       self.weatherDescriptionField.text = notes
       self.weatherTemperatureField.text = temperature
     })
+
+    activityIndicator.stopAnimating()
   }
 
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error) {
+    activityIndicator.stopAnimating()
     print("got an error, yo!")
   }
 }
