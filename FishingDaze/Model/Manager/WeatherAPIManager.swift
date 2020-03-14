@@ -18,6 +18,23 @@ enum TemperatureUnit: String {
   case celsius 
 }
 
+enum WeatherError: Error {
+  case generic
+  case parsing
+}
+
+extension WeatherError: LocalizedError {
+  public var errorDescription: String? {
+    switch self {
+    case .generic:
+      return NSLocalizedString("Error Accessing Weather Service.", comment: "")
+
+    case .parsing:
+      return NSLocalizedString("Error Parsing Weather Data", comment: "")
+    }
+  }
+}
+
 protocol WeatherAPIManagerDelegate {
   func weatherManager(_ manager: WeatherAPIManager, didUpdateWeather weatherData: [WeatherData])
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error)
@@ -38,9 +55,9 @@ class WeatherAPIManager {
 
   var currentWeatherURL =
     baseURL +
-    "key=\(APIKeys.WeatherBitIOKey)" +
-    "&city=\(city)" +
-    "&units=\(units)"
+      "key=\(APIKeys.WeatherBitIOKey)" +
+      "&city=\(city)" +
+  "&units=\(units)"
 
   init() {
 
@@ -58,23 +75,33 @@ class WeatherAPIManager {
         "key=\(APIKeys.WeatherBitIOKey)" +
         "&lat=\(latitude)" +
         "&lon=\(longitude)" +
-        "&units=\(units)"
+      "&units=\(units)"
     }
 
     let url = URL(string: currentWeatherURL)!
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
-      if error != nil {
-        print("yo, we have an error here!")
+      if error != nil,
+        let error = error {
+        print("error with weather services: \(error.localizedDescription)")
+        if let delegate = self.delegate {
+          delegate.weatherManager(self, didFailWithError: error)
+        }
         return
       }
       guard let httpResponse = response as? HTTPURLResponse,
         (200...299).contains(httpResponse.statusCode) else {
-          print("yo, we have a server error here!")
+          print("Getting weather data: we have a server error here!")
+          if let delegate = self.delegate {
+            delegate.weatherManager(self, didFailWithError: WeatherError.generic)
+          }
           return
       }
 
       guard let data = data else {
-        print("couldn't get data! :(")
+        print("couldn't get weather data! :(")
+        if let delegate = self.delegate {
+          delegate.weatherManager(self, didFailWithError: WeatherError.parsing)
+        }
         return
       }
       print("data is: \(data)")
@@ -85,48 +112,66 @@ class WeatherAPIManager {
         // object was really complicated and wasn't worth the trouble to write Decoding classes
         // in order to grab a couple pieces of data, so JSON Serialization was an easier solution
 
-         guard let resultsDictionary = try JSONSerialization.jsonObject(with: data) as? [String: AnyObject] else {
-          print("cannot serialize json!")
+        guard let resultsDictionary = try JSONSerialization.jsonObject(with: data) as? [String: AnyObject] else {
+          print("cannot serialize weather json!")
+          if let delegate = self.delegate {
+            delegate.weatherManager(self, didFailWithError: WeatherError.parsing)
+          }
           return
-         }
-         //print(resultsDictionary)
+        }
+        //print(resultsDictionary)
 
 
         guard let count = resultsDictionary["count"] as? Int else {
-          print("cannot get count")
+          print("parsing weather json: cannot get count")
+          if let delegate = self.delegate {
+            delegate.weatherManager(self, didFailWithError: WeatherError.parsing)
+          }
           return
         }
         print("Int: \(count)")
 
         guard let firstData = resultsDictionary["data"] as? [[String: AnyObject]] else {
-          print("cannot get forecast")
+          print("parsing weather json: cannot get forecast")
+          if let delegate = self.delegate {
+            delegate.weatherManager(self, didFailWithError: WeatherError.parsing)
+          }
           return
         }
         print("forecast is: \(firstData[0])")
 
         guard let forecast = firstData[0] as [String: AnyObject]?,
           let temperature = forecast["temp"] as? Double else {
-          print("cannot get temperature")
-          return
+            print("parsing weather json: cannot get temperature")
+            if let delegate = self.delegate {
+              delegate.weatherManager(self, didFailWithError: WeatherError.parsing)
+            }
+            return
         }
         print("temperature is: \(temperature)")
 
         guard let weather = forecast["weather"] as? [String: AnyObject],
           let weatherDescription = weather["description"] as? String else {
-            print("cannot get weather description")
+            print("parsing weather json: cannot get weather description")
+            if let delegate = self.delegate {
+              delegate.weatherManager(self, didFailWithError: WeatherError.parsing)
+            }
             return
         }
         print("weather description is: \(weatherDescription)")
 
         DispatchQueue.main.async {
-          print("no error in parsing!")
+          print("no error in parsing weather data!")
           if let delegate = self.delegate {
             let weatherData: WeatherData = WeatherData(shortNotes: weatherDescription, fDegrees: temperature)
             delegate.weatherManager(self, didUpdateWeather: [weatherData])
           }
         }
       } catch {
-        print("error yo!")
+        print("Error in accessing Weather Service")
+        if let delegate = self.delegate {
+          delegate.weatherManager(self, didFailWithError: WeatherError.generic)
+        }
         return
       }
     } // end shared.dataTask
