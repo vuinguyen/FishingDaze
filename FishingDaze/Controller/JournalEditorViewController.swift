@@ -53,6 +53,7 @@ class JournalEditorViewController: UITableViewController {
       let longitude = longitude else {
         // TODO: add alert here that user needs to click on the
         // get location button first
+
         return
     }
 
@@ -337,9 +338,8 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("we got an error with location services: \(error.localizedDescription)")
 
-    // TODO
-    // display error in an alert box here ....
-    // maybe display a message that says turn on location services and try again
+    let alert = UIAlertController(title: "Location Services Error", message: error.localizedDescription, preferredStyle: .alert)
+    self.present(alert, animated: true, completion: nil)
   }
 }
 
