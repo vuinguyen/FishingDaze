@@ -639,7 +639,7 @@
                                                     <action selector="pickPhotoFromCamera:" destination="LiG-To-ln5" id="0Kn-rY-m1e"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Library" image="photo.fill.on.rectangle.fill" catalog="system" id="4US-F0-Dbe">
+                                            <barButtonItem title="Library" image="photoLibrary" id="4US-F0-Dbe">
                                                 <connections>
                                                     <action selector="pickPhotoFromPhotoLibrary:" destination="LiG-To-ln5" id="Gud-ml-DJp"/>
                                                 </connections>
@@ -784,7 +784,7 @@
     </scenes>
     <resources>
         <image name="noImage" width="600" height="596"/>
-        <image name="photo.fill.on.rectangle.fill" catalog="system" width="64" height="48"/>
+        <image name="photoLibrary" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VG2-kl-7dn"/>
