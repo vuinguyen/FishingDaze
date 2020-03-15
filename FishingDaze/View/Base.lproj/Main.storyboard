@@ -622,7 +622,7 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-2B-Zkv">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                         <items>
-                                            <barButtonItem title="Grid" id="7Xx-aY-aTS">
+                                            <barButtonItem title="Grid" image="photoGrid" id="7Xx-aY-aTS">
                                                 <connections>
                                                     <action selector="displayPhotoGrid:" destination="LiG-To-ln5" id="JJ7-yk-vvl"/>
                                                     <segue destination="UMb-ju-MDq" kind="show" identifier="displayGrid" id="6WL-0g-nE7"/>
@@ -783,6 +783,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photoGrid" width="24" height="24"/>
         <image name="photoLibrary" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
