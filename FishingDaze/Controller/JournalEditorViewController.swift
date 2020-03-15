@@ -56,6 +56,14 @@ class JournalEditorViewController: UITableViewController {
         let alert = UIAlertController(title: "Weather Service Error",
                                       message: "Can't access weather service without a Location. Click on Find Location button and try again",
                                       preferredStyle: .alert)
+        // Create an action and lets name it Ok.
+         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+             // On Click we need to dismiss the alert controller.
+            alert.dismiss(animated: true, completion: nil)
+        }
+
+        // Add the above created action to the Controller.
+        alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
         return
     }
@@ -345,7 +353,15 @@ extension JournalEditorViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     activityIndicator.stopAnimating()
     print("Location Service Error: \(error.localizedDescription)")
+
     let alert = UIAlertController(title: "Location Services Error", message: error.localizedDescription, preferredStyle: .alert)
+    // Create an action and lets name it Ok.
+     let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+         // On Click we need to dismiss the alert controller.
+        alert.dismiss(animated: true, completion: nil)
+    }
+    // Add the above created action to the Controller.
+    alert.addAction(okAction)
     self.present(alert, animated: true, completion: nil)
   }
 }
@@ -369,8 +385,17 @@ extension JournalEditorViewController: WeatherAPIManagerDelegate {
 
   func weatherManager(_ manager: WeatherAPIManager, didFailWithError error: Error) {
     activityIndicator.stopAnimating()
+
     print("Weather Service Error: \(error.localizedDescription)")
+
     let alert = UIAlertController(title: "Weather Services Error", message: error.localizedDescription, preferredStyle: .alert)
+    // Create an action and lets name it Ok.
+     let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+         // On Click we need to dismiss the alert controller.
+        alert.dismiss(animated: true, completion: nil)
+    }
+    // Add the above created action to the Controller.
+    alert.addAction(okAction)
     self.present(alert, animated: true, completion: nil)
   }
 }
