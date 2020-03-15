@@ -75,8 +75,6 @@ class JournalPhotoScrollViewController: UIViewController, UINavigationController
     configureCollectionView()
     configurePageControl()
     configureButtons()
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
   }
 
    // MARK: - Navigation
@@ -239,7 +237,6 @@ extension JournalPhotoScrollViewController: UIImagePickerControllerDelegate {
                              didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
     print("we got into imagepickercontroller code")
-    //picker.dismiss(animated: false, completion: nil)
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       addImage(image: image)
     } else {

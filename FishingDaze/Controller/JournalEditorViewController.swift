@@ -290,7 +290,6 @@ class JournalEditorViewController: UITableViewController {
     if segue.identifier == "showScrollablePhotos" {
       let photoScrollVC = segue.destination as! JournalPhotoScrollViewController
       photoScrollVC.albumEditable = true
-      //if let photos = photos {
       if let photos = journalEntryViewModel?.photoValues() {
         photoScrollVC.photos = photos
       }

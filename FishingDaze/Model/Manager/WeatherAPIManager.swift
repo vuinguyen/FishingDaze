@@ -48,16 +48,19 @@ let baseURL = "https://api.weatherbit.io/v2.0/current?"
 
 class WeatherAPIManager {
 
-  //var city: String?
+  // I put these as default values to show how to build the currentWeatherURL
+  // with latitude and longitude, OR city
+  // but we really want this to work with latitude and longitude,
+  // which are injected into the WeatherAPIManager
   var latitude: Double? = 38.123
   var longitude: Double? = -78.543
-  var delegate: WeatherAPIManagerDelegate?
-
   var currentWeatherURL =
     baseURL +
       "key=\(APIKeys.WeatherBitIOKey)" +
       "&city=\(city)" +
   "&units=\(units)"
+
+  var delegate: WeatherAPIManagerDelegate?
 
   init() {
 

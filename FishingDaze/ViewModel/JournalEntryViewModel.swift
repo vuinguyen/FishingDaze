@@ -52,7 +52,6 @@ class JournalEntryViewModel {
 
   // from Photo
   var images: [UIImage]?
-  //var photoDictionary: [UIImage:Photo]?
 
   // from Notes
   var text: String?
