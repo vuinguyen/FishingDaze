@@ -98,9 +98,9 @@ class WeatherViewModel {
       let celsiusTemp = fahrenheitTemp.converted(to: UnitTemperature.celsius)
       let formatter = NumberFormatter()
       formatter.maximumFractionDigits = 1
-      temperatureString = (formatter.string(from: NSNumber(value: celsiusTemp.value)) ?? "") + " Degrees C"
+      temperatureString = (formatter.string(from: NSNumber(value: celsiusTemp.value)) ?? "") + " C Degrees"
     } else {
-      temperatureString = temperatureString + " Degrees F"
+      temperatureString = temperatureString + " F Degrees"
     }
     return temperatureString
   }
