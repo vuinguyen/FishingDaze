@@ -666,7 +666,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="413" height="166"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="EoL-B1-4xy">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoLibrary" translatesAutoresizingMaskIntoConstraints="NO" id="EoL-B1-4xy">
                                                             <rect key="frame" x="0.0" y="0.0" width="413" height="166"/>
                                                         </imageView>
                                                     </subviews>
@@ -783,7 +783,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="noImage" width="600" height="596"/>
         <image name="photoLibrary" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
