@@ -212,7 +212,7 @@ class JournalEditorViewController: UITableViewController {
 
   func setupActivityIndicator() {
     activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-    activityIndicator.style = UIActivityIndicatorView.Style.gray
+    activityIndicator.style = UIActivityIndicatorView.Style.medium
     activityIndicator.center = self.view.center
     activityIndicator.hidesWhenStopped = true
     self.view.addSubview(activityIndicator)
