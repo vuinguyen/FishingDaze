@@ -16,12 +16,15 @@ class JournalEntryViewController: UIViewController {
   @IBOutlet var timeIntervalLabel: UILabel!
   @IBOutlet var weatherLabel: UILabel!
   @IBOutlet var additionalNotesLabel: UILabel!
-  
+  @IBOutlet var containerView: UIView!
+
   var journalEntryViewModel: JournalEntryViewModel?
   var photos: [UIImage]?
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    // center the photo album in the middle of its container view
+    containerView.center.x = self.view.center.x
     displayValues()
   }
 
