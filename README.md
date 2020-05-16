@@ -1,5 +1,6 @@
 # FishingDaze
 
+### App Description
 FishingDaze is a fishing journal app.
 
 It allows you to document your fishing trips, saving information such as:
@@ -12,14 +13,17 @@ It allows you to document your fishing trips, saving information such as:
 
 This is my capstone project, built as part of my Udacity iOS nanodegree program.
 
-### Version Numbers ###
+### Download Link
+To try the app yourself, you can download it from the [App Store](https://apps.apple.com/us/app/fishingdaze/id1512604599)
+
+### Version Numbers
 At the time of my project submission, this app was built on the versions:
 
 - Xcode: 11.3
 - Swift: 5
 - iOS: 12.2
 
-### Weather API key ###
+### Weather API key
 Weather data is retrieved from weather.io.
 
 For the app to access weather data, you must get your own API key from [weather.io](https://www.weatherbit.io/) and add it to the APIKeys.swift like below:
@@ -32,7 +36,7 @@ struct APIKeys {
 ```
 - add your real API key to the WeatherBitIOKey in the APIKeys struct
 
-### Running the app ###
+### How to Use the App
 The first, or main screen, is the List Screen, which lists the dates of your fishing trips. The very first time you run the app, the list will be blank:
 
 ![List Screen Initial](/screenshots/ListScreenBlank.png)
